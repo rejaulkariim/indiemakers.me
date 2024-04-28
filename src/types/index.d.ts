@@ -37,8 +37,8 @@ export type CreateUserParams = {
   lastName: string;
   username: string;
   email: string;
-  // role: 'user' | 'admin';
   photo: string;
+  role: string;
 };
 
 export type UpdateUserParams = {
