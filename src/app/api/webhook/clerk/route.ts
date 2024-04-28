@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       evt.data;
 
     // Create a MongoDB user object
-    const mongoUser = {
+    const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
       username: username!,
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     };
 
     // Create a new user in MongoDB
-    const newUser = await createUser(mongoUser);
+    const newUser = await createUser(user);
 
     // Update Clerk user metadata if user creation is successful
     if (newUser) {
