@@ -1,12 +1,23 @@
+import { auth } from '@clerk/nextjs/server';
 import Image from 'next/image';
 
 import Checkout from '@/components/checkout/Checkout';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { Button } from '@/components/ui/button';
 import { plans } from '@/constants';
+import { getUserById } from '@/lib/actions/user.actions';
 import { SignedIn } from '@clerk/nextjs';
 
 const Credits = async () => {
+  const { userId }: { userId: string | null } = auth();
+
+  if (!userId) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  const user = await getUserById(userId);
+
+  console.log(user, '=>User');
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
@@ -50,7 +61,7 @@ const Credits = async () => {
                     plan={plan.name}
                     amount={plan.price}
                     credits={plan.credits}
-                    buyerId={''}
+                    buyerId={user._id}
                   />
                 </SignedIn>
               )}

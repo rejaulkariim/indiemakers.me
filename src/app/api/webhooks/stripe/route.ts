@@ -1,4 +1,6 @@
-import { createOrder } from '@/lib/actions/order.action';
+/* eslint-disable camelcase */
+
+import { createTransaction } from '@/lib/actions/transaction.action';
 import { NextResponse } from 'next/server';
 import stripe from 'stripe';
 
@@ -23,15 +25,18 @@ export async function POST(request: Request) {
   if (eventType === 'checkout.session.completed') {
     const { id, amount_total, metadata } = event.data.object;
 
-    const order = {
+    const transaction = {
       stripeId: id,
+      amount: amount_total ? amount_total / 100 : 0,
+      plan: metadata?.plan || '',
+      credits: Number(metadata?.credits) || 0,
       buyerId: metadata?.buyerId || '',
-      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
       createdAt: new Date(),
     };
 
-    const newOrder = await createOrder(order);
-    return NextResponse.json({ message: 'OK', order: newOrder });
+    const newTransaction = await createTransaction(transaction);
+
+    return NextResponse.json({ message: 'OK', transaction: newTransaction });
   }
 
   return new Response('', { status: 200 });
