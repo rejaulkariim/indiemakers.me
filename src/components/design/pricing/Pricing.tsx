@@ -1,4 +1,3 @@
-import CheckoutButton from '@/components/checkout/CheckoutButton';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { stripePlan } from '@/config/stripe';
@@ -91,13 +90,6 @@ const Pricing = () => {
                       ))}
                     </ul>
                   )}
-                  <div className="space-y-2 ">
-                    <CheckoutButton plan={plan} />
-
-                    <p className="p-regular text-center">
-                      Pay once. Access forever.
-                    </p>
-                  </div>
                 </div>
               </div>
             ))}
