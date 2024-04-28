@@ -18,7 +18,7 @@ export const connectToDatabase = async () => {
     cached.promise ||
     mongoose.connect(MONGODB_URI, {
       // Specify the database name
-      dbName: 'Indie Makers',
+      dbName: 'Indiemakers',
       bufferCommands: false,
     });
 

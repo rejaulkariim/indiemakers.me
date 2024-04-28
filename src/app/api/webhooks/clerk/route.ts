@@ -54,6 +54,8 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
+  console.log(eventType);
+
   if (eventType === 'user.created') {
     // Destructure relevant data from the event data object
     const { id, email_addresses, image_url, first_name, last_name, username } =
@@ -68,8 +70,6 @@ export async function POST(req: Request) {
       lastName: last_name!,
       photo: image_url,
     };
-
-    console.log(user, 'user from api');
 
     // Create a new user in MongoDB
     const newUser = await createUser(user);
@@ -109,6 +109,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'OK', user: deletedUser });
   }
+
+  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+  console.log('Webhook body:', body);
 
   return new Response('', { status: 200 });
 }
