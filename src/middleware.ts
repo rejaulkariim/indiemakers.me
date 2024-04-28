@@ -6,7 +6,7 @@ export default authMiddleware({
 
   // Routes that can always be accessed, and have
   // no authentication information
-  ignoredRoutes: ['/api/og'],
+  ignoredRoutes: ['/api/og', '/api/webhook/clerk'],
 });
 
 export const config = {
