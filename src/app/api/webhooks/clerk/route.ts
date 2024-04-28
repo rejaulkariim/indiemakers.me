@@ -69,6 +69,8 @@ export async function POST(req: Request) {
       photo: image_url,
     };
 
+    console.log(user, 'user from api');
+
     // Create a new user in MongoDB
     const newUser = await createUser(user);
 
