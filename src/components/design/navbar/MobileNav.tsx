@@ -23,7 +23,7 @@ const MobileNav = () => {
     <nav className="flex md:hidden">
       <Sheet>
         <SheetTrigger className="align-middle">
-          <Icons.menu className="h-8 w-8" />
+          {/* <Icons.menu className="h-8 w-8" /> */}
         </SheetTrigger>
         <SheetContent
           className="flex flex-col gap-6 bg-background md:hidden"
