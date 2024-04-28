@@ -1,51 +1,91 @@
+import { Icons } from '@/components/shared/Icons';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import { buttonVariants } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
+import { cn } from '@/utils/utils';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
-import MobileNav from '@/components/design/navbar/MobileNav';
-import NavItems from '@/components/design/navbar/NavItems';
-import { Icons } from '@/components/shared/Icons';
-import { ModeToggle } from '@/components/theme/ModeToggle';
-import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/config/site';
-
-const Navbar = () => {
+const Navbar = async () => {
   return (
-    <header className="fixed inset-x-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {/* Max width wrapper for responsive layout */}
-      <MaxWidthWrapper className="flex items-center justify-between h-14">
-        {/* Branding */}
-        <Link href="/" className="text-xl font-bold flex items-center gap-2">
-          <Icons.logo className="h-6 w-6 text-foreground " />
-          <p className="text-base font-bold text-foreground">
-            {siteConfig.name}
-          </p>
-        </Link>
+    <header className="bg-background h-14 flex justify-center items-center w-full fixed inset-0 z-40 border-b border-muted">
+      <MaxWidthWrapper>
+        <nav className="flex justify-between items-center w-full">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <Icons.logo className="h-8 w-8" />
+            <span className="hidden font-bold sm:inline-block">
+              {siteConfig.name}
+            </span>
+          </Link>
 
-        {/* Navigation items */}
-        <nav>
-          <NavItems />
-        </nav>
+          <div className="flex gap-3 items-center">
+            {/* <FeedbackDialog /> */}
+            {/* <span className="bg-gray-200 px-3 py-2 text-xs rounded-full">
+              Beta
+            </span> */}
 
-        {/* Mode toggle (dark/light mode) and user authentication */}
-        <div className="flex justify-end items-center gap-4">
-          <ModeToggle />
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+            {/* <Link href="/user/dashboard">Dashboard</Link> */}
+            {/* 
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({
+                    variant: 'ghost',
+                    size: 'icon',
+                  })
+                )}
+              >
+                <Icons.gitHub className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </div>
+            </Link>
+            <Link
+              href={siteConfig.links.twitter}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({
+                    variant: 'ghost',
+                    size: 'icon',
+                  })
+                )}
+              >
+                <Icons.twitter className="h-3 w-3 fill-current" />
+                <span className="sr-only">Twitter</span>
+            </Link>
 
-          {/* Sign-in button */}
-          <div className="hidden md:block">
+            <ModeToggle /> */}
+
             <SignedOut>
-              <Button className="text-white">
-                <Link href="/sign-in">Login</Link>
-              </Button>
+              <Link
+                href="/sign-in"
+                className={cn(
+                  buttonVariants({ variant: 'secondary', size: 'sm' })
+                )}
+              >
+                Login
+              </Link>
             </SignedOut>
-          </div>
 
-          {/* Mobile navigation */}
-          <MobileNav />
-        </div>
+            <SignedIn>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/user/dashboard"
+                  className="text-sm text-muted-foreground"
+                >
+                  Dashboard
+                </Link>
+                <UserButton afterSignOutUrl="/" />
+              </div>
+            </SignedIn>
+          </div>
+        </nav>
       </MaxWidthWrapper>
     </header>
   );

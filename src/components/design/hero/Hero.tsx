@@ -1,48 +1,29 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import MaxWidthWrapper from '../../shared/MaxWidthWrapper';
-import { Button } from '../../ui/button';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 
-const Hero = () => {
+const Hero = async () => {
   return (
-    <section className="bg-primary-50 h-screen bg-dotted-pattern bg-contain section-padding">
-      <MaxWidthWrapper>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 relative">
-          {/* Gradient color */}
-          <div className="hero-gradient z-0" />
-          <div className="flex flex-col justify-center gap-4 space-y-2">
-            <p className="p-regular">
-              App Brews - The Complete Next.js SaaS boilerplate template.⚡
-            </p>
-            <h1 className="h1-bold">Ship Startup Faster.</h1>
-            <p className="paragraph">
-              Launch your SaaS startup effortlessly with a complete package. It
-              includes key features like Authentication, Database, Payment,
-              Email, Blog, UI Components, and Business Pages.
-            </p>
+    <>
+      <section className="section-padding">
+        <MaxWidthWrapper>
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <Badge variant="outline" className="text-muted-foreground">
+              Indie Makers is Now Public!
+            </Badge>
 
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <Button asChild className="button w-full sm:w-fit" size="lg">
-                <Link href="#events">Explore Now</Link>
-              </Button>
-              <Button asChild className="button w-full sm:w-fit" size="lg">
-                <Link href="#features">See Features</Link>
-              </Button>
-            </div>
+            <h1 className="text-3xl font-bold">
+              Discover Startup & AI Product on the Earth
+            </h1>
+            <p>
+              The most complete tools database. Discover useful tools for all
+              your needs. Updated daily.
+            </p>
+            <Input placeholder="Search..." className="max-w-xl mx-auto" />
           </div>
-          {/* Hero image */}
-          <div>
-            <Image
-              src="/assets/images/hero-1.avif"
-              alt="hero"
-              width={1000}
-              height={1000}
-              className="max-h-[70vh] object-cover object-center rounded-lg"
-            />
-          </div>
-        </div>
-      </MaxWidthWrapper>
-    </section>
+        </MaxWidthWrapper>
+      </section>
+    </>
   );
 };
 

@@ -14,19 +14,19 @@ export const dashboardConfig: DashboardConfig = {
   // ],
   sidebarNav: [
     {
-      title: 'Reports',
-      href: '/dashboard',
-      //   icon: 'docs',
+      title: 'Submit Tool',
+      href: '/user/dashboard/submit',
+      icon: 'shoppingCartIcon',
     },
     {
-      title: 'Service',
-      href: '/dashboard/recept',
-      //   icon: 'docs',
+      title: 'Profile',
+      href: '/user/dashboard/profile',
+      icon: 'settings',
     },
     {
-      title: 'Recept',
-      href: '/dashboard/recept',
-      //   icon: 'docs',
+      title: 'Buy Credits',
+      href: '/user/dashboard/credits',
+      icon: 'settings',
     },
   ],
 };

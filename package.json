@@ -1,12 +1,7 @@
 {
-  "name": "appbrews-boilerplate",
+  "name": "indiemakers",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "v18.18.0",
-    "yarn": "v1.22.21",
-    "npm": "please-use-pnpm"
-  },
   "scripts": {
     "dev": "next dev && contentlayer dev --turbo",
     "build": "contentlayer build && next build",
@@ -26,6 +21,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@react-email/components": "0.0.15",
     "@stripe/stripe-js": "^3.0.10",
     "@tailwindcss/typography": "^0.5.10",

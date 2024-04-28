@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  photo: {
+    type: String,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,
@@ -24,14 +28,18 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  planId: {
+    type: Number,
+    default: 1,
+  },
+  creditBalance: {
+    type: Number,
+    default: 10,
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],
     default: 'user',
-    required: true,
-  },
-  photo: {
-    type: String,
     required: true,
   },
 });

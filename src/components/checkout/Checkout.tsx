@@ -1,46 +1,71 @@
-import { Button } from '@/components/ui/button';
-import { checkoutOrder } from '@/lib/actions/order.action';
-import { TStripePlan } from '@/types';
+'use client';
+
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect } from 'react';
 
-loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+import { Button } from '../ui/button';
 
-const Checkout = ({ plan, userId }: { plan: TStripePlan; userId: string }) => {
+const Checkout = ({
+  plan,
+  amount,
+  credits,
+  buyerId,
+}: {
+  plan: string;
+  amount: number;
+  credits: number;
+  buyerId: string;
+}) => {
+  // const { toast } = useToast();
+
+  useEffect(() => {
+    loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  }, []);
+
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
+      // toast({
+      //   title: 'Order placed!',
+      //   description: 'You will receive an email confirmation',
+      //   duration: 5000,
+      //   className: 'success-toast',
+      // });
     }
 
     if (query.get('canceled')) {
-      console.log(
-        'Order canceled -- continue to shop around and checkout when you’re ready.'
-      );
+      // toast({
+      //   title: 'Order canceled!',
+      //   description: "Continue to shop around and checkout when you're ready",
+      //   duration: 5000,
+      //   className: 'error-toast',
+      // });
     }
   }, []);
 
   const onCheckout = async () => {
-    const order = {
-      buyerId: userId,
-      name: plan.name,
-      description: plan.description,
-      price: plan.price,
+    const transaction = {
+      plan,
+      amount,
+      credits,
+      buyerId,
     };
-    await checkoutOrder(order);
+
+    // await checkoutCredits(transaction);
   };
 
   return (
-    <form action={onCheckout} method="post">
-      <Button
-        type="submit"
-        role="link"
-        size="lg"
-        className="button w-full sm:w-full"
-      >
-        Get App Brews
-      </Button>
+    <form action={onCheckout} method="POST">
+      <section>
+        <Button
+          type="submit"
+          role="link"
+          className="w-full rounded-full bg-purple-gradient bg-cover"
+        >
+          Buy Credit
+        </Button>
+      </section>
     </form>
   );
 };

@@ -1,135 +1,115 @@
-import {
-  footerCompanyLinks,
-  footerDocsLinks,
-  footerLegalLinks,
-  footerResourcesLinks,
-} from '@/constants';
+'use client';
+
+import { Icons } from '@/components/shared/Icons';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import { ModeToggle } from '@/components/theme/ModeToggle';
+import { buttonVariants } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
+import { cn } from '@/utils/utils';
 import Link from 'next/link';
-import { Icons } from '../../shared/Icons';
-import MaxWidthWrapper from '../../shared/MaxWidthWrapper';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+  const pathname = usePathname();
+  const pathsToMinimize = ['/login', '/submit', '/business'];
+
   return (
-    <footer className="border-t md:pt-20 relative">
-      {/* Gradient color */}
-      <div className="footer-gradient z-0" />
-      {/* Use max width wrapper container */}
+    <footer className="bg-background flex-grow-0">
       <MaxWidthWrapper>
-        <div className="py-20 lg:py-20">
-          <div className="flex flex-wrap gap-8 lg:justify-between lg:gap-0">
-            <div className=" w-1/2 lg:w-1/4">
-              <div>
-                <Link href="/" className="flex items-center gap-2">
-                  <Icons.logo className="size-5 text-cyan-500" />{' '}
-                  <p className="font-semibold">App Brews</p>
-                </Link>
-
-                <p className="mb-10 mt-5 text-sm text-muted-foreground">
-                  The Complete Next.js SaaS boilerplate template.⚡
-                </p>
-              </div>
-              {/* Contact information */}
-              <div>
-                <p className="mb-1.5 uppercase">contact</p>
-                <Link
-                  href="#"
-                  className="text-itemtitle font-medium text-muted-foreground"
-                >
-                  appbrews@gmail.com
-                </Link>
+        <div>
+          {pathsToMinimize.includes(pathname) ? null : (
+            <div className="pb-8 pt-16">
+              <div className="flex justify-center">
+                <Icons.logo className="h-12 w-auto" />
               </div>
             </div>
+          )}
 
-            <div className="flex w-full flex-col gap-8 md:flex-row md:justify-between md:gap-0 lg:w-2/3 xl:w-7/12">
-              {/* Documentation section */}
-              <div>
-                <h4 className="mb-4 font-medium">Documentation</h4>
-                <ul>
-                  {footerDocsLinks.map((item) => (
-                    <li key={item.label} className="mb-3">
-                      <Link
-                        href={item.route}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-all"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {/* Resources section */}
-              <div>
-                <h4 className="mb-4 font-medium">Resources</h4>
-                <ul>
-                  {footerResourcesLinks.map((item) => (
-                    <li key={item.label} className="mb-3">
-                      <Link
-                        href={item.route}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-all"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {/* Company section */}
-              <div>
-                <h4 className="mb-4 font-medium">Company</h4>
-                <ul>
-                  {footerCompanyLinks.map((item) => (
-                    <li key={item.label} className="mb-3">
-                      <Link
-                        href={item.route}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-all"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {/* Legal section */}
-              <div>
-                <h4 className="mb-4 font-medium">Legal</h4>
-                <ul>
-                  {footerLegalLinks.map((item) => (
-                    <li key={item.label} className="mb-3">
-                      <Link
-                        href={item.route}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-all"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+          {pathsToMinimize.includes(pathname) ? null : (
+            <div>
+              <div className="relative flex items-center px-6 py-6 sm:py-8 lg:mt-0">
+                <div className="absolute inset-0 overflow-hidden rounded-2xl border">
+                  <div
+                    aria-hidden="true"
+                    className="absolute bg-background/30 inset-0 transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg"
+                  />
+                </div>
+
+                <div className="text-center relative mx-auto max-w-sm">
+                  <h3 className="text-xl font-semibold text-foreground">
+                    Want to list your product?
+                  </h3>
+                  <p className="mt-2 paragraph text-muted-foreground">
+                    Start listing your product on our platform and reach a wider
+                    audience.{' '}
+                    <Link
+                      href="/business"
+                      className="whitespace-nowrap font-medium text-purple-600"
+                    >
+                      Get started &rarr;
+                    </Link>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Footer copyright and social icons */}
-        <div className="flex flex-col gap-3 md:flex-row md:justify-between items-center my-6">
-          <div>
+        <div className="py-10 md:flex md:items-center md:justify-between">
+          <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Supercharge. All rights reserved
+              &copy; {new Date().getFullYear()} All Rights Reserved
             </p>
           </div>
 
-          <div>
-            <ul className="flex items-center gap-3">
-              <li className="p-1.5 rounded-full bg-accent">
-                <Link href="#" aria-label="social icon">
-                  <Icons.google className="h-6 w-6" />
-                </Link>
-              </li>
-              <li className="p-1.5 rounded-full bg-accent">
-                <Link href="#" aria-label="social icon">
-                  <Icons.facebook className="h-6 w-6" />
-                </Link>
-              </li>
-            </ul>
+          <div className="mt-4 flex items-center justify-center md:mt-0">
+            <div className="flex space-x-2 items-center">
+              <Link
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={cn(
+                    buttonVariants({
+                      variant: 'ghost',
+                      size: 'icon',
+                    })
+                  )}
+                >
+                  <Icons.gitHub className="h-4 w-4" />
+                  <span className="sr-only">GitHub</span>
+                </div>
+              </Link>
+              <Link
+                href={siteConfig.links.twitter}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div
+                  className={cn(
+                    buttonVariants({
+                      variant: 'ghost',
+                      size: 'icon',
+                    })
+                  )}
+                >
+                  <Icons.twitter className="h-3 w-3 fill-current" />
+                  <span className="sr-only">Twitter</span>
+                </div>
+              </Link>
+
+              <ModeToggle />
+              {/* <Link href="#" className="text-sm text-muted-foreground">
+                Terms
+              </Link>
+              <Link href="#" className="text-sm text-muted-foreground">
+                Privacy Policy
+              </Link>
+              <Link href="#" className="text-sm text-muted-foreground">
+                Cookie Policy
+              </Link> */}
+            </div>
           </div>
         </div>
       </MaxWidthWrapper>
