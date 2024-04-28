@@ -4,17 +4,9 @@ import Checkout from '@/components/checkout/Checkout';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { Button } from '@/components/ui/button';
 import { plans } from '@/constants';
-import { getUserById } from '@/lib/actions/user.actions';
-import { SignedIn, auth } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
+import { SignedIn } from '@clerk/nextjs';
 
 const Credits = async () => {
-  const { userId } = auth();
-
-  if (!userId) redirect('/sign-in');
-
-  const user = await getUserById(userId);
-
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
