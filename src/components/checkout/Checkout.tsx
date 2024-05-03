@@ -19,6 +19,8 @@ const Checkout = ({
 }) => {
   // const { toast } = useToast();
 
+  console.log(plan, amount, credits, buyerId);
+
   useEffect(() => {
     loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
   }, []);
@@ -59,11 +61,7 @@ const Checkout = ({
   return (
     <form action={onCheckout} method="POST">
       <section>
-        <Button
-          type="submit"
-          role="link"
-          className="w-full rounded-full bg-purple-gradient bg-cover"
-        >
+        <Button type="submit" role="link" className="w-full">
           Buy Credit
         </Button>
       </section>

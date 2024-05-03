@@ -4,14 +4,10 @@ import { siteConfig } from '@/config/site';
 import '@/styles/globals.css';
 import { cn } from '@/utils/utils';
 import { ClerkProvider } from '@clerk/nextjs';
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Toaster } from 'sonner';
 
-const font = Inter({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-});
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -64,7 +60,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn('antialiased', font.className)}>
+        <body className={cn('antialiased', GeistSans.className)}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
             <Toaster richColors />

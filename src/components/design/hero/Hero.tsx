@@ -1,25 +1,40 @@
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 
 const Hero = async () => {
   return (
     <>
       <section className="section-padding">
         <MaxWidthWrapper>
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Badge variant="outline" className="text-muted-foreground">
               Indie Makers is Now Public!
             </Badge>
 
-            <h1 className="text-3xl font-bold">
-              Discover Startup & AI Product on the Earth
+            <h1 className="font-bold mt-2">
+              Discover Startups, AI, and Tech Products
             </h1>
-            <p>
-              The most complete tools database. Discover useful tools for all
-              your needs. Updated daily.
+            <p className="paragraph">
+              Dive into the latest tech breakthroughs and startup gems.
             </p>
-            <Input placeholder="Search..." className="max-w-xl mx-auto" />
+
+            {/*TODO: impelement Search */}
+
+            {/* <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+              <LocalSearchbar
+                route="/"
+                iconPosition="right"
+                imgSrc="/assets/icons/search.svg"
+                placeholder="Search for products..."
+                otherClasses="flex-1"
+              />
+
+              <Filter
+                filters={HomePageFilters}
+                otherClasses="min-h-[56px] sm:min-w-[170px]"
+                containerClasses="hidden max-md:flex"
+              />
+            </div> */}
           </div>
         </MaxWidthWrapper>
       </section>

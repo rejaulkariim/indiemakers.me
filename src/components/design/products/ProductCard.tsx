@@ -1,25 +1,45 @@
-import { Badge } from '@/components/ui/badge';
-import {
-  Eye,
-  Flame,
-  MessageCircle,
-  Sparkles,
-  ThumbsUp,
-  Zap,
-} from 'lucide-react';
+import Metric from '@/components/shared/Metric';
+import RenderTag from '@/components/shared/RenderTag';
+import { formatAndDivideNumber } from '@/utils/utils';
+import { Flame, Sparkles, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const ProductCard = ({ product }: { product: any }) => {
+interface ProductProps {
+  name: string;
+  slug: string;
+  title: string;
+  image: string;
+  status: string;
+  tags: {
+    _id: string;
+    name: string;
+  }[];
+  upvotes: string[];
+  views: number;
+  comments: Array<object>;
+}
+
+const ProductCard = ({
+  name,
+  slug,
+  title,
+  image,
+  tags,
+  status,
+  upvotes,
+  views,
+  comments,
+}: ProductProps) => {
   return (
-    <Link
-      href={`/tools/${product.slug}`}
-      className="w-full border-b border-muted/50 p-4 hover:bg-card transition-all rounded-xl duration-300 cursor-pointer"
-    >
-      <div className="flex items-center justify-between gap-6">
+    <div className="w-full border-b border-muted/50 p-4 hover:bg-accent transition-all rounded-xl duration-300">
+      <Link
+        href={`/product/${slug}`}
+        className="flex items-center justify-between gap-6"
+      >
         <div className="flex items-center gap-4 w-full">
           <Image
-            src={product.imageUrl}
+            src={image}
             height={100}
             width={100}
             alt="tools"
@@ -29,59 +49,60 @@ const ProductCard = ({ product }: { product: any }) => {
 
           <div className="space-y-0.5 w-full">
             <div className="flex justify-between">
-              <p className="font-semibold">{product.name}</p>
+              <p className="font-semibold">{name}</p>
               <div className="flex gap-2 items-center">
-                <Badge variant="outline" className="text-muted-foreground">
-                  {product.status}
-                  {product.status === 'Featured' && (
-                    <Zap className="ml-0.5 size-3 text-green-500" />
+                <span className="border rounded-full px-3 py-1 text-xs text-muted-foreground inline-flex items-center gap-1">
+                  {status === 'FEATURED' && (
+                    <Zap className="size-3 text-green-500" />
                   )}
-                  {product.status === 'Trending' && (
-                    <Sparkles className="ml-0.5 size-3 text-violet-500" />
+                  {status === 'TRENDING' && (
+                    <Flame className="size-3 text-violet-500" />
                   )}
-                  {product.status === 'New' && (
-                    <Flame className="ml-0.5 size-3 text-rose-500" />
+                  {status === 'NEW' && (
+                    <Sparkles className="size-3.5 text-rose-500" />
                   )}
-                </Badge>
+                  {status}
+                </span>
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground">{product.title}</p>
+            <p className="text-sm text-muted-foreground">{title}</p>
           </div>
         </div>
-      </div>
+      </Link>
 
-      <div className="space-y-2 w-full mt-4">
-        <div className="flex justify-between items-center gap-2 w-full">
-          <div className="flex items-center gap-4">
-            {product.tags?.slice(0, 2).map((tag: string, i: number) => (
-              <Badge
-                variant="outline"
-                key={i}
-                className="text-muted-foreground"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 w-full mt-3.5">
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
+          ))}
+        </div>
 
-          <div className="flex items-center gap-4">
-            <p className="text-xs text-muted-foreground inline-flex items-center gap-1">
-              <ThumbsUp className="size-3" />
-              44 Votes
-            </p>
-            <p className="text-xs text-muted-foreground inline-flex items-center gap-1">
-              <MessageCircle className="size-3" />
-              34 Discuss
-            </p>
-            <p className="text-xs text-muted-foreground inline-flex items-center gap-1">
-              <Eye className="size-3" />
-              30 Views
-            </p>
-          </div>
+        <div className="flex items-center gap-3">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="Upvotes"
+            value={formatAndDivideNumber(upvotes.length)}
+            title=" Votes"
+            textStyles="text-xs text-muted-foreground"
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="message"
+            value={formatAndDivideNumber(comments.length)}
+            title="Comments"
+            textStyles="text-xs text-muted-foreground"
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={formatAndDivideNumber(views)}
+            title=" Views"
+            textStyles="text-xs text-muted-foreground"
+          />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

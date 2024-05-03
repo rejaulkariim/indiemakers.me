@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Home',
 };
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Hero />

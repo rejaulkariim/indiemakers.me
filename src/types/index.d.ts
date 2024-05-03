@@ -192,3 +192,26 @@ export type TStripePlan = {
   isFeatured?: boolean;
   features: TStripeFeature[];
 };
+
+// ====== TRANSACTION PARAMS
+declare type CheckoutTransactionParams = {
+  plan: string;
+  credits: number;
+  amount: number;
+  buyerId: string;
+};
+
+declare type CreateTransactionParams = {
+  stripeId: string;
+  amount: number;
+  credits: number;
+  plan: string;
+  buyerId: string;
+  createdAt: Date;
+};
+
+export interface BadgeCounts {
+  GOLD: number;
+  SILVER: number;
+  BRONZE: number;
+}

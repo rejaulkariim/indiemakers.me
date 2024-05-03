@@ -3,7 +3,6 @@ import Image from 'next/image';
 
 import Checkout from '@/components/checkout/Checkout';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import { Button } from '@/components/ui/button';
 import { plans } from '@/constants';
 import { getUserById } from '@/lib/actions/user.actions';
 import { SignedIn } from '@clerk/nextjs';
@@ -17,20 +16,17 @@ const Credits = async () => {
 
   const user = await getUserById(userId);
 
-  console.log(user, '=>User');
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+        <ul className="grid grid-cols-1 md:grid-cols-3 border rounded-xl">
           {plans.map((plan) => (
-            <li key={plan.name} className="border p-8 rounded-2xl">
+            <li key={plan.name} className="p-8 border-r">
               <div className="flex flex-col justify-center items-center gap-3">
                 <Image src={plan.icon} alt="check" width={50} height={50} />
-                <p className="p-20-semibold mt-2 text-purple-500">
-                  {plan.name}
-                </p>
-                <p className="">${plan.price}</p>
-                <p className="p-16-regular">{plan.credits} Credits</p>
+                <p className="paragraph font-bold">{plan.name}</p>
+                <p className="font-bold">${plan.price}</p>
+                <p className="text-muted-foreground">{plan.credits} Credits</p>
               </div>
 
               {/* Inclusions */}
@@ -48,23 +44,19 @@ const Credits = async () => {
                       width={24}
                       height={24}
                     />
-                    <p className="p-16-regular">{inclusion.label}</p>
+                    <p className="text-muted-foreground">{inclusion.label}</p>
                   </li>
                 ))}
               </ul>
 
-              {plan.name === 'Free' ? (
-                <Button variant="outline">Free Consumable</Button>
-              ) : (
-                <SignedIn>
-                  <Checkout
-                    plan={plan.name}
-                    amount={plan.price}
-                    credits={plan.credits}
-                    buyerId={user._id}
-                  />
-                </SignedIn>
-              )}
+              <SignedIn>
+                <Checkout
+                  plan={plan.name}
+                  amount={plan.price}
+                  credits={plan.credits}
+                  buyerId={user?._id}
+                />
+              </SignedIn>
             </li>
           ))}
         </ul>

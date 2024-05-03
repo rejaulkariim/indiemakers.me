@@ -81,7 +81,7 @@ body {
   }
 
   .section-padding {
-    @apply py-5 md:py-10 xl:py-20;
+    @apply py-5 md:py-10;
   }
 
   .flex-center {
@@ -227,7 +227,7 @@ body {
 }
 
 .paragraph {
-  @apply text-sm sm:text-base text-foreground dark:text-muted-foreground;
+  @apply text-foreground/80 dark:text-muted-foreground;
 }
 
 /* ========================================== CLERK STYLES */
@@ -317,4 +317,8 @@ body {
 
   background: #65c4fa;
   filter: blur(150px);
+}
+
+.no-focus {
+  @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
 }

@@ -14,19 +14,19 @@ export const dashboardConfig: DashboardConfig = {
   // ],
   sidebarNav: [
     {
-      title: 'Submit Tool',
-      href: '/user/dashboard/submit',
-      icon: 'shoppingCartIcon',
-    },
-    {
       title: 'Profile',
       href: '/user/dashboard/profile',
-      icon: 'settings',
+      icon: 'user',
+    },
+    {
+      title: 'New Product',
+      href: '/user/dashboard/submit',
+      icon: 'plus',
     },
     {
       title: 'Buy Credits',
       href: '/user/dashboard/credits',
-      icon: 'settings',
+      icon: 'billing',
     },
   ],
 };

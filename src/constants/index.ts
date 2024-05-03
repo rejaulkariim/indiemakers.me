@@ -339,20 +339,20 @@ export const plans = [
     _id: 1,
     name: 'Free',
     icon: '/assets/icons/free-plan.svg',
-    price: 0,
-    credits: 10,
+    price: 19,
+    credits: 50,
     inclusions: [
       {
-        label: '10 Free Credits',
+        label: '50 Credits',
         isIncluded: true,
       },
       {
-        label: 'Basic Access to Services',
+        label: 'Full Access to Services',
         isIncluded: true,
       },
       {
         label: 'Priority Customer Support',
-        isIncluded: false,
+        isIncluded: true,
       },
       {
         label: 'Priority Updates',
@@ -364,11 +364,11 @@ export const plans = [
     _id: 2,
     name: 'Pro Package',
     icon: '/assets/icons/free-plan.svg',
-    price: 29,
-    credits: 150,
+    price: 39,
+    credits: 100,
     inclusions: [
       {
-        label: '120 Credits',
+        label: '100 Credits',
         isIncluded: true,
       },
       {
@@ -389,11 +389,11 @@ export const plans = [
     _id: 3,
     name: 'Premium Package',
     icon: '/assets/icons/free-plan.svg',
-    price: 99,
-    credits: 500,
+    price: 79,
+    credits: 250,
     inclusions: [
       {
-        label: '500 Credits',
+        label: '250 Credits',
         isIncluded: true,
       },
       {
@@ -411,3 +411,31 @@ export const plans = [
     ],
   },
 ];
+
+export const BADGE_CRITERIA = {
+  QUESTION_COUNT: {
+    BRONZE: 10,
+    SILVER: 50,
+    GOLD: 100,
+  },
+  ANSWER_COUNT: {
+    BRONZE: 10,
+    SILVER: 50,
+    GOLD: 100,
+  },
+  QUESTION_UPVOTES: {
+    BRONZE: 10,
+    SILVER: 50,
+    GOLD: 100,
+  },
+  ANSWER_UPVOTES: {
+    BRONZE: 10,
+    SILVER: 50,
+    GOLD: 100,
+  },
+  TOTAL_VIEWS: {
+    BRONZE: 1000,
+    SILVER: 10000,
+    GOLD: 100000,
+  },
+};

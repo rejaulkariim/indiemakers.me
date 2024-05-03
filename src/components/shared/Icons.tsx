@@ -31,6 +31,7 @@ import {
 export const Icons = {
   logo: Cat,
   close: X,
+
   moveUp: ChevronUp,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
@@ -45,6 +46,7 @@ export const Icons = {
   add: Plus,
   warning: AlertTriangle,
   user: User,
+  plus: Plus,
   arrowRight: ArrowRight,
   help: HelpCircle,
   pizza: Pizza,

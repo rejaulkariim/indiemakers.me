@@ -26,30 +26,21 @@ const Footer = () => {
           )}
 
           {pathsToMinimize.includes(pathname) ? null : (
-            <div>
-              <div className="relative flex items-center px-6 py-6 sm:py-8 lg:mt-0">
-                <div className="absolute inset-0 overflow-hidden rounded-2xl border">
-                  <div
-                    aria-hidden="true"
-                    className="absolute bg-background/30 inset-0 transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg"
-                  />
-                </div>
-
-                <div className="text-center relative mx-auto max-w-sm">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Want to list your product?
-                  </h3>
-                  <p className="mt-2 paragraph text-muted-foreground">
-                    Start listing your product on our platform and reach a wider
-                    audience.{' '}
-                    <Link
-                      href="/business"
-                      className="whitespace-nowrap font-medium text-purple-600"
-                    >
-                      Get started &rarr;
-                    </Link>
-                  </p>
-                </div>
+            <div className="max-w-3xl mx-auto text-center border p-4 rounded-xl">
+              <div className="">
+                <h3 className="font-semibold text-foreground">
+                  Want to list your product?
+                </h3>
+                <p className="paragraph">
+                  List your product on our growing platform for lifetime
+                  exposure.
+                </p>
+                <Link
+                  href="/user/dashboard/submit"
+                  className={cn(buttonVariants(), 'mt-4')}
+                >
+                  New Product
+                </Link>
               </div>
             </div>
           )}

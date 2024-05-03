@@ -30,7 +30,7 @@ const DashboardSidebarNav = ({ items }: DashboardNavProps) => {
 
       <div className="grid items-start gap-2">
         {items.map((item: any, index: number) => {
-          //   const Icon = Icons[item.icon || 'arrowRight'];
+          const Icon = Icons[item.icon || 'arrowRight'];
           return (
             item.href && (
               <Link key={index} href={item.disabled ? '/' : item.href}>
@@ -41,7 +41,7 @@ const DashboardSidebarNav = ({ items }: DashboardNavProps) => {
                     item.disabled && 'cursor-not-allowed opacity-80'
                   )}
                 >
-                  {/* <Icon className="mr-2 h-4 w-4 text-muted-foreground" /> */}
+                  <Icon className="mr-2 h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
                     {item.title}
                   </span>
