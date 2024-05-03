@@ -19,9 +19,11 @@ export async function createUser(user: CreateUserParams) {
 }
 
 // READ
-export async function getUserById(userId: string) {
+export async function getUserById(params: any) {
   try {
     await connectToDatabase();
+
+    const { userId } = params;
 
     const user = await User.findOne({ clerkId: userId });
 

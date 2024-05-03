@@ -1,5 +1,6 @@
 'use client';
 
+import { downVoteProduct, upVoteProduct } from '@/lib/actions/product.action';
 import { formatAndDivideNumber } from '@/utils/utils';
 // import { downvoteAnswer, upvoteAnswer } from '@/lib/actions/answer.action';
 // import { viewQuestion } from '@/lib/actions/interaction.action';
@@ -11,7 +12,7 @@ import { formatAndDivideNumber } from '@/utils/utils';
 // import { formatAndDivideNumber } from '@/lib/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-// import { toast } from '../ui/use-toast';
+import { toast } from '../ui/use-toast';
 
 interface Props {
   type: string;
@@ -53,61 +54,63 @@ const Votes = ({
 
   const handleVote = async (action: string) => {
     if (!userId) {
-      //   return toast({
-      //     title: 'Please log in',
-      //     description: 'You must be logged in to perform this action',
-      //   });
+      return toast({
+        title: 'Please log in',
+        description: 'You must be logged in to perform this action',
+      });
     }
 
-    // if (action === 'upvote') {
-    //   if (type === 'Question') {
-    //     await upvoteQuestion({
-    //       questionId: JSON.parse(itemId),
-    //       userId: JSON.parse(userId),
-    //       hasupVoted,
-    //       hasdownVoted,
-    //       path: pathname,
-    //     });
-    //   } else if (type === 'Answer') {
-    //     await upvoteAnswer({
-    //       answerId: JSON.parse(itemId),
-    //       userId: JSON.parse(userId),
-    //       hasupVoted,
-    //       hasdownVoted,
-    //       path: pathname,
-    //     });
-    //   }
+    if (action === 'upvote') {
+      if (type === 'Product') {
+        await upVoteProduct({
+          productId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
+      } else if (type === 'Answer') {
+        // await upvoteAnswer({
+        //   answerId: JSON.parse(itemId),
+        //   userId: JSON.parse(userId),
+        //   hasupVoted,
+        //   hasdownVoted,
+        //   path: pathname,
+        // });
+      }
 
-    //   return toast({
-    //     title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-    //     variant: !hasupVoted ? 'default' : 'destructive',
-    //   });
-    // }
+      return;
+      //  toast({
+      //   title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+      //   variant: !hasupVoted ? 'default' : 'destructive',
+      // });
+    }
 
-    // if (action === 'downvote') {
-    //   if (type === 'Question') {
-    //     await downvoteQuestion({
-    //       questionId: JSON.parse(itemId),
-    //       userId: JSON.parse(userId),
-    //       hasupVoted,
-    //       hasdownVoted,
-    //       path: pathname,
-    //     });
-    //   } else if (type === 'Answer') {
-    //     await downvoteAnswer({
-    //       answerId: JSON.parse(itemId),
-    //       userId: JSON.parse(userId),
-    //       hasupVoted,
-    //       hasdownVoted,
-    //       path: pathname,
-    //     });
-    //   }
+    if (action === 'downvote') {
+      if (type === 'Product') {
+        await downVoteProduct({
+          productId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
+      } else if (type === 'Answer') {
+        // await downvoteAnswer({
+        //   answerId: JSON.parse(itemId),
+        //   userId: JSON.parse(userId),
+        //   hasupVoted,
+        //   hasdownVoted,
+        //   path: pathname,
+        // });
+      }
 
-    //   return toast({
-    //     title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-    //     variant: !hasupVoted ? 'default' : 'destructive',
-    //   });
-    // }
+      return;
+      // toast({
+      //   title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+      //   variant: !hasupVoted ? 'default' : 'destructive',
+      // });
+    }
   };
 
   //   useEffect(() => {

@@ -25,8 +25,6 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
   }
   const result = await getProductBySlug({ productSlug: params.slug });
 
-  console.log(result, 'result⚡');
-
   return (
     <section className="section-padding">
       {/* <MaxWidthWrapper>
@@ -135,13 +133,13 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               </div>
 
               <Votes
-                type="Question"
+                type="Product"
                 itemId={JSON.stringify(result._id)}
-                userId={JSON.stringify('')}
+                userId={JSON.stringify(mongoUser._id)}
                 upvotes={result.upvotes.length}
-                hasupVoted={result.upvotes.includes(30)}
+                hasupVoted={result.upvotes.includes(mongoUser._id)}
                 downvotes={result.downvotes.length}
-                hasdownVoted={result.downvotes.includes(20)}
+                hasdownVoted={result.downvotes.includes(mongoUser._id)}
                 hasSaved={mongoUser?.saved.includes(result._id)}
               />
             </div>

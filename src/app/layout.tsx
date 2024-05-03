@@ -1,13 +1,12 @@
 import ScrollToTop from '@/components/shared/ScrollToTop';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
 import { siteConfig } from '@/config/site';
 import '@/styles/globals.css';
 import { cn } from '@/utils/utils';
 import { ClerkProvider } from '@clerk/nextjs';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
-
-import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -63,7 +62,7 @@ export default function RootLayout({
         <body className={cn('antialiased', GeistSans.className)}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
-            <Toaster richColors />
+            <Toaster />
             <ScrollToTop />
           </ThemeProvider>
         </body>

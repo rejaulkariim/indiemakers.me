@@ -1,21 +1,20 @@
 'use server';
 
 import { FilterQuery } from 'mongoose';
+import { revalidatePath } from 'next/cache';
 import Interaction from '../database/models/interaction.model';
 import Product from '../database/models/product.model';
 import Tag from '../database/models/tag.model';
 import User from '../database/models/user.model';
 import { connectToDatabase } from '../database/mongoose';
-import { CreateProductParams, GetProductParams } from './shared.types';
+import {
+  CreateProductParams,
+  GetProductParams,
+  ProductVoteParams,
+} from './shared.types';
 
 // Create new products
 export async function createProduct(params: CreateProductParams) {
-  // const { userId }: { userId: string | null } = auth();
-
-  // if (!userId) {
-  //   return new Response('Unauthorized', { status: 401 });
-  // }
-
   try {
     await connectToDatabase();
 
@@ -170,6 +169,75 @@ export async function getProductBySlug(params: any) {
       });
 
     return product;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// Upvote
+export async function upVoteProduct(params: ProductVoteParams) {
+  try {
+    await connectToDatabase();
+
+    const { productId, userId, hasUpVoted, hasDownVoted, path } = params;
+
+    let updateQuery = {};
+
+    if (hasDownVoted) {
+      updateQuery = { $pull: { upvotes: userId } };
+    } else if (hasDownVoted) {
+      updateQuery = {
+        $pull: { downVotes: userId },
+        $push: { upvotes: userId },
+      };
+    } else {
+      updateQuery = { $addToSet: { upvotes: userId } };
+    }
+
+    const product = await Product.findByIdAndUpdate(productId, updateQuery, {
+      new: true,
+    });
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+// Downvote
+export async function downVoteProduct(params: ProductVoteParams) {
+  try {
+    await connectToDatabase();
+
+    const { productId, userId, hasupVoted, hasdownVoted, path } = params;
+
+    let updateQuery = {};
+
+    if (hasdownVoted) {
+      updateQuery = { $pull: { downvotes: userId } };
+    } else if (hasupVoted) {
+      updateQuery = {
+        $pull: { upvotes: userId },
+        $push: { downvotes: userId },
+      };
+    } else {
+      updateQuery = { $addToSet: { downvotes: userId } };
+    }
+
+    const product = await Product.findByIdAndUpdate(productId, updateQuery, {
+      new: true,
+    });
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
     throw error;

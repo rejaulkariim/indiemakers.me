@@ -18,3 +18,11 @@ export interface CreateProductParams {
   author: Schema.Types.ObjectId | IUser;
   path: string;
 }
+
+export interface ProductVoteParams {
+  productId: string;
+  userId: string;
+  hasupVoted: boolean;
+  hasdownVoted: boolean;
+  path: string;
+}
