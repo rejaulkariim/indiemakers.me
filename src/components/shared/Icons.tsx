@@ -49,7 +49,7 @@ export const Icons = {
   moon: Moon,
   laptop: Laptop,
 
-  twitter: (props: IconProps) => (
+  twitter: (props: LucideProps) => (
     <svg
       {...props}
       height="23"
