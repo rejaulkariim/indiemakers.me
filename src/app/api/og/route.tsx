@@ -93,7 +93,7 @@ export async function GET(req: Request) {
               tw="flex text-xl"
               style={{ fontFamily: 'Inter', fontWeight: 'normal' }}
             >
-              tx.shadcn.com
+              www.indiemakers.me
             </div>
             <div
               tw="flex items-center text-xl"
@@ -115,7 +115,7 @@ export async function GET(req: Request) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2">github.com/shadcn/taxonomy</div>
+              <div tw="flex ml-2">github.com/rejaulkariim/indiemakers.me</div>
             </div>
           </div>
         </div>
