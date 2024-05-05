@@ -40,7 +40,7 @@ export async function generateMetadata({
 
   const ogUrl = new URL(`${url}/api/og`);
   ogUrl.searchParams.set('heading', result.title);
-  ogUrl.searchParams.set('type', 'Blog Post');
+  ogUrl.searchParams.set('type', 'Startup');
   ogUrl.searchParams.set('mode', 'dark');
 
   return {
@@ -52,7 +52,7 @@ export async function generateMetadata({
     openGraph: {
       title: result.title,
       description: result.description,
-      type: 'article',
+      type: 'website',
       url: absoluteUrl(result.slug),
       images: [
         {
