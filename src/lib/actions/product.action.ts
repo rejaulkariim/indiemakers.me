@@ -180,13 +180,13 @@ export async function upVoteProduct(params: ProductVoteParams) {
   try {
     await connectToDatabase();
 
-    const { productId, userId, hasUpVoted, hasDownVoted, path } = params;
+    const { productId, userId, hasupVoted, hasdownVoted, path } = params;
 
     let updateQuery = {};
 
-    if (hasDownVoted) {
+    if (hasdownVoted) {
       updateQuery = { $pull: { upvotes: userId } };
-    } else if (hasDownVoted) {
+    } else if (hasdownVoted) {
       updateQuery = {
         $pull: { downVotes: userId },
         $push: { upvotes: userId },
