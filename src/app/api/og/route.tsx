@@ -26,7 +26,7 @@ export async function GET(req: Request) {
     const { mode } = values;
     const paint = mode === 'dark' ? '#fff' : '#000';
 
-    const fontSize = heading.length > 100 ? '30px' : '40px';
+    const fontSize = heading.length > 100 ? '55px' : '40px';
 
     return new ImageResponse(
       (
@@ -42,8 +42,8 @@ export async function GET(req: Request) {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="44"
+            height="44"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -55,13 +55,17 @@ export async function GET(req: Request) {
             <path d="M8 14v.5" />
             <path d="M16 14v.5" />
             <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
-
             <defs>
               <clipPath id="a">
                 <path fill={paint} d="M0 9.771h150v30.457H0z" />
               </clipPath>
             </defs>
+
+            <text x="12" y="22" font-size="8" text-anchor="middle">
+              Indie Makers
+            </text>
           </svg>
+
           <div tw="flex flex-col flex-1 py-10">
             <div
               tw="flex text-xl uppercase font-bold tracking-tight"
