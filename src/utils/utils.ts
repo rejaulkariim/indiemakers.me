@@ -146,3 +146,12 @@ export const assignBadges = (params: BadgeParam) => {
 export function absoluteUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
 }
+
+export function formatDate(input: string | number): string {
+  const date = new Date(input);
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
