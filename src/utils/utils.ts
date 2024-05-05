@@ -142,3 +142,7 @@ export const assignBadges = (params: BadgeParam) => {
 
   return badgeCounts;
 };
+
+export function absoluteUrl(path: string) {
+  return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
+}

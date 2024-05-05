@@ -6,14 +6,70 @@ import Votes from '@/components/shared/Votes';
 import { buttonVariants } from '@/components/ui/button';
 import { getHotProduct, getProductBySlug } from '@/lib/actions/product.action';
 import { getUserById } from '@/lib/actions/user.actions';
-import { cn, formatAndDivideNumber, getTimestamp } from '@/utils/utils';
+import {
+  absoluteUrl,
+  cn,
+  formatAndDivideNumber,
+  getTimestamp,
+} from '@/utils/utils';
 import { auth } from '@clerk/nextjs/server';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface Params {
   slug: string;
   clerkId: string;
+}
+
+interface PostPageProps {
+  params: {
+    slug: string[];
+  };
+}
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const result = await getProductBySlug({ productSlug: params.slug });
+
+  if (!result) {
+    return {};
+  }
+
+  const url = process.env.NEXT_PUBLIC_SERVER_URL;
+
+  const ogUrl = new URL(`${url}/api/og`);
+  ogUrl.searchParams.set('heading', result.title);
+  ogUrl.searchParams.set('type', 'Blog Post');
+  ogUrl.searchParams.set('mode', 'dark');
+
+  return {
+    title: result.title,
+    description: result.description,
+    // authors: post.authors.map((author) => ({
+    //   name: author,
+    // })),
+    openGraph: {
+      title: result.title,
+      description: result.description,
+      type: 'article',
+      url: absoluteUrl(result.slug),
+      images: [
+        {
+          url: ogUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: result.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: result.title,
+      description: result.description,
+      images: [ogUrl.toString()],
+    },
+  };
 }
 
 const ProductDetailsPage = async ({ params, searchParams }: any) => {
