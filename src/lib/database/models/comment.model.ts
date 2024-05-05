@@ -1,23 +1,23 @@
 import { Document, Schema, model, models } from 'mongoose';
 
-export interface IAnswer extends Document {
+export interface IProduct extends Document {
   author: Schema.Types.ObjectId;
-  question: Schema.Types.ObjectId;
+  product: Schema.Types.ObjectId;
   content: string;
   upvotes: Schema.Types.ObjectId[];
   downvotes: Schema.Types.ObjectId[];
   createdAt: Date;
 }
 
-const AnswerSchema = new Schema({
+const CommentSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  question: {
+  product: {
     type: Schema.Types.ObjectId,
-    ref: 'Question',
+    ref: 'Product',
     required: true,
   },
   content: {
@@ -42,6 +42,6 @@ const AnswerSchema = new Schema({
   },
 });
 
-const Answer = models.Answer || model('Answer', AnswerSchema);
+const Comment = models.Comment || model('Comment', CommentSchema);
 
-export default Answer;
+export default Comment;

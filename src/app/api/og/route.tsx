@@ -55,17 +55,13 @@ export async function GET(req: Request) {
             <path d="M8 14v.5" />
             <path d="M16 14v.5" />
             <path d="M11.25 16.25h1.5L12 17l-.75-.75Z" />
+
             <defs>
               <clipPath id="a">
                 <path fill={paint} d="M0 9.771h150v30.457H0z" />
               </clipPath>
             </defs>
-
-            <text x="12" y="22" font-size="8" text-anchor="middle">
-              Indie Makers
-            </text>
           </svg>
-
           <div tw="flex flex-col flex-1 py-10">
             <div
               tw="flex text-xl uppercase font-bold tracking-tight"

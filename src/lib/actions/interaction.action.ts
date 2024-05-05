@@ -11,14 +11,14 @@ export async function viewProduct(params: ViewProductParams) {
 
     const { productId, userId } = params;
 
-    // Update view count for the question
+    // Update view count for the product
     await Product.findByIdAndUpdate(productId, { $inc: { views: 1 } });
 
     if (userId) {
       const existingInteraction = await Interaction.findOne({
         user: userId,
         action: 'view',
-        question: productId,
+        product: productId,
       });
 
       if (existingInteraction) return console.log('User has already viewed.');
@@ -27,7 +27,7 @@ export async function viewProduct(params: ViewProductParams) {
       await Interaction.create({
         user: userId,
         action: 'view',
-        question: productId,
+        product: productId,
       });
     }
   } catch (error) {

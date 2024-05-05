@@ -184,7 +184,7 @@ export async function upVoteProduct(params: ProductVoteParams) {
 
     let updateQuery = {};
 
-    if (hasdownVoted) {
+    if (hasupVoted) {
       updateQuery = { $pull: { upvotes: userId } };
     } else if (hasdownVoted) {
       updateQuery = {
@@ -209,6 +209,7 @@ export async function upVoteProduct(params: ProductVoteParams) {
     throw error;
   }
 }
+
 // Downvote
 export async function downVoteProduct(params: ProductVoteParams) {
   try {

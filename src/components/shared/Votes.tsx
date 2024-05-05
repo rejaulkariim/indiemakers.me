@@ -10,6 +10,7 @@ import { formatAndDivideNumber } from '@/utils/utils';
 // } from '@/lib/actions/question.action';
 // import { toggleSaveQuestion } from '@/lib/actions/user.action';
 // import { formatAndDivideNumber } from '@/lib/utils';
+import { downVoteComment, upVoteComment } from '@/lib/actions/comment.action';
 import { viewProduct } from '@/lib/actions/interaction.action';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -71,14 +72,14 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
-      } else if (type === 'Answer') {
-        // await upvoteAnswer({
-        //   answerId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path: pathname,
-        // });
+      } else if (type === 'Comment') {
+        await upVoteComment({
+          commentId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       }
 
       return toast({
@@ -96,14 +97,14 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
-      } else if (type === 'Answer') {
-        // await downvoteAnswer({
-        //   answerId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path: pathname,
-        // });
+      } else if (type === 'Comment') {
+        await downVoteComment({
+          commentId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       }
 
       return toast({
