@@ -1,7 +1,6 @@
 'use server';
 
 import { CheckoutTransactionParams, CreateTransactionParams } from '@/types';
-import { handleError } from '@/utils/utils';
 import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 import Transaction from '../database/models/transaction.model';
@@ -56,6 +55,6 @@ export async function createTransaction(transaction: CreateTransactionParams) {
     return JSON.parse(JSON.stringify(newTransaction));
   } catch (error) {
     console.log(error);
-    handleError(error);
+    // handleError(error);
   }
 }
