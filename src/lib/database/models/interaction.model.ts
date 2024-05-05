@@ -1,11 +1,11 @@
 import { Document, Schema, model, models } from 'mongoose';
 
 export interface IInteraction extends Document {
-  user: Schema.Types.ObjectId; // refence to user
+  user: Schema.Types.ObjectId;
   action: string;
-  question: Schema.Types.ObjectId; // reference to question
-  answer: Schema.Types.ObjectId; // reference to answer
-  tags: Schema.Types.ObjectId[]; // reference to tag
+  product: Schema.Types.ObjectId;
+  comment: Schema.Types.ObjectId;
+  tags: Schema.Types.ObjectId[];
   createdAt: Date;
 }
 
@@ -21,11 +21,11 @@ const InteractionSchema = new Schema({
   },
   question: {
     type: Schema.Types.ObjectId,
-    ref: 'Question',
+    ref: 'Product',
   },
-  answer: {
+  comment: {
     type: Schema.Types.ObjectId,
-    ref: 'Answer',
+    ref: 'Comment',
   },
   tags: [
     {

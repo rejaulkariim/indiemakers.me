@@ -20,13 +20,13 @@ const Footer = () => {
           {pathsToMinimize.includes(pathname) ? null : (
             <div className="pb-8 pt-16">
               <div className="flex justify-center">
-                <Icons.logo className="h-12 w-auto" />
+                <Icons.logo className="h-12 w-auto animate-pulse" />
               </div>
             </div>
           )}
 
           {pathsToMinimize.includes(pathname) ? null : (
-            <div className="max-w-3xl mx-auto text-center border p-4 rounded-xl">
+            <div className="text-center border p-4 rounded-xl">
               <div className="">
                 <h3 className="font-semibold text-foreground">
                   Want to list your product?

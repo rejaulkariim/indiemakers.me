@@ -18,18 +18,18 @@ const DashboardSidebarNav = ({ items }: DashboardNavProps) => {
       <div className="h-16 px-3 flex items-center">
         <Link href="/" className="hidden items-center space-x-2 md:flex">
           <Icons.logo className="h-6 w-6" />
-          <span className="text-lg font-bold">{siteConfig.name}</span>
+          <span className="text-base font-bold">{siteConfig.name}</span>
         </Link>
       </div>
 
       <div className="px-3 my-2">
-        <p className="text-base body-semibold text-muted-foreground">
+        <p className="text-sm font-semibold text-muted-foreground">
           Navigation
         </p>
       </div>
 
       <div className="grid items-start gap-2">
-        {items.map((item: any, index: number) => {
+        {items.map((item, index) => {
           const Icon = Icons[item.icon || 'arrowRight'];
           return (
             item.href && (

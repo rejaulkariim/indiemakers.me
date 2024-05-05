@@ -2,16 +2,15 @@ import SubmitProductForm from '@/components/form/SubmitProductForm';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { getUserById } from '@/lib/actions/user.actions';
 import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
 
 const SubmitProductPage = async () => {
-  const { userId } = auth();
+  const { userId: clerkId } = auth();
 
-  if (!userId) redirect('/sign-in');
+  let mongoUser;
 
-  const mongoUser = await getUserById(userId);
-
-  console.log(mongoUser);
+  if (clerkId) {
+    mongoUser = await getUserById({ userId: clerkId });
+  }
 
   return (
     <section>
@@ -19,7 +18,10 @@ const SubmitProductPage = async () => {
         <h1 className="font-bold">Submit product</h1>
 
         <div className="my-10">
-          <SubmitProductForm mongoUserId={JSON.stringify(mongoUser._id)}/>
+          <SubmitProductForm
+            mongoUserId={JSON.stringify(mongoUser._id)}
+            creditBalance={mongoUser.creditBalance}
+          />
         </div>
       </MaxWidthWrapper>
     </section>

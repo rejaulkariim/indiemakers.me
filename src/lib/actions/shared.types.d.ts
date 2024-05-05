@@ -26,3 +26,8 @@ export interface ProductVoteParams {
   hasdownVoted: boolean;
   path: string;
 }
+
+export interface ViewProductParams {
+  productId: string;
+  userId: string | undefined;
+}

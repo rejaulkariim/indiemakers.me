@@ -1,5 +1,5 @@
 export type DashboardConfig = {
-  // mainNav: MainNavItem[];
+  mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
 
@@ -15,7 +15,7 @@ export type SidebarNavItem = {
     }
   | {
       href?: string;
-      // items: NavLink[];
+      items: NavLink[];
     }
 );
 

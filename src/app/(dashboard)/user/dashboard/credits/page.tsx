@@ -7,19 +7,19 @@ import { plans } from '@/constants';
 import { getUserById } from '@/lib/actions/user.actions';
 import { SignedIn } from '@clerk/nextjs';
 
-const Credits = async () => {
-  const { userId }: { userId: string | null } = auth();
+const Credits = async ({ searchParams }: any) => {
+  const { userId: clerkId } = auth();
 
-  if (!userId) {
-    return new Response('Unauthorized', { status: 401 });
+  let mongoUser: { _id: string };
+
+  if (clerkId) {
+    mongoUser = await getUserById({ userId: clerkId });
   }
-
-  const user = await getUserById(userId);
 
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        <ul className="grid grid-cols-1 md:grid-cols-3 border rounded-xl">
+        <ul className="grid grid-cols-1 md:grid-cols-2 border rounded-xl">
           {plans.map((plan) => (
             <li key={plan.name} className="p-8 border-r">
               <div className="flex flex-col justify-center items-center gap-3">
@@ -54,7 +54,7 @@ const Credits = async () => {
                   plan={plan.name}
                   amount={plan.price}
                   credits={plan.credits}
-                  buyerId={user?._id}
+                  buyerId={mongoUser._id}
                 />
               </SignedIn>
             </li>

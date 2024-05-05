@@ -10,8 +10,10 @@ import { formatAndDivideNumber } from '@/utils/utils';
 // } from '@/lib/actions/question.action';
 // import { toggleSaveQuestion } from '@/lib/actions/user.action';
 // import { formatAndDivideNumber } from '@/lib/utils';
+import { viewProduct } from '@/lib/actions/interaction.action';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { toast } from '../ui/use-toast';
 
 interface Props {
@@ -79,11 +81,10 @@ const Votes = ({
         // });
       }
 
-      return;
-      //  toast({
-      //   title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-      //   variant: !hasupVoted ? 'default' : 'destructive',
-      // });
+      return toast({
+        title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+        variant: !hasupVoted ? 'default' : 'destructive',
+      });
     }
 
     if (action === 'downvote') {
@@ -105,20 +106,19 @@ const Votes = ({
         // });
       }
 
-      return;
-      // toast({
-      //   title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-      //   variant: !hasupVoted ? 'default' : 'destructive',
-      // });
+      return toast({
+        title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+        variant: !hasupVoted ? 'default' : 'destructive',
+      });
     }
   };
 
-  //   useEffect(() => {
-  //     viewQuestion({
-  //       questionId: JSON.parse(itemId),
-  //       userId: userId ? JSON.parse(userId) : undefined,
-  //     });
-  //   }, [itemId, userId, pathname, router]);
+  useEffect(() => {
+    viewProduct({
+      productId: JSON.parse(itemId),
+      userId: userId ? JSON.parse(userId) : undefined,
+    });
+  }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
@@ -166,7 +166,7 @@ const Votes = ({
         </div>
       </div>
 
-      {type === 'Question' && (
+      {type === 'Product' && (
         <Image
           src={
             hasSaved

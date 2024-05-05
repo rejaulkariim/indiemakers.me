@@ -4,10 +4,11 @@ import ParseHTML from '@/components/shared/ParseHTML';
 import SocialShareButton from '@/components/shared/SocialShareButton';
 import Votes from '@/components/shared/Votes';
 import { buttonVariants } from '@/components/ui/button';
-import { getProductBySlug } from '@/lib/actions/product.action';
+import { getHotProduct, getProductBySlug } from '@/lib/actions/product.action';
 import { getUserById } from '@/lib/actions/user.actions';
-import { cn, getTimestamp } from '@/utils/utils';
+import { cn, formatAndDivideNumber, getTimestamp } from '@/utils/utils';
 import { auth } from '@clerk/nextjs/server';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface Params {
@@ -24,6 +25,8 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
     mongoUser = await getUserById({ userId: clerkId });
   }
   const result = await getProductBySlug({ productSlug: params.slug });
+
+  const hotProducts = await getHotProduct();
 
   return (
     <section className="section-padding">
@@ -120,26 +123,48 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
           <div className="col-span-9">
             <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
               <div>
-                <h1 className="font-bold">{result.name}</h1>
-                <p className="paragraph">{result.title}</p>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={result.image}
+                    height={100}
+                    width={100}
+                    alt="tools"
+                    priority
+                    className="aspect-square border p-0.5 object-contain rounded-md h-16 w-16"
+                  />
+                  <div className="space-y-1">
+                    <h1 className="font-bold">{result.name}</h1>
+                    <p className="paragraph">{result.title}</p>
 
-                <Metric
-                  imgUrl="/assets/icons/clock.svg"
-                  alt="clock icon"
-                  value={`Joined ${getTimestamp(result.createdAt)}`}
-                  title="Joined"
-                  textStyles="text-xs paragraph"
-                />
+                    <div className="flex flex-wrap gap-4">
+                      <Metric
+                        imgUrl="/assets/icons/clock.svg"
+                        alt="clock icon"
+                        value={`Joined ${getTimestamp(result.createdAt)}`}
+                        title="Joined"
+                        textStyles="text-xs paragraph"
+                      />
+
+                      <Metric
+                        imgUrl="/assets/icons/eye.svg"
+                        alt="eye"
+                        value={formatAndDivideNumber(result.views)}
+                        title="Views"
+                        textStyles="text-xs paragraph"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <Votes
                 type="Product"
                 itemId={JSON.stringify(result._id)}
-                userId={JSON.stringify(mongoUser._id)}
+                userId={JSON.stringify(mongoUser?._id)}
                 upvotes={result.upvotes.length}
-                hasupVoted={result.upvotes.includes(mongoUser._id)}
+                hasupVoted={result.upvotes.includes(mongoUser?._id)}
                 downvotes={result.downvotes.length}
-                hasdownVoted={result.downvotes.includes(mongoUser._id)}
+                hasdownVoted={result.downvotes.includes(mongoUser?._id)}
                 hasSaved={mongoUser?.saved.includes(result._id)}
               />
             </div>
@@ -169,7 +194,13 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               <ParseHTML data={result.description} />
             </div>
           </div>
-          <div className="col-span-3">Recommended</div>
+          {/* RIght sidebar */}
+          <div className="col-span-3">
+            Recommended
+            {hotProducts.map((product) => (
+              <div key={product._id}>{product.name}</div>
+            ))}
+          </div>
         </div>
       </MaxWidthWrapper>
     </section>

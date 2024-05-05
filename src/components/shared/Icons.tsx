@@ -1,5 +1,3 @@
-type IconProps = React.HTMLAttributes<SVGElement>;
-
 import {
   AlertTriangle,
   ArrowRight,
@@ -26,12 +24,9 @@ import {
   X,
 } from 'lucide-react';
 
-// export type Icon = LucideIcon;
-
 export const Icons = {
   logo: Cat,
   close: X,
-
   moveUp: ChevronUp,
   spinner: Loader2,
   chevronLeft: ChevronLeft,

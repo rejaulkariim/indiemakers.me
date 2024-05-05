@@ -8,7 +8,7 @@ const Hero = async () => {
         <MaxWidthWrapper>
           <div className="max-w-3xl mx-auto">
             <Badge variant="outline" className="text-muted-foreground">
-              Indie Makers is Now Public!
+              Beta
             </Badge>
 
             <h1 className="font-bold mt-2">

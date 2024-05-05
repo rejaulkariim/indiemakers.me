@@ -337,31 +337,6 @@ export const products = [
 export const plans = [
   {
     _id: 1,
-    name: 'Free',
-    icon: '/assets/icons/free-plan.svg',
-    price: 19,
-    credits: 50,
-    inclusions: [
-      {
-        label: '50 Credits',
-        isIncluded: true,
-      },
-      {
-        label: 'Full Access to Services',
-        isIncluded: true,
-      },
-      {
-        label: 'Priority Customer Support',
-        isIncluded: true,
-      },
-      {
-        label: 'Priority Updates',
-        isIncluded: false,
-      },
-    ],
-  },
-  {
-    _id: 2,
     name: 'Pro Package',
     icon: '/assets/icons/free-plan.svg',
     price: 39,
@@ -386,7 +361,7 @@ export const plans = [
     ],
   },
   {
-    _id: 3,
+    _id: 1,
     name: 'Premium Package',
     icon: '/assets/icons/free-plan.svg',
     price: 79,
@@ -439,3 +414,5 @@ export const BADGE_CRITERIA = {
     GOLD: 100000,
   },
 };
+
+export const creditFee = -50;

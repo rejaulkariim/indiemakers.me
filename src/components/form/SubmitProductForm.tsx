@@ -19,21 +19,25 @@ import * as z from 'zod';
 
 import { FileUploader } from '@/components/fileUploader/FileUploader';
 import { Badge } from '@/components/ui/badge';
+import { creditFee } from '@/constants';
 import { createProduct } from '@/lib/actions/product.action';
+import { updateCredits } from '@/lib/actions/user.actions';
 import { useUploadThing } from '@/lib/uploadthing/uploadthing';
 import { productValidationSchema } from '@/lib/validations/product.validation';
 import { X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import slugify from 'slugify';
+import { InsufficientCreditsModal } from '../modal/InsufficientCreditsModal';
 
 const type: any = 'create';
 
 interface Props {
   mongoUserId: string;
+  creditBalance: number;
 }
 
-const SubmitProductForm = ({ mongoUserId }: Props) => {
+const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
   const editorRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -88,6 +92,8 @@ const SubmitProductForm = ({ mongoUserId }: Props) => {
         path: pathname,
       });
 
+      await updateCredits(JSON.parse(mongoUserId), creditFee);
+
       console.log(newProduct);
 
       router.push('/');
@@ -139,6 +145,7 @@ const SubmitProductForm = ({ mongoUserId }: Props) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col w-full gap-8"
       >
+        {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         {/* Product Name */}
         <FormField
           control={form.control}

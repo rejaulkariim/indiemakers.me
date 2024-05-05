@@ -243,3 +243,15 @@ export async function downVoteProduct(params: ProductVoteParams) {
     throw error;
   }
 }
+
+export async function getHotProduct() {
+  try {
+    await connectToDatabase();
+
+    const hotProduct = await Product.find({}).sort({ views: -1, upvotes: -1 });
+    return hotProduct;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
