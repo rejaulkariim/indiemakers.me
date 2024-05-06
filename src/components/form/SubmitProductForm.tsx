@@ -25,6 +25,7 @@ import { updateCredits } from '@/lib/actions/user.actions';
 import { useUploadThing } from '@/lib/uploadthing/uploadthing';
 import { productValidationSchema } from '@/lib/validations/product.validation';
 import { X } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import slugify from 'slugify';
@@ -41,6 +42,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
   const editorRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { theme } = useTheme();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
@@ -228,11 +230,12 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                     ],
                     toolbar:
                       'undo redo | ' +
-                      'codesample | bold italic forecolor | alignleft aligncenter |' +
+                      'styles | bold italic forecolor | alignleft aligncenter |' +
                       'alignright alignjustify | bullist numlist',
+                    // toolbar: 'undo redo | styles | bold italic',
                     content_style: 'body { font-family:Inter; font-size:16px}',
-                    // skin: mode === 'dark' ? 'bg-background' : 'oxide',
-                    // content_css: mode === 'dark' ? 'dark' : 'light',
+                    skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
+                    content_css: theme === 'dark' ? 'dark' : 'light',
                   }}
                 />
               </FormControl>

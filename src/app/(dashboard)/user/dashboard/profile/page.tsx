@@ -1,4 +1,5 @@
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import { Button } from '@/components/ui/button';
 import { getUserById } from '@/lib/actions/user.actions';
 import { auth } from '@clerk/nextjs/server';
 
@@ -14,7 +15,7 @@ const Profile = async ({ searchParams }: any) => {
   }
 
   return (
-    <section>
+    <section className="section-padding">
       <MaxWidthWrapper>
         <div className="max-w-3xl mx-auto flex flex-col-reverse items-start justify-between sm:flex-row">
           <div className="flex flex-col items-start gap-4 lg:flex-row">
@@ -30,9 +31,7 @@ const Profile = async ({ searchParams }: any) => {
               <h2 className="font-bold capitalize">
                 {mongoUser.firstName} {mongoUser.lastName}
               </h2>
-              <p className="paragraph-regular text-dark200_light800">
-                @{mongoUser.username}
-              </p>
+              <p className="paragraph">@{mongoUser.username}</p>
 
               {/* <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
               {mongoUser.portfolioWebsite && (
@@ -76,16 +75,21 @@ const Profile = async ({ searchParams }: any) => {
         </div>
 
         <div className="border max-w-3xl mx-auto rounded-xl p-4 mt-10">
-          <h1 className="font-bold">CREDITS AVAILABLE</h1>
-          <div className="mt-4 flex items-center gap-4">
-            <Image
-              src="/assets/icons/coins.svg"
-              alt="coins"
-              width={50}
-              height={50}
-              className="size-9 md:size-12"
-            />
-            <h2 className="font-bold text-4xl">{mongoUser.creditBalance}</h2>
+          <h1 className="font-bold">Available Credits</h1>
+          <div className="mt-4 flex justify-between w-full items-center">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/assets/icons/coins.svg"
+                alt="coins"
+                width={50}
+                height={50}
+                className="size-9 md:size-12"
+              />
+              <h2 className="font-bold text-2xl sm:text-4xl">
+                {mongoUser.creditBalance}
+              </h2>
+            </div>
+            <Button>Add More Credits</Button>
           </div>
         </div>
       </MaxWidthWrapper>

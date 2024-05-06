@@ -18,14 +18,17 @@ const Credits = async ({ searchParams }: any) => {
 
   return (
     <section className="section-padding">
-      <MaxWidthWrapper>
-        <ul className="grid grid-cols-1 md:grid-cols-2 border rounded-xl">
+      <MaxWidthWrapper className="max-w-3xl">
+        <div>
+          <h1 className="font-bold">Credits</h1>
+        </div>
+        <ul className="grid grid-cols-1 md:grid-cols-2 rounded-xl gap-10 mt-6">
           {plans.map((plan) => (
-            <li key={plan.name} className="p-8 border-r">
+            <li key={plan.name} className="p-8 border rounded-xl">
               <div className="flex flex-col justify-center items-center gap-3">
                 <Image src={plan.icon} alt="check" width={50} height={50} />
                 <p className="paragraph font-bold">{plan.name}</p>
-                <p className="font-bold">${plan.price}</p>
+                <p className="font-bold text-2xl">${plan.price}</p>
                 <p className="text-muted-foreground">{plan.credits} Credits</p>
               </div>
 
