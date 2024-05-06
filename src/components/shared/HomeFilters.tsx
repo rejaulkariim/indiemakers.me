@@ -37,7 +37,7 @@ const HomeFilters = () => {
   };
 
   return (
-    <div className="hidden flex-wrap gap-3 md:flex">
+    <div className="flex flex-wrap gap-3">
       {HomePageFilters.map((item) => (
         <Badge
           variant="outline"

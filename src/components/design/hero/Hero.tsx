@@ -1,8 +1,6 @@
-import Filter from '@/components/shared/Filter';
 import HomeFilters from '@/components/shared/HomeFilters';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { Badge } from '@/components/ui/badge';
-import { HomePageFilters } from '@/constants/filter';
 import LocalSearchbar from '../search/LocalSearchbar';
 
 const Hero = async () => {
@@ -11,20 +9,21 @@ const Hero = async () => {
       <section className="section-padding">
         <MaxWidthWrapper>
           <div className="max-w-3xl mx-auto">
-            <Badge variant="outline" className="text-muted-foreground">
-              Beta
-            </Badge>
+            <div className="text-center space-y-2">
+              <Badge variant="outline" className="text-muted-foreground">
+                Indie makers is now live!
+              </Badge>
 
-            <h1 className="font-bold mt-2">
-              Discover Startups, AI, and Tech Products
-            </h1>
-            <p className="paragraph">
-              Dive into the latest tech breakthroughs and startup gems.
-            </p>
+              <h1 className="font-bold mt-2 text-xl sm:text-3xl">
+                Explore Startups and Tech Products
+              </h1>
+              <p className="paragraph sm:max-w-xl mx-auto">
+                Discover the excitement of innovative products build just for
+                you.
+              </p>
+            </div>
 
-            {/*TODO: impelement Search */}
-
-            <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+            <div className="mt-6 flex justify-between gap-5 max-sm:flex-col sm:items-center">
               <LocalSearchbar
                 route="/"
                 iconPosition="right"
@@ -33,11 +32,11 @@ const Hero = async () => {
                 otherClasses="flex-1"
               />
 
-              <Filter
+              {/* <Filter
                 filters={HomePageFilters}
                 otherClasses="min-h-[56px] sm:min-w-[170px]"
                 containerClasses="hidden max-md:flex"
-              />
+              /> */}
             </div>
             <div className="mt-6">
               <HomeFilters />

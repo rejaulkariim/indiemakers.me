@@ -5,7 +5,7 @@ const ProductList = async ({ result }: any) => {
   return (
     <section>
       <MaxWidthWrapper>
-        <div className="max-w-3xl mx-auto flex flex-col gap-6">
+        <div className="max-w-3xl mx-auto flex flex-col gap-4">
           {result.map((product: any) => (
             <ProductCard
               key={product._id}

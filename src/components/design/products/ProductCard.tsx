@@ -32,7 +32,7 @@ const ProductCard = ({
   comments,
 }: ProductProps) => {
   return (
-    <div className="w-full border-b border-muted/50 p-4 hover:bg-accent transition-all rounded-xl duration-300">
+    <div className="w-full border border-muted/50 p-3.5 hover:bg-accent transition-all rounded-lg duration-300">
       <Link
         href={`/product/${slug}`}
         className="flex items-center justify-between gap-6"
@@ -44,7 +44,7 @@ const ProductCard = ({
             width={100}
             alt="tools"
             priority
-            className="aspect-square border p-0.5 object-contain rounded-md w-12 h-12"
+            className="aspect-square border object-contain rounded-md w-12 h-12"
           />
 
           <div className="space-y-0.5 w-full">
