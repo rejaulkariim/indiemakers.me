@@ -145,7 +145,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
             <div className="flex justify-between items-center my-10">
               {/* Social Sharing link */}
-              <div>
+              <div className="border h-10 w-10 flex justify-center items-center rounded-lg hover:bg-accent transition-all duration-300">
                 <SocialShareButton
                   slug={result.slug}
                   name={result.name}
@@ -154,9 +154,12 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               </div>
               <div>
                 <Link
-                  href={result.website}
+                  href={`${result.website}?ref=indiemakers`}
                   target="_blank"
-                  className={cn(buttonVariants({}))}
+                  rel="noopener noreferrer"
+                  className={cn(
+                    buttonVariants({ variant: 'default', size: 'sm' })
+                  )}
                 >
                   Visit Website
                 </Link>
