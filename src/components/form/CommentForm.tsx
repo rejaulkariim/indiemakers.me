@@ -27,11 +27,6 @@ const CommentForm = ({ product, productId, authorId }: Props) => {
   const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (!authorId) {
-    return;
-    router.push('/login');
-  }
-
   const editorRef = useRef(null);
   const form = useForm<z.infer<typeof commentValidationSchema>>({
     resolver: zodResolver(commentValidationSchema),
