@@ -68,9 +68,40 @@ export async function getProducts(params: GetProductParams) {
   try {
     await connectToDatabase();
 
-    const products = await Product.find({})
+    const { searchQuery, filter } = params;
+
+    const query: FilterQuery<typeof Product> = {};
+
+    if (searchQuery) {
+      query.$or = [
+        { name: { $regex: new RegExp(searchQuery, 'i') } },
+        { title: { $regex: new RegExp(searchQuery, 'i') } },
+        { description: { $regex: new RegExp(searchQuery, 'i') } },
+      ];
+    }
+
+    let sortOptions = {};
+
+    switch (filter) {
+      case 'frequent':
+        sortOptions = { views: -1 };
+        break;
+      case 'featured':
+        query.status = 'FEATURED';
+        break;
+      case 'new':
+        query.status = 'NEW';
+        break;
+
+      default:
+        break;
+    }
+
+    const products = await Product.find(query)
       .populate({ path: 'tags', model: Tag })
-      .populate({ path: 'author', model: User });
+      .populate({ path: 'author', model: User })
+      .sort({ createdAt: -1 })
+      .sort(sortOptions);
 
     return JSON.parse(JSON.stringify(products));
   } catch (error) {

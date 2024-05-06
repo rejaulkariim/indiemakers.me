@@ -1,10 +1,7 @@
 import ProductCard from '@/components/design/products/ProductCard';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import { getProducts } from '@/lib/actions/product.action';
 
-const ProductList = async () => {
-  const result = await getProducts({});
-
+const ProductList = async ({ result }: any) => {
   return (
     <section>
       <MaxWidthWrapper>

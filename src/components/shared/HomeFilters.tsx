@@ -40,11 +40,13 @@ const HomeFilters = () => {
     <div className="hidden flex-wrap gap-3 md:flex">
       {HomePageFilters.map((item) => (
         <Badge
-          variant="secondary"
+          variant="outline"
           key={item.value}
           onClick={() => {}}
-          className={`font-medium rounded-lg px-3 py-0.5 capitalize shadow-none cursor-pointer ${
-            active === item.value ? 'bg-muted/80' : 'bg-muted'
+          className={`cursor-pointer text-muted-foreground ${
+            active === item.value
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted'
           }`}
           onClickCapture={() => handleTypeClick(item.value)}
         >

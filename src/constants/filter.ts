@@ -27,10 +27,9 @@ export const TagFilters = [
 ];
 
 export const HomePageFilters = [
-  { name: 'Featured', value: 'featured' },
   { name: 'New', value: 'new' },
-  { name: 'Trending', value: 'trending' },
-  { name: 'Recommended', value: 'recommended' },
+  { name: 'Featured', value: 'featured' },
+  // { name: 'Recommended', value: 'recommended' },
 ];
 
 export const GlobalSearchFilters = [
