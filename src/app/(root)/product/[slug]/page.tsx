@@ -84,6 +84,9 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
   if (clerkId) {
     mongoUser = await getUserById({ userId: clerkId });
   }
+
+  console.log(mongoUser, 'MongoUser');
+
   const result = await getProductBySlug({ slug: params.slug });
 
   return (
@@ -178,7 +181,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
             <AllComments
               productId={result._id}
-              userId={mongoUser._id}
+              userId={mongoUser?._id}
               totalComments={result.comments.length}
             />
 
@@ -186,7 +189,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
             <CommentForm
               product={result.name}
               productId={JSON.stringify(result._id)}
-              authorId={JSON.stringify(mongoUser._id)}
+              authorId={JSON.stringify(mongoUser?._id)}
             />
           </div>
 

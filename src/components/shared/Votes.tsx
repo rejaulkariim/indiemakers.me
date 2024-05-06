@@ -33,7 +33,15 @@ const Votes = ({
   const pathname = usePathname();
   const router = useRouter();
 
+  // Save product handler
   const handleSave = async () => {
+    if (!userId) {
+      return toast({
+        title: 'Please log in',
+        description: 'You must be logged in to perform this action',
+      });
+    }
+
     await toggleSaveProduct({
       userId: JSON.parse(userId),
       productId: JSON.parse(itemId),
@@ -48,6 +56,7 @@ const Votes = ({
     });
   };
 
+  // Votes handler
   const handleVote = async (action: string) => {
     if (!userId) {
       return toast({
@@ -107,6 +116,7 @@ const Votes = ({
     }
   };
 
+  // Product Views
   useEffect(() => {
     viewProduct({
       productId: JSON.parse(itemId),
