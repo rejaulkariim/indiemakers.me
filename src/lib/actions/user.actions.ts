@@ -1,8 +1,10 @@
 'use server';
 
 import { CreateUserParams } from '@/types';
+import { revalidatePath } from 'next/cache';
 import User from '../database/models/user.model';
 import { connectToDatabase } from '../database/mongoose';
+import { ToggleSaveProductParams } from './shared.types';
 
 // CREATE NEW USER
 export async function createUser(user: CreateUserParams) {
@@ -90,5 +92,43 @@ export async function updateCredits(userId: string, creditFee: number) {
     return JSON.parse(JSON.stringify(updatedUserCredits));
   } catch (error) {
     console.log(error);
+  }
+}
+
+// SAVE PRODUCT
+export async function toggleSaveProduct(params: ToggleSaveProductParams) {
+  try {
+    await connectToDatabase();
+
+    const { userId, productId, path } = params;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const isProductSaved = user.saved.includes(productId);
+
+    if (isProductSaved) {
+      // remove product from saved
+      await User.findByIdAndUpdate(
+        userId,
+        { $pull: { saved: productId } },
+        { new: true }
+      );
+    } else {
+      // add product to saved
+      await User.findByIdAndUpdate(
+        userId,
+        { $addToSet: { saved: productId } },
+        { new: true }
+      );
+    }
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }

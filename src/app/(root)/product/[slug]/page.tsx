@@ -4,10 +4,11 @@ import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import Metric from '@/components/shared/Metric';
 import ParseHTML from '@/components/shared/ParseHTML';
 import RenderTag from '@/components/shared/RenderTag';
+import RightSidebar from '@/components/shared/RightSidebar';
 import SocialShareButton from '@/components/shared/SocialShareButton';
 import Votes from '@/components/shared/Votes';
 import { buttonVariants } from '@/components/ui/button';
-import { getHotProduct, getProductBySlug } from '@/lib/actions/product.action';
+import { getProductBySlug } from '@/lib/actions/product.action';
 import { getUserById } from '@/lib/actions/user.actions';
 import {
   absoluteUrl,
@@ -83,14 +84,13 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
   if (clerkId) {
     mongoUser = await getUserById({ userId: clerkId });
   }
-  const result = await getProductBySlug({ productSlug: params.slug });
-
-  const hotProducts = await getHotProduct();
+  const result = await getProductBySlug({ slug: params.slug });
 
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        <div className="flex flex-col md:grid grid-cols-12 gap-6">
+        <div className="flex flex-col md:grid grid-cols-12 gap-10">
+          {/* Left sidebar */}
           <div className="col-span-9">
             <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
               <div>
@@ -136,7 +136,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
                 hasupVoted={result.upvotes.includes(mongoUser?._id)}
                 downvotes={result.downvotes.length}
                 hasdownVoted={result.downvotes.includes(mongoUser?._id)}
-                hasSaved={mongoUser?.saved.includes(result._id)}
+                hasSaved={mongoUser?.saved.includes(result._id.toString())}
               />
             </div>
 
@@ -192,10 +192,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
           {/* RIght sidebar */}
           <div className="col-span-3">
-            Recommended
-            {hotProducts.map((product) => (
-              <div key={product._id}>{product.name}</div>
-            ))}
+            <RightSidebar />
           </div>
         </div>
       </MaxWidthWrapper>

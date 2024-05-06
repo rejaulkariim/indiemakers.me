@@ -75,7 +75,7 @@ const UserSchema = new Schema<IUser>({
   saved: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Saved',
+      ref: 'Product',
     },
   ],
   role: {

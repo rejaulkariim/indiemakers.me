@@ -9,6 +9,7 @@ import User from '../database/models/user.model';
 import { connectToDatabase } from '../database/mongoose';
 import {
   CreateProductParams,
+  GetProductBySlugParams,
   GetProductParams,
   ProductVoteParams,
 } from './shared.types';
@@ -40,7 +41,6 @@ export async function createProduct(params: CreateProductParams) {
       image,
     });
 
-    console.log(product);
     const tagDocuments = [];
 
     // Create a tag or get them of they already exist
@@ -150,13 +150,13 @@ export async function getRecommendedProducts(params: any) {
   }
 }
 
-export async function getProductBySlug(params: any) {
+export async function getProductBySlug(params: GetProductBySlugParams) {
   try {
     await connectToDatabase();
 
-    const { productSlug } = params;
+    const { slug } = params;
 
-    const product = await Product.findOne({ slug: productSlug })
+    const product = await Product.findOne({ slug: slug })
       .populate({
         path: 'tags',
         model: Tag,
@@ -165,7 +165,7 @@ export async function getProductBySlug(params: any) {
       .populate({
         path: 'author',
         model: User,
-        select: 'id, clerkId, name, picture',
+        select: 'id, clerkId, name, photo',
       });
 
     return product;
@@ -246,6 +246,18 @@ export async function downVoteProduct(params: ProductVoteParams) {
 }
 
 export async function getHotProduct() {
+  try {
+    await connectToDatabase();
+
+    const hotProduct = await Product.find({}).sort({ views: -1, upvotes: -1 });
+    return hotProduct;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getFeaturedProduct() {
   try {
     await connectToDatabase();
 

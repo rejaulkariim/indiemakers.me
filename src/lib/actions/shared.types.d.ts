@@ -59,3 +59,12 @@ export interface CommentVoteParams {
   hasdownVoted: boolean;
   path: string;
 }
+export interface ToggleSaveProductParams {
+  userId: string;
+  productId: string;
+  path: string;
+}
+
+export interface GetProductBySlugParams {
+  slug: string;
+}

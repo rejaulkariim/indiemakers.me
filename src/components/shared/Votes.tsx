@@ -1,22 +1,14 @@
 'use client';
 
-import { downVoteProduct, upVoteProduct } from '@/lib/actions/product.action';
-import { formatAndDivideNumber } from '@/utils/utils';
-// import { downvoteAnswer, upvoteAnswer } from '@/lib/actions/answer.action';
-// import { viewQuestion } from '@/lib/actions/interaction.action';
-// import {
-//   downvoteQuestion,
-//   upvoteQuestion,
-// } from '@/lib/actions/question.action';
-// import { toggleSaveQuestion } from '@/lib/actions/user.action';
-// import { formatAndDivideNumber } from '@/lib/utils';
 import { downVoteComment, upVoteComment } from '@/lib/actions/comment.action';
 import { viewProduct } from '@/lib/actions/interaction.action';
+import { downVoteProduct, upVoteProduct } from '@/lib/actions/product.action';
+import { toggleSaveProduct } from '@/lib/actions/user.actions';
+import { formatAndDivideNumber } from '@/utils/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast } from '../ui/use-toast';
-
 interface Props {
   type: string;
   itemId: string;
@@ -42,17 +34,18 @@ const Votes = ({
   const router = useRouter();
 
   const handleSave = async () => {
-    // await toggleSaveQuestion({
-    //   userId: JSON.parse(userId),
-    //   questionId: JSON.parse(itemId),
-    //   path: pathname,
-    // });
-    // return toast({
-    //   title: `Question ${
-    //     !hasSaved ? 'Saved in' : 'Removed from'
-    //   } your collection`,
-    //   variant: !hasSaved ? 'default' : 'destructive',
-    // });
+    await toggleSaveProduct({
+      userId: JSON.parse(userId),
+      productId: JSON.parse(itemId),
+      path: pathname,
+    });
+
+    return toast({
+      title: `Product ${
+        !hasSaved ? 'Saved in' : 'Removed from'
+      } your collection`,
+      variant: !hasSaved ? 'default' : 'destructive',
+    });
   };
 
   const handleVote = async (action: string) => {

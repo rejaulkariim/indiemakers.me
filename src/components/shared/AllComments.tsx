@@ -27,8 +27,6 @@ const AllComments = async ({
     sortBy: filter,
   });
 
-  console.log(result);
-
   return (
     <div className="mt-11">
       <div className="flex items-center justify-between">
