@@ -28,13 +28,13 @@ interface Params {
 
 interface PostPageProps {
   params: {
-    slug: string[];
+    slug: string;
   };
 }
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const result = await getProductBySlug({ productSlug: params.slug });
+  const result = await getProductBySlug({ slug: params.slug });
 
   if (!result) {
     return {};
