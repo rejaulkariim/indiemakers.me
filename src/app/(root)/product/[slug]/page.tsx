@@ -85,8 +85,6 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
     mongoUser = await getUserById({ userId: clerkId });
   }
 
-  console.log(mongoUser, 'MongoUser');
-
   const result = await getProductBySlug({ slug: params.slug });
 
   return (
@@ -96,37 +94,35 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
           {/* Left sidebar */}
           <div className="col-span-9">
             <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
-              <div>
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={result.image}
-                    height={100}
-                    width={100}
-                    alt="tools"
-                    priority
-                    className="aspect-square border p-0.5 object-contain rounded-md h-16 w-16"
-                  />
-                  <div className="space-y-1">
-                    <h1 className="font-bold">{result.name}</h1>
-                    <p className="paragraph">{result.title}</p>
+              <div className="flex items-center gap-4">
+                <Image
+                  src={result.image}
+                  height={100}
+                  width={100}
+                  alt="tools"
+                  priority
+                  className="aspect-square border p-0.5 object-contain rounded-md h-16 w-16"
+                />
+                <div className="space-y-1">
+                  <h1 className="font-bold">{result.name}</h1>
+                  <p className="paragraph">{result.title}</p>
 
-                    <div className="flex flex-wrap gap-4">
-                      <Metric
-                        imgUrl="/assets/icons/clock.svg"
-                        alt="clock icon"
-                        value={`Joined ${getTimestamp(result.createdAt)}`}
-                        title="Joined"
-                        textStyles="text-xs paragraph"
-                      />
+                  <div className="flex flex-wrap gap-4">
+                    <Metric
+                      imgUrl="/assets/icons/clock.svg"
+                      alt="clock icon"
+                      value={`${getTimestamp(result.createdAt)}`}
+                      title="created"
+                      textStyles="text-xs paragraph"
+                    />
 
-                      <Metric
-                        imgUrl="/assets/icons/eye.svg"
-                        alt="eye"
-                        value={formatAndDivideNumber(result.views)}
-                        title="Views"
-                        textStyles="text-xs paragraph"
-                      />
-                    </div>
+                    <Metric
+                      imgUrl="/assets/icons/eye.svg"
+                      alt="eye"
+                      value={formatAndDivideNumber(result.views)}
+                      title="Views"
+                      textStyles="text-xs paragraph"
+                    />
                   </div>
                 </div>
               </div>
@@ -157,9 +153,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
                   href={`${result.website}?ref=indiemakers`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ variant: 'default', size: 'sm' })
-                  )}
+                  className={cn(buttonVariants({ variant: 'outline' }))}
                 >
                   Visit Website
                 </Link>

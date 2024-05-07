@@ -57,7 +57,7 @@ const Credits = async ({ searchParams }: any) => {
                   plan={plan.name}
                   amount={plan.price}
                   credits={plan.credits}
-                  buyerId={mongoUser._id}
+                  buyerId={mongoUser?._id}
                 />
               </SignedIn>
             </li>

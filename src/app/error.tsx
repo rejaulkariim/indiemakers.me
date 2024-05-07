@@ -15,11 +15,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
+    <section className="flex flex-col justify-center items-center min-h-screen gap-2">
+      <h2 className="font-semibold">Something went wrong!</h2>
       <Button variant="destructive" onClick={() => reset()}>
         Try again
       </Button>
-    </div>
+    </section>
   );
 }

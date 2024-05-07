@@ -1,4 +1,3 @@
-import HomeFilters from '@/components/shared/HomeFilters';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { Badge } from '@/components/ui/badge';
 import LocalSearchbar from '../search/LocalSearchbar';
@@ -8,32 +7,29 @@ const Hero = async () => {
     <>
       <section className="section-padding">
         <MaxWidthWrapper>
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center space-y-2">
+          <div className="max-w-3xl mx-auto py-4">
+            <div className="text-start space-y-2">
               <Badge variant="outline" className="text-muted-foreground">
                 Indie makers is now public!
               </Badge>
 
-              <h1 className="font-bold mt-2 text-xl sm:text-3xl">
-                Explore Startups and Tech Products
+              <h1 className="font-bold mt-2">
+                Explore Startups or Tech Products
               </h1>
-              <p className="paragraph sm:max-w-xl mx-auto">
+              <p className="paragraph">
                 Discover the excitement of innovative products build just for
                 you.
               </p>
             </div>
 
-            <div className="mt-6 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+            <div className="mt-4 flex justify-between gap-5 max-sm:flex-col sm:items-center">
               <LocalSearchbar
                 route="/"
                 iconPosition="right"
                 imgSrc="/assets/icons/search.svg"
                 placeholder="Search for products..."
-                otherClasses="flex-1"
+                otherClasses="max-w-xl"
               />
-            </div>
-            <div className="mt-6">
-              <HomeFilters />
             </div>
           </div>
         </MaxWidthWrapper>

@@ -29,9 +29,9 @@ const Profile = async ({ searchParams }: any) => {
 
             <div className="mt-3">
               <h2 className="font-bold capitalize">
-                {mongoUser.firstName} {mongoUser.lastName}
+                {mongoUser?.firstName} {mongoUser?.lastName}
               </h2>
-              <p className="paragraph">@{mongoUser.username}</p>
+              <p className="paragraph">@{mongoUser?.username}</p>
 
               {/* <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
               {mongoUser.portfolioWebsite && (
@@ -86,7 +86,7 @@ const Profile = async ({ searchParams }: any) => {
                 className="size-9 md:size-12"
               />
               <h2 className="font-bold text-2xl sm:text-4xl">
-                {mongoUser.creditBalance}
+                {mongoUser?.creditBalance}
               </h2>
             </div>
             <Button>Add More Credits</Button>

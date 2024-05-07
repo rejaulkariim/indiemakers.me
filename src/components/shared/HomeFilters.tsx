@@ -43,10 +43,8 @@ const HomeFilters = () => {
           variant="outline"
           key={item.value}
           onClick={() => {}}
-          className={`cursor-pointer text-muted-foreground ${
-            active === item.value
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-muted'
+          className={`hover:bg-accent cursor-pointer text-muted-foreground transition-all duration-300 ${
+            active === item.value ? 'bg-accent' : 'bg-transparent'
           }`}
           onClickCapture={() => handleTypeClick(item.value)}
         >

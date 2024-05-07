@@ -31,10 +31,8 @@ const Metric = ({
       />
 
       <p className={`${textStyles}`}>
-        {value}
-        <span className={` ${isAuthor ? 'max-sm:hidden' : 'hidden'}`}>
-          {title}
-        </span>
+        {value}{' '}
+        <span className={` ${isAuthor ? 'max-sm:hidden' : ''}`}>{title}</span>
       </p>
     </>
   );

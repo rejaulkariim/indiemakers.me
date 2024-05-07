@@ -6,28 +6,24 @@ const RightSidebar = async () => {
   const hotProducts = await getHotProduct();
 
   return (
-    <div className="flex flex-col gap-4 mt-4 sm:sticky top-24">
+    <div className="flex flex-col gap-2 mt-4 sm:sticky top-24">
       <h4 className="font-bold">Recommended</h4>
       {hotProducts.map((product) => (
         <Link
           href={`/product/${product.slug}`}
           key={product._id}
-          className="border p-2 border-muted/50 hover:bg-accent transition-all rounded-lg duration-300"
+          className="p-1.5 hover:bg-accent transition-all rounded-lg duration-300"
         >
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-x-2 items-center">
             <Image
               src={product.image}
               alt={product.name}
               height={100}
               width={100}
-              className="h-10 w-10 object-contain rounded-lg"
+              priority
+              className="aspect-square h-8 w-8 object-contain rounded-md"
             />
-            <div>
-              <h1 className="font-semibold">{product.name}</h1>
-              <p className="text-sm paragraph">
-                {product.title.substring(0, 25)}...
-              </p>
-            </div>
+            <p className="font-semibold">{product.name}</p>
           </div>
         </Link>
       ))}
