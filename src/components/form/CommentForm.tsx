@@ -12,6 +12,7 @@ import { createComment } from '@/lib/actions/comment.action';
 import { commentValidationSchema } from '@/lib/validations/comment.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Editor } from '@tinymce/tinymce-react';
+import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const CommentForm = ({ product, productId, authorId }: Props) => {
+  const { theme } = useTheme();
   const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -101,7 +103,6 @@ const CommentForm = ({ product, productId, authorId }: Props) => {
                         'anchor',
                         'searchreplace',
                         'visualblocks',
-                        'codesample',
                         'fullscreen',
                         'insertdatetime',
                         'media',
@@ -109,12 +110,13 @@ const CommentForm = ({ product, productId, authorId }: Props) => {
                       ],
                       toolbar:
                         'undo redo | ' +
-                        'codesample | bold italic forecolor | alignleft aligncenter |' +
+                        'styles | bold italic forecolor | alignleft aligncenter |' +
                         'alignright alignjustify | bullist numlist',
+                      // toolbar: 'undo redo | styles | bold italic',
                       content_style:
-                        'body { font-family:Inter; font-size:16px }',
-                      //   skin: mode === 'dark' ? 'oxide-dark' : 'oxide',
-                      //   content_css: mode === 'dark' ? 'dark' : 'light',
+                        'body { font-family:Inter; font-size:16px}',
+                      skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
+                      content_css: theme === 'dark' ? 'dark' : 'light',
                     }}
                   />
                 </FormControl>
@@ -124,11 +126,7 @@ const CommentForm = ({ product, productId, authorId }: Props) => {
           />
 
           <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="primary-gradient w-fit text-white"
-              disabled={isSubmitting}
-            >
+            <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
           </div>

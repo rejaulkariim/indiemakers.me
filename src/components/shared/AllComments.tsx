@@ -30,7 +30,7 @@ const AllComments = async ({
   return (
     <div className="mt-11">
       <div className="flex items-center justify-between">
-        <h3 className="primary-text-gradient">{totalComments} Answers</h3>
+        <h3 className="paragraph">{totalComments} Comments</h3>
 
         {/* <Filter filters={totalComments} /> */}
       </div>

@@ -11,7 +11,7 @@ const Hero = async () => {
           <div className="max-w-3xl mx-auto">
             <div className="text-center space-y-2">
               <Badge variant="outline" className="text-muted-foreground">
-                Indie makers is now live!
+                Indie makers is now public!
               </Badge>
 
               <h1 className="font-bold mt-2 text-xl sm:text-3xl">
@@ -31,12 +31,6 @@ const Hero = async () => {
                 placeholder="Search for products..."
                 otherClasses="flex-1"
               />
-
-              {/* <Filter
-                filters={HomePageFilters}
-                otherClasses="min-h-[56px] sm:min-w-[170px]"
-                containerClasses="hidden max-md:flex"
-              /> */}
             </div>
             <div className="mt-6">
               <HomeFilters />

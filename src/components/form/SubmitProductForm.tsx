@@ -64,8 +64,6 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
 
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof productValidationSchema>) => {
-    console.log(values, 'values');
-    console.log('submit');
     setIsSubmitting(true);
 
     let uploadedImageUrl = values.image;

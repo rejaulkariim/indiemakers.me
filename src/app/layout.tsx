@@ -1,4 +1,3 @@
-import ScrollToTop from '@/components/shared/ScrollToTop';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { siteConfig } from '@/config/site';
@@ -26,26 +25,26 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Rejaul Karim',
-      url: 'https://github.com/rejaul-dev',
+      url: 'https://github.com/rejaulkariim',
     },
   ],
   creator: 'Rejaul Karim',
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "white" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.png`],
     siteName: siteConfig.name,
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.name,
+    title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.png`],
     creator: '@rejaul',
@@ -63,7 +62,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
             <Toaster />
-            <ScrollToTop />
+            {/* <ScrollToTop /> */}
           </ThemeProvider>
         </body>
       </html>
