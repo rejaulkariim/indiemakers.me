@@ -182,7 +182,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
             {result.upvotes.length > 0 && (
               <div className="mt-8 space-y-2">
                 <p className="text-sm">Contributors +</p>
-                <div className="flex flex-col flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {result.upvotes.map((vote: any) => (
                     <div key={vote._id}>
                       <Image
