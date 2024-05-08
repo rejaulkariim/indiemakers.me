@@ -227,7 +227,7 @@ body {
 }
 
 .paragraph {
-  @apply text-foreground/80 dark:text-muted-foreground;
+  @apply text-sm text-foreground/90 dark:text-muted-foreground;
 }
 
 /* ========================================== CLERK STYLES */

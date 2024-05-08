@@ -31,6 +31,8 @@ interface PostPageProps {
     slug: string;
   };
 }
+
+// Generate dynamic metadata for each product submitted
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
@@ -175,6 +177,26 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
                 />
               ))}
             </div>
+
+            {/* Show if the upvotes is available  */}
+            {result.upvotes.length > 0 && (
+              <div className="mt-8 space-y-2">
+                <p className="text-sm">Contributors +</p>
+                <div className="flex flex-col flex-wrap gap-2">
+                  {result.upvotes.map((vote: any) => (
+                    <div key={vote._id}>
+                      <Image
+                        src={vote.photo}
+                        height={100}
+                        width={100}
+                        alt={vote?.username}
+                        className="aspect-square h-6 w-6 rounded-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <AllComments
               productId={result._id}

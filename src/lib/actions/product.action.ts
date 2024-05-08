@@ -197,6 +197,11 @@ export async function getProductBySlug(params: GetProductBySlugParams) {
         path: 'author',
         model: User,
         select: 'id, clerkId, name, photo',
+      })
+      .populate({
+        path: 'upvotes',
+        model: User,
+        select: 'id, username, photo',
       });
 
     return product;
