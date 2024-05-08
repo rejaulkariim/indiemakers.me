@@ -36,43 +36,43 @@ interface PostPageProps {
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const result = await getProductBySlug({ slug: params.slug });
+  const product = await getProductBySlug({ slug: params.slug });
 
-  if (!result) {
+  if (!product) {
     return {};
   }
 
   const url = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const ogUrl = new URL(`${url}/api/og`);
-  ogUrl.searchParams.set('heading', result.title);
+  ogUrl.searchParams.set('heading', product.title);
   ogUrl.searchParams.set('type', 'Startup');
   ogUrl.searchParams.set('mode', 'dark');
 
   return {
-    title: result.title,
-    description: result.description,
+    title: product.title,
+    description: product.description,
     // authors: post.authors.map((author) => ({
     //   name: author,
     // })),
     openGraph: {
-      title: result.title,
-      description: result.description,
+      title: product.title,
+      description: product.description,
       type: 'website',
-      url: absoluteUrl(result.slug),
+      url: absoluteUrl(product.slug),
       images: [
         {
           url: ogUrl.toString(),
           width: 1200,
           height: 630,
-          alt: result.title,
+          alt: product.title,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: result.title,
-      description: result.description,
+      title: product.title,
+      description: product.description,
       images: [ogUrl.toString()],
     },
   };
@@ -81,15 +81,14 @@ export async function generateMetadata({
 const ProductDetailsPage = async ({ params, searchParams }: any) => {
   const { userId: clerkId } = auth();
 
-  let mongoUser;
+  const mongoUser = await getUserById({ userId: clerkId });
 
-  if (clerkId) {
-    mongoUser = await getUserById({ userId: clerkId });
-  }
+  const product = await getProductBySlug({ slug: params.slug });
 
-  const result = await getProductBySlug({ slug: params.slug });
-
-  console.log(result, 'pro');
+  // Check if the current user has upvoted the product
+  const hasUpvoted: boolean = product.upvotes.some((upvote: any) =>
+    upvote._id.equals(mongoUser._id)
+  );
 
   return (
     <section className="section-padding">
@@ -100,22 +99,22 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
             <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
               <div className="flex items-center gap-4">
                 <Image
-                  src={result.image}
+                  src={product.image}
                   height={100}
                   width={100}
                   alt="tools"
                   priority
-                  className="aspect-square border p-0.5 object-contain rounded-md h-16 w-16"
+                  className="aspect-square object-contain rounded-md h-12 w-12 border"
                 />
                 <div className="space-y-1">
-                  <h1 className="font-bold">{result.name}</h1>
-                  <p className="paragraph">{result.title}</p>
+                  <h1 className="font-bold">{product.name}</h1>
+                  <p className="paragraph">{product.title}</p>
 
                   <div className="flex flex-wrap gap-4">
                     <Metric
                       imgUrl="/assets/icons/clock.svg"
                       alt="clock icon"
-                      value={`${getTimestamp(result.createdAt)}`}
+                      value={`${getTimestamp(product.createdAt)}`}
                       title="created"
                       textStyles="text-xs paragraph"
                     />
@@ -123,7 +122,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
                     <Metric
                       imgUrl="/assets/icons/eye.svg"
                       alt="eye"
-                      value={formatAndDivideNumber(result.views)}
+                      value={formatAndDivideNumber(product.views)}
                       title="Views"
                       textStyles="text-xs paragraph"
                     />
@@ -133,13 +132,13 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
               <Votes
                 type="Product"
-                itemId={JSON.stringify(result._id)}
-                userId={JSON.stringify(mongoUser?._id)}
-                upvotes={result.upvotes.length}
-                hasupVoted={result.upvotes.includes(mongoUser?._id)}
-                downvotes={result.downvotes.length}
-                hasdownVoted={result.downvotes.includes(mongoUser?._id)}
-                hasSaved={mongoUser?.saved.includes(result._id.toString())}
+                itemId={JSON.stringify(product._id)}
+                userId={JSON.stringify(mongoUser._id)}
+                upvotes={product.upvotes.length}
+                hasupVoted={hasUpvoted}
+                downvotes={product.downvotes.length}
+                hasdownVoted={product.downvotes.includes(mongoUser?._id)}
+                hasSaved={mongoUser?.saved.includes(product._id.toString())}
               />
             </div>
 
@@ -147,14 +146,14 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               {/* Social Sharing link */}
               <div className="border h-10 w-10 flex justify-center items-center rounded-lg hover:bg-accent transition-all duration-300">
                 <SocialShareButton
-                  slug={result.slug}
-                  name={result.name}
-                  title={result.title}
+                  slug={product.slug}
+                  name={product.name}
+                  title={product.title}
                 />
               </div>
               <div>
                 <Link
-                  href={`${result.website}?ref=indiemakers`}
+                  href={`${product.website}?ref=indiemakers`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(buttonVariants({ variant: 'outline' }))}
@@ -166,11 +165,11 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
             {/* Content */}
             <div className="mt-10">
-              <ParseHTML data={result.description} />
+              <ParseHTML data={product.description} />
             </div>
 
             <div className="mt-8 flex flex-wrap gap-2">
-              {result.tags.map((tag: any) => (
+              {product.tags.map((tag: any) => (
                 <RenderTag
                   key={tag._id}
                   _id={tag._id}
@@ -181,18 +180,18 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
             </div>
 
             {/* Show if the upvotes is available  */}
-            {result.upvotes.length > 0 && (
+            {product.upvotes.length > 0 && (
               <div className="mt-8 space-y-2">
-                <p className="text-sm">Contributors +</p>
+                <p className="text-sm">Contributors</p>
                 <div className="flex flex-wrap gap-2">
-                  {result.upvotes.map((vote: any) => (
+                  {product.upvotes.map((vote: any) => (
                     <div key={vote._id}>
                       <Image
                         src={vote.photo}
                         height={100}
                         width={100}
                         alt={vote?.username}
-                        className="aspect-square h-6 w-6 rounded-full"
+                        className="aspect-square h-7 w-7 rounded-full border"
                       />
                     </div>
                   ))}
@@ -201,15 +200,15 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
             )}
 
             <AllComments
-              productId={result._id}
+              productId={product._id}
               userId={mongoUser?._id}
-              totalComments={result.comments.length}
+              totalComments={product.comments.length}
             />
 
             {/* Comment  Form*/}
             <CommentForm
-              product={result.name}
-              productId={JSON.stringify(result._id)}
+              product={product.name}
+              productId={JSON.stringify(product._id)}
               authorId={JSON.stringify(mongoUser?._id)}
             />
           </div>

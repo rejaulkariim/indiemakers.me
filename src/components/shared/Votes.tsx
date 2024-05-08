@@ -1,5 +1,12 @@
 'use client';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { toast } from '@/components/ui/use-toast';
 import { downVoteComment, upVoteComment } from '@/lib/actions/comment.action';
 import { viewProduct } from '@/lib/actions/interaction.action';
 import { downVoteProduct, upVoteProduct } from '@/lib/actions/product.action';
@@ -8,7 +15,7 @@ import { formatAndDivideNumber } from '@/utils/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { toast } from '../ui/use-toast';
+
 interface Props {
   type: string;
   itemId: string;
@@ -125,65 +132,91 @@ const Votes = ({
   }, [itemId, userId, pathname, router]);
 
   return (
-    <div className="flex gap-5">
-      <div className="flex-center gap-2.5">
-        <div className="flex-center gap-1.5">
-          <Image
-            src={
-              hasupVoted
-                ? '/assets/icons/upvoted.svg'
-                : '/assets/icons/upvote.svg'
-            }
-            width={18}
-            height={18}
-            alt="upvote"
-            className="cursor-pointer"
-            onClick={() => handleVote('upvote')}
-          />
+    <div className="flex items-center gap-2.5">
+      <TooltipProvider>
+        {/* Upvotes */}
+        <Tooltip>
+          <TooltipTrigger>
+            <div className="flex items-center gap-1.5">
+              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+                <Image
+                  src={
+                    hasupVoted
+                      ? '/assets/icons/upvoted.svg'
+                      : '/assets/icons/upvote.svg'
+                  }
+                  width={18}
+                  height={18}
+                  alt="upvote"
+                  className="cursor-pointer"
+                  onClick={() => handleVote('upvote')}
+                />
+              </div>
 
-          <div className="flex-center background-light700_dark400 min-w-[18px] rounded-sm p-1">
-            <p className="subtle-medium text-dark400_light900">
-              {formatAndDivideNumber(upvotes)}
-            </p>
-          </div>
-        </div>
+              <div className="flex-center min-w-[18px] rounded-sm p-1">
+                <p className="font-bold">{formatAndDivideNumber(upvotes)}</p>
+              </div>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
+            <p className="text-xs">Upvotes</p>
+          </TooltipContent>
+        </Tooltip>
 
-        <div className="flex-center gap-1.5">
-          <Image
-            src={
-              hasdownVoted
-                ? '/assets/icons/downvoted.svg'
-                : '/assets/icons/downvote.svg'
-            }
-            width={18}
-            height={18}
-            alt="downvote"
-            className="cursor-pointer"
-            onClick={() => handleVote('downvote')}
-          />
+        {/* Downvotes */}
+        <Tooltip>
+          <TooltipTrigger>
+            <div className="flex items-center gap-1.5">
+              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+                <Image
+                  src={
+                    hasdownVoted
+                      ? '/assets/icons/downvoted.svg'
+                      : '/assets/icons/downvote.svg'
+                  }
+                  width={18}
+                  height={18}
+                  alt="downvote"
+                  className="cursor-pointer"
+                  onClick={() => handleVote('downvote')}
+                />
+              </div>
 
-          <div className="flex-center background-light700_dark400 min-w-[18px] rounded-sm p-1">
-            <p className="subtle-medium text-dark400_light900">
-              {formatAndDivideNumber(downvotes)}
-            </p>
-          </div>
-        </div>
-      </div>
+              <div className="flex-center min-w-[18px] rounded-sm p-1">
+                <p className="font-bold">{formatAndDivideNumber(downvotes)}</p>
+              </div>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
+            <p className="text-xs">Upvotes</p>
+          </TooltipContent>
+        </Tooltip>
 
-      {type === 'Product' && (
-        <Image
-          src={
-            hasSaved
-              ? '/assets/icons/star-filled.svg'
-              : '/assets/icons/star-red.svg'
-          }
-          width={18}
-          height={18}
-          alt="star"
-          className="cursor-pointer"
-          onClick={handleSave}
-        />
-      )}
+        {/* Save to collection */}
+        <Tooltip>
+          <TooltipTrigger>
+            {type === 'Product' && (
+              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+                <Image
+                  src={
+                    hasSaved
+                      ? '/assets/icons/star-filled.svg'
+                      : '/assets/icons/star-red.svg'
+                  }
+                  width={18}
+                  height={18}
+                  alt="star"
+                  className="cursor-pointer"
+                  onClick={handleSave}
+                />
+              </div>
+            )}
+          </TooltipTrigger>
+          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
+            <p className="text-xs">Save to collection</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   );
 };

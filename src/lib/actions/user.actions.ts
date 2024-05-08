@@ -31,7 +31,7 @@ export async function getUserById(params: any) {
 
     if (!user) throw new Error('User not found');
 
-    return JSON.parse(JSON.stringify(user));
+    return user;
   } catch (error) {
     console.log(error);
   }

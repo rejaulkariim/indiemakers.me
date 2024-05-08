@@ -204,13 +204,6 @@ export async function getProductBySlug(params: GetProductBySlugParams) {
         select: 'id username photo',
       });
 
-    // Extract unique upvotes using distinct
-    if (product && product.upvotes) {
-      product.upvotes = await User.distinct('_id', {
-        _id: { $in: product.upvotes },
-      });
-    }
-
     return product;
   } catch (error) {
     console.log(error);

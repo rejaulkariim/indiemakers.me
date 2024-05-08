@@ -21,7 +21,7 @@ const RightSidebar = async () => {
               height={100}
               width={100}
               priority
-              className="aspect-square h-8 w-8 object-contain rounded-md"
+              className="aspect-square h-8 w-8 object-contain border rounded-md"
             />
             <p className="font-semibold">{product.name}</p>
           </div>
