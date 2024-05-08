@@ -7,7 +7,7 @@ const ProductList = async ({ result }: any) => {
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        <div className="max-w-3xl mx-auto flex flex-col gap-4 pb-10">
+        <div className="max-w-3xl mx-auto flex flex-col gap-4">
           {result.length > 0 && (
             <div className="px-4">
               <HomeFilters />

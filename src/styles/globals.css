@@ -81,7 +81,7 @@ body {
   }
 
   .section-padding {
-    @apply py-5 md:py-10;
+    @apply py-5 md:py-12;
   }
 
   .flex-center {
@@ -320,7 +320,7 @@ body {
 }
 
 .no-focus {
-  @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+  @apply focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 !important;
 }
 
 .primary-gradient {

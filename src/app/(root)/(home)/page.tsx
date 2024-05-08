@@ -1,4 +1,5 @@
 import Hero from '@/components/design/hero/Hero';
+import Newsletter from '@/components/design/newsletter/Newsletter';
 import ProductList from '@/components/design/products/ProductList';
 import { getProducts } from '@/lib/actions/product.action';
 import { Metadata } from 'next';
@@ -17,6 +18,7 @@ export default async function Home({ searchParams }: any) {
     <>
       <Hero />
       <ProductList result={result} />
+      <Newsletter />
     </>
   );
 }

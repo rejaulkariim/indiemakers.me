@@ -68,3 +68,6 @@ export interface ToggleSaveProductParams {
 export interface GetProductBySlugParams {
   slug: string;
 }
+export interface CreateNewsletterParams {
+  email: string;
+}

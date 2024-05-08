@@ -7,8 +7,8 @@ const Hero = async () => {
     <>
       <section className="section-padding">
         <MaxWidthWrapper>
-          <div className="max-w-3xl mx-auto py-4">
-            <div className="text-start space-y-2">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-start">
               <Badge variant="outline" className="text-muted-foreground">
                 Indie makers is now public!
               </Badge>
