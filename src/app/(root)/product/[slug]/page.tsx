@@ -89,6 +89,8 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
 
   const result = await getProductBySlug({ slug: params.slug });
 
+  console.log(result, 'pro');
+
   return (
     <section className="section-padding">
       <MaxWidthWrapper>

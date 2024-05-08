@@ -90,7 +90,7 @@ export async function upVoteComment(params: CommentVoteParams) {
       updateQuery = { $pull: { upvotes: userId } };
     } else if (hasdownVoted) {
       updateQuery = {
-        $pull: { downVotes: userId },
+        $pull: { downvotes: userId },
         $push: { upvotes: userId },
       };
     } else {

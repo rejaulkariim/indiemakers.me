@@ -191,18 +191,25 @@ export async function getProductBySlug(params: GetProductBySlugParams) {
       .populate({
         path: 'tags',
         model: Tag,
-        select: 'id, name',
+        select: 'id name',
       })
       .populate({
         path: 'author',
         model: User,
-        select: 'id, clerkId, name, photo',
+        select: 'id clerkId name photo',
       })
       .populate({
         path: 'upvotes',
         model: User,
-        select: 'id, username, photo',
+        select: 'id username photo',
       });
+
+    // Extract unique upvotes using distinct
+    if (product && product.upvotes) {
+      product.upvotes = await User.distinct('_id', {
+        _id: { $in: product.upvotes },
+      });
+    }
 
     return product;
   } catch (error) {
@@ -211,7 +218,7 @@ export async function getProductBySlug(params: GetProductBySlugParams) {
   }
 }
 
-// Upvote
+// Upvote on product
 export async function upVoteProduct(params: ProductVoteParams) {
   try {
     await connectToDatabase();
@@ -224,7 +231,7 @@ export async function upVoteProduct(params: ProductVoteParams) {
       updateQuery = { $pull: { upvotes: userId } };
     } else if (hasdownVoted) {
       updateQuery = {
-        $pull: { downVotes: userId },
+        $pull: { downvotes: userId },
         $push: { upvotes: userId },
       };
     } else {
