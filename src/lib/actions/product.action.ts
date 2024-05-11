@@ -1,18 +1,18 @@
 'use server';
 
-import { FilterQuery } from 'mongoose';
-import { revalidatePath } from 'next/cache';
-import Interaction from '../database/models/interaction.model';
-import Product from '../database/models/product.model';
-import Tag from '../database/models/tag.model';
-import User from '../database/models/user.model';
-import { connectToDatabase } from '../database/mongoose';
 import {
   CreateProductParams,
   GetProductBySlugParams,
   GetProductParams,
   ProductVoteParams,
-} from './shared.types';
+} from '@/lib/actions/shared.types';
+import Interaction from '@/lib/database/models/interaction.model';
+import Product from '@/lib/database/models/product.model';
+import Tag from '@/lib/database/models/tag.model';
+import User from '@/lib/database/models/user.model';
+import { connectToDatabase } from '@/lib/database/mongoose';
+import { FilterQuery } from 'mongoose';
+import { revalidatePath } from 'next/cache';
 
 // Create new products
 export async function createProduct(params: CreateProductParams) {
@@ -180,7 +180,7 @@ export async function getRecommendedProducts(params: any) {
     throw error;
   }
 }
-
+// Get product by slug
 export async function getProductBySlug(params: GetProductBySlugParams) {
   try {
     await connectToDatabase();
@@ -246,7 +246,7 @@ export async function upVoteProduct(params: ProductVoteParams) {
   }
 }
 
-// Downvote
+// Downvote product
 export async function downVoteProduct(params: ProductVoteParams) {
   try {
     await connectToDatabase();
@@ -281,6 +281,7 @@ export async function downVoteProduct(params: ProductVoteParams) {
   }
 }
 
+// Get hot product
 export async function getHotProduct() {
   try {
     await connectToDatabase();
@@ -293,6 +294,7 @@ export async function getHotProduct() {
   }
 }
 
+// Get featured product
 export async function getFeaturedProduct() {
   try {
     await connectToDatabase();

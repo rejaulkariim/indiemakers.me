@@ -133,7 +133,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               <Votes
                 type="Product"
                 itemId={JSON.stringify(product._id)}
-                userId={JSON.stringify(mongoUser._id)}
+                userId={JSON.stringify(mongoUser?._id)}
                 upvotes={product.upvotes.length}
                 hasupVoted={hasUpvoted}
                 downvotes={product.downvotes.length}
