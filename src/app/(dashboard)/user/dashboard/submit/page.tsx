@@ -6,21 +6,17 @@ import { auth } from '@clerk/nextjs/server';
 const SubmitProductPage = async () => {
   const { userId: clerkId } = auth();
 
-  let mongoUser;
-
-  if (clerkId) {
-    mongoUser = await getUserById({ userId: clerkId });
-  }
+  const mongoUser = await getUserById({ userId: clerkId });
 
   return (
-    <section>
+    <section className="section-padding">
       <MaxWidthWrapper className="max-w-3xl">
         <h1 className="font-bold">Submit product</h1>
 
         <div className="my-10">
           <SubmitProductForm
-            mongoUserId={JSON.stringify(mongoUser._id)}
-            creditBalance={mongoUser.creditBalance}
+            mongoUserId={JSON.stringify(mongoUser?._id)}
+            creditBalance={mongoUser?.creditBalance}
           />
         </div>
       </MaxWidthWrapper>
