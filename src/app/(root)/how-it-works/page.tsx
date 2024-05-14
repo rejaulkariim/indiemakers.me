@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const HowItWorksPage = () => {
   return (
-    <section className="bg-primary-50 bg-dotted-pattern bg-contain section-padding relative">
+    <section className="section-padding relative">
       {/* Gradient color */}
       <div className="hero-gradient z-0" />
       <MaxWidthWrapper>

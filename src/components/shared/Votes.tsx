@@ -188,7 +188,7 @@ const Votes = ({
             </div>
           </TooltipTrigger>
           <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
-            <p className="text-xs">Upvotes</p>
+            <p className="text-xs">Downvotes</p>
           </TooltipContent>
         </Tooltip>
 

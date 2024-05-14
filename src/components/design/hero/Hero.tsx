@@ -5,7 +5,7 @@ import LocalSearchbar from '../search/LocalSearchbar';
 const Hero = async () => {
   return (
     <>
-      <section className="section-padding">
+      <section className="section-padding ">
         <MaxWidthWrapper>
           <div className="max-w-3xl mx-auto">
             <div className="text-start">
