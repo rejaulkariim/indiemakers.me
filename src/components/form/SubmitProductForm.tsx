@@ -153,7 +153,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Tool Name <span className="text-amber-500">*</span>
+                Product Name <span className="text-amber-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -161,7 +161,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                   className="border h-12 text-muted-foreground"
                 />
               </FormControl>
-              <FormDescription>This is your tool name</FormDescription>
+              <FormDescription>This is your product name</FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
@@ -196,7 +196,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tool Descriptions</FormLabel>
+              <FormLabel>App Descriptions</FormLabel>
               <FormControl>
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
@@ -261,7 +261,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                   className="border h-12 text-muted-foreground"
                 />
               </FormControl>
-              <FormDescription>This is your tool name</FormDescription>
+
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
@@ -328,7 +328,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                 </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Add up to 3 tags to describe what your question is about. You
+                Add up to 3 tags to describe what your product is about. You
                 need to press enter to add a tag.
               </FormDescription>
               <FormMessage className="text-red-500" />
