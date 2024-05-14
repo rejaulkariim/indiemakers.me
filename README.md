@@ -1,27 +1,10 @@
-# AppBrews - Next.js Boilerplate Template for Saas Application
+# Indie Makers
 
-Built with the Next.js 14 App Router, Server Action, TypeScript, Resend, Framer Motion, MDX, Clerk, Mongodb, Mongoose, & Tailwind
-
+This platform allows indie makers to submit their SaaS products, receive feedback, and engage with a community of like-minded creators.
 
 ## Features
 
-- 🛠️ Complete marketplace built from scratch in Next.js 14
-- 💻 Beautiful landing page
-- 🎨 Custom artwork included
-- 💳 Full admin dashboard
-- 🔑 Authentication using Clerk
-- 🌟 Clean, modern UI using shadcn-ui
-- ✉️ Beautiful emails
-- ✅ Sclable Codebase
-- ⌨️ 100% written in TypeScript
-- 🎁 ...much more
-
-## Getting started
-
-To get started with this project, run
-
-```bash
-  git clone hhttps://github.com/rejaulkariim/appbrews.bp.git
-```
-
-and copy the .env.example variables into a separate .env file, fill them out & and that's all you need to get started!
+- **Submit Your Product:** Easily add your SaaS product with descriptions, logo, and links to your live site.
+- **Vote and Comment:** Upvote or downvote products and leave comments to provide feedback and engage with other users.
+- **Trending Section:** Discover the most popular and trending products.
+- **User Profiles:** Create a profile to showcase your products and track your submissions.
