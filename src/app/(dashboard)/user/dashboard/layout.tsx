@@ -14,7 +14,7 @@ export default async function DashboardLayout({
     <>
       <div className="sm:grid grid-cols-12">
         <div className="col-span-2">
-          <div className="hidden sm:block col-span-1 min-h-screen border-r">
+          <div className="hidden sm:block col-span-1 min-h-screen border-r h-full">
             <div className="sticky top-0">
               <DashboardSidebarNav items={dashboardConfig.sidebarNav} />
             </div>
