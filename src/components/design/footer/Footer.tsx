@@ -1,6 +1,5 @@
 'use client';
 
-import { Icons } from '@/components/shared/Icons';
 import { ModeToggle } from '@/components/theme/ModeToggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
@@ -48,7 +47,7 @@ const Footer = () => {
                     })
                   )}
                 >
-                  <Icons.gitHub className="h-4 w-4" />
+                  {/* <Icons.gitHub className="h-4 w-4" /> */}
                   <span className="sr-only">GitHub</span>
                 </div>
               </Link>
@@ -65,7 +64,7 @@ const Footer = () => {
                     })
                   )}
                 >
-                  <Icons.twitter className="h-3 w-3 fill-current" />
+                  {/* <Icons.twitter className="h-3 w-3 fill-current" /> */}
                   <span className="sr-only">Twitter</span>
                 </div>
               </Link>

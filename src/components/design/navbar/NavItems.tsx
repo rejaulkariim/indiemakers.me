@@ -1,29 +1,56 @@
 'use client';
 
-import { headerLinks } from '@/constants';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { PRODUCT_CATEGORIES } from '@/constants';
+import { useOnClickOutside } from '@/hooks/use-on-click-outside';
+import { useEffect, useRef, useState } from 'react';
+import NavItem from './NavItem';
 
 const NavItems = () => {
-  const pathname = usePathname();
+  const [activeIndex, setActiveIndex] = useState<null | number>(null);
+
+  const isAnyOpen = activeIndex !== null;
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveIndex(null);
+      }
+    };
+
+    document.addEventListener('keydown', handler);
+
+    return () => {
+      document.removeEventListener('keydown', handler);
+    };
+  }, []);
+
+  const navRef = useRef<HTMLDivElement | null>(null);
+  useOnClickOutside(navRef, () => setActiveIndex(null));
+
   return (
-    <ul className="hidden sm:flex sm:flex-between sm:items-center w-full gap-5">
-      {headerLinks.map((link) => {
-        const isActive = pathname === link.route;
+    <div className="flex gap-4 h-full" ref={navRef}>
+      {PRODUCT_CATEGORIES.map((category, i) => {
+        const handleOpen = () => {
+          if (activeIndex === i) {
+            setActiveIndex(null);
+          } else {
+            setActiveIndex(i);
+          }
+        };
+
+        const isOpen = i === activeIndex;
         return (
-          <li key={link.label}>
-            <Link
-              href={link.route}
-              className={`flex-center text-sm sm:text-base whitespace-normal ${
-                isActive ? 'text-foreground' : 'text-muted-foreground'
-              }`}
-            >
-              {link.label}
-            </Link>
-          </li>
+          <NavItem
+            category={category}
+            handleOpen={handleOpen}
+            setActiveIndex={setActiveIndex}
+            isAnyOpen={isAnyOpen}
+            isOpen={isOpen}
+            key={category.value}
+          />
         );
       })}
-    </ul>
+    </div>
   );
 };
 

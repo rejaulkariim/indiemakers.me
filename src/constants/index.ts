@@ -416,3 +416,31 @@ export const BADGE_CRITERIA = {
 };
 
 export const creditFee = -50;
+
+export const PRODUCT_CATEGORIES = [
+  {
+    label: 'Support',
+    value: 'support' as const,
+    featured: [
+      {
+        name: 'Contact us',
+        title: 'Use the form to send us message and get help right away',
+        href: '/contact',
+        icon: 'message',
+      },
+      {
+        name: 'FAQs',
+        title:
+          'Browse our faqs for common questions and quick find your answare',
+        href: '#faqs',
+        icon: 'post',
+      },
+      {
+        name: 'Send message on X',
+        title: 'You can also send us direct message on x (Indie Makers)',
+        href: '#',
+        icon: 'help',
+      },
+    ],
+  },
+];

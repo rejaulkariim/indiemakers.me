@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     },
   ],
   creator: 'Rejaul Karim',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  // themeColor: [
+  //   { media: '(prefers-color-scheme: light)', color: 'white' },
+  //   { media: '(prefers-color-scheme: dark)', color: 'black' },
+  // ],
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -58,11 +58,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <meta name="google-adsense-account" content="ca-pub-2997499274877237" />
         <body className={cn('antialiased', GeistSans.className)}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />
-            {/* <ScrollToTop /> */}
           </ThemeProvider>
         </body>
       </html>

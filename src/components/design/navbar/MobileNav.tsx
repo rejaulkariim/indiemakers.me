@@ -1,19 +1,13 @@
 'use client';
 
 import { Icons } from '@/components/shared/Icons';
-import { SidebarNavItem } from '@/types';
-import { cn } from '@/utils/utils';
-import { SignedIn, UserButton } from '@clerk/nextjs';
+import { PRODUCT_CATEGORIES } from '@/constants';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-interface DashboardNavProps {
-  items: SidebarNavItem[];
-}
-
-const MobileNav = ({ items }: DashboardNavProps) => {
+const MobileNav = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const pathname = usePathname();
@@ -41,34 +35,26 @@ const MobileNav = ({ items }: DashboardNavProps) => {
     return (
       <div className="flex justify-between items-center w-full lg:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <Icons.logo className="h-8 w-8" />
+          <Icons.logo className="h-6 w-6" />
+          <h1 className="font-bold">App Brews</h1>
         </Link>
 
-        <div className="flex flex-row-reverse gap-4 items-center">
-          <button type="button" onClick={() => setIsOpen(true)}>
-            <Menu className="h-8 w-8" aria-hidden="true" />
-          </button>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-        </div>
+        <button type="button" onClick={() => setIsOpen(true)}>
+          <Menu className="h-6 w-6" aria-hidden="true" />
+        </button>
       </div>
     );
 
   return (
     <div>
-      <div className="relative z-40 lg:hidde min-h-screen">
+      <div className="relative z-40 lg:hidden">
         <div className="fixed inset-0 bg-accent/50 bg-opacity-25" />
       </div>
 
       <div className="fixed overflow-y-scroll overscroll-y-none inset-0 z-40 flex">
         <div className="w-4/5">
           <div className="relative flex w-full max-w-sm flex-col overflow-y-auto bg-background pb-12 shadow-xl">
-            <div className="flex px-2 justify-between items-center pt-4">
-              <Link href="/" className="flex items-center gap-2">
-                <Icons.logo className="h-8 w-8" />
-                <h1 className="font-bold">App Brews</h1>
-              </Link>
+            <div className="flex px-4 pb-2 pt-5">
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
@@ -78,32 +64,36 @@ const MobileNav = ({ items }: DashboardNavProps) => {
               </button>
             </div>
 
-            <div className="mt-8 min-h-screen px-4">
-              <div className="grid items-start gap-4">
-                {items.map((item, index) => {
-                  // const Icon = Icons[item.icon || 'arrowRight'];
-                  return (
-                    item.href && (
-                      <Link key={index} href={item.disabled ? '/' : item.href}>
-                        <span
-                          className={cn(
-                            'group flex items-center rounded-md px-4 py-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-                            pathname === item.href
-                              ? 'bg-accent'
-                              : 'transparent',
-                            item.disabled && 'cursor-not-allowed opacity-80'
-                          )}
-                        >
-                          {/* <Icon className="mr-2 h-4 w-4 text-muted-foreground" /> */}
-                          <span className="text-sm text-muted-foreground">
-                            {item.title}
-                          </span>
-                        </span>
-                      </Link>
-                    )
-                  );
-                })}
-              </div>
+            <div className="mt-2">
+              <ul>
+                {PRODUCT_CATEGORIES.map((category) => (
+                  <li
+                    key={category.label}
+                    className="space-y-2 px-4 pb-8 pt-10"
+                  >
+                    <div className="border-b">
+                      <div className="-mb-px flex">
+                        <p className="border-transparent text-foreground flex-1 whitespace-nowrap border-b-2 py-4 text-base font-medium">
+                          {category.label}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col">
+                      {category.featured.map((item) => (
+                        <div key={item.name} className="group relative text-sm">
+                          <Link
+                            href={item.href}
+                            className="mt-6 block font-medium text-muted-foreground"
+                          >
+                            {item.name}
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
