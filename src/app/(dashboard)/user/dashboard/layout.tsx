@@ -31,7 +31,7 @@ export default async function DashboardLayout({
               </SignedIn>
             </div>
 
-            <MobileNav items={dashboardConfig.sidebarNav} />
+            <MobileNav />
           </header>
           <main>{children}</main>
         </div>
