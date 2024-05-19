@@ -57,16 +57,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <AdSense pId="ca-pub-2997499274877237" />
+    <html lang="en">
+      <head>
+        <AdSense pId="ca-pub-1234567890123456" />
+      </head>
+
+      <ClerkProvider>
         <body className={cn('antialiased', GeistSans.className)}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />
           </ThemeProvider>
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }

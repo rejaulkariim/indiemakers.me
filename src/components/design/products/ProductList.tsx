@@ -1,4 +1,5 @@
 import ProductCard from '@/components/design/products/ProductCard';
+import AdBanner from '@/components/shared/AdBanner';
 import HomeFilters from '@/components/shared/HomeFilters';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import NoResult from '@/components/shared/NoResult';
@@ -7,6 +8,11 @@ const ProductList = async ({ result }: any) => {
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
+        <AdBanner
+          dataAdFormat="auto"
+          dataFullWidthResponsive={true}
+          dataAdSlot="6306722507"
+        />
         <div className="max-w-3xl mx-auto flex flex-col gap-4">
           {result.length > 0 && (
             <div className="px-4">
