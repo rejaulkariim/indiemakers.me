@@ -1,3 +1,4 @@
+import AdSense from '@/components/shared/AdSense';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { siteConfig } from '@/config/site';
@@ -58,7 +59,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <meta name="google-adsense-account" content="ca-pub-2997499274877237" />
+        <AdSense pId="ca-pub-2997499274877237" />
         <body className={cn('antialiased', GeistSans.className)}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
