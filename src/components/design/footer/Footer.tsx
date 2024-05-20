@@ -1,38 +1,31 @@
 'use client';
 
-import { ModeToggle } from '@/components/theme/ModeToggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/utils/utils';
 import Link from 'next/link';
 
 const Footer = () => {
+  const footerLink = [
+    {
+      title: 'Privacy',
+      route: '/privacy',
+    },
+  ];
   return (
     <footer className="flex-grow-0">
       <div className="border-t">
         <div className="max-w-screen-xl mx-auto px-4 md:px-10 py-4 md:flex md:items-center md:justify-between">
-          <div className="text-left">
-            <p className="text-sm text-muted-foreground">
-              Built by{' '}
-              <Link
-                href="https://twitter.com/rejaulkariim"
-                target="_blank"
-                className="underline"
-              >
-                Rejaul.
-              </Link>{' '}
-              The source code is available on{' '}
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                className="underline"
-              >
-                GitHub.
-              </Link>{' '}
-            </p>
+          <div className="flex items-center gap-10">
+            <p className="font-bold text-lg">{siteConfig.name}</p>
+            {footerLink.map((item) => (
+              <Link key={item.title} href={item.route}>
+                {item.title}
+              </Link>
+            ))}
           </div>
 
-          <div className="mt-1 hidden">
+          <div className="mt-1">
             <div className="flex space-x-2 items-center">
               <Link
                 href={siteConfig.links.github}
@@ -68,8 +61,6 @@ const Footer = () => {
                   <span className="sr-only">Twitter</span>
                 </div>
               </Link>
-
-              <ModeToggle />
             </div>
           </div>
         </div>

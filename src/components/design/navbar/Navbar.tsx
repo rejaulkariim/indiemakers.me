@@ -6,7 +6,6 @@ import { cn } from '@/utils/utils';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import MobileNav from './MobileNav';
-import NavItems from './NavItems';
 
 const Navbar = async () => {
   return (
@@ -68,10 +67,10 @@ const Navbar = async () => {
               </Link>
             </div>
 
-            <div className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
+            {/* <div className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
               <NavItems />
-            </div>
-            <div className="flex gap-3 items-center">
+            </div> */}
+            <div className="hidden sm:flex gap-3 items-center">
               <ModeToggle />
               <SignedIn>
                 <div className="flex items-center gap-4">

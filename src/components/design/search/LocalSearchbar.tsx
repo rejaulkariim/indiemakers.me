@@ -57,7 +57,7 @@ const LocalSearchbar = ({
 
   return (
     <div
-      className={`flex h-10 grow items-center gap-4 rounded-lg px-1.5 border ${otherClasses}`}
+      className={`flex h-12 grow items-center gap-4 rounded-lg px-2.5 border ${otherClasses}`}
     >
       {iconPosition === 'left' && (
         <Image

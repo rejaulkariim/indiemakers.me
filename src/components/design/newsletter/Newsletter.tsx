@@ -54,16 +54,21 @@ const Newsletter = () => {
   };
   return (
     <section className="section-padding">
-      <MaxWidthWrapper className="max-w-3xl md:px-0">
-        <h1 className="font-bold">Stay up to date</h1>
-        <p className="paragraph">
-          Get notified when new product are published. No spam.
-        </p>
+      <MaxWidthWrapper className="max-w-3xl">
+        <div className="space-y-2 ">
+          <h1 className="text-2xl ">
+            <span className="font-bold">Trending</span> Product Newsletter
+          </h1>
+          <p className="paragraph">
+            Get updates on weekly trending product to your mailbox (English
+            only)
+          </p>
+        </div>
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-4 flex gap-2 max-w-xl"
+            className="mt-4 flex items-center gap-2 max-w-lg"
           >
             <FormField
               control={form.control}
@@ -75,7 +80,7 @@ const Newsletter = () => {
                       {...field}
                       type="email"
                       placeholder="Email address"
-                      className="text-sm no-focus border shadow-none outline-none focus-visible:border-2"
+                      className="max-w-2xl text-sm no-focus border shadow-none outline-none focus-visible:border-2"
                     />
                   </FormControl>
 
