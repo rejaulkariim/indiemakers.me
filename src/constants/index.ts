@@ -422,44 +422,45 @@ export const PRODUCT_CATEGORIES = [
     label: 'Support',
     value: 'support' as const,
     featured: [
-      {
-        name: 'Contact us',
-        title: 'Use the form to send us message and get help right away',
-        href: '/contact',
-        icon: 'message',
-      },
-      {
-        name: 'FAQs',
-        title:
-          'Browse our faqs for common questions and quick find your answare',
-        href: '#faqs',
-        icon: 'post',
-      },
+      // {
+      //   name: 'Contact us',
+      //   title: 'Use the form to send us message and get help right away',
+      //   href: '/contact',
+      //   icon: 'message',
+      // },
+      // {
+      //   name: 'FAQs',
+      //   title:
+      //     'Browse our faqs for common questions and quick find your answare',
+      //   href: '#faqs',
+      //   icon: 'post',
+      // },
       {
         name: 'Send message on X',
         title: 'You can also send us direct message on x (Indie Makers)',
-        href: '#',
+        href: 'https:/twitter.com/IndieMakersMe',
         icon: 'help',
       },
     ],
   },
+
   {
     label: 'Credits',
     value: 'credits' as const,
     featured: [
       {
-        name: 'Get Credits',
-        title: 'Use the form to send us message and get help right away',
+        name: 'Add credits',
+        title: 'Add credits to publish or feature your product.',
         href: '/credits',
         icon: 'coins',
       },
-      {
-        name: 'Benifits',
-        title:
-          'Browse our faqs for common questions and quick find your answare',
-        href: '#benifits',
-        icon: 'crown',
-      },
+      // {
+      //   name: 'Benifits',
+      //   title:
+      //     'Browse our faqs for common questions and quick find your answare',
+      //   href: '#benifits',
+      //   icon: 'crown',
+      // },
     ],
   },
 ];
