@@ -451,14 +451,14 @@ export const PRODUCT_CATEGORIES = [
         name: 'Get Credits',
         title: 'Use the form to send us message and get help right away',
         href: '/credits',
-        icon: 'message',
+        icon: 'coins',
       },
       {
         name: 'Benifits',
         title:
           'Browse our faqs for common questions and quick find your answare',
         href: '#benifits',
-        icon: 'post',
+        icon: 'crown',
       },
     ],
   },

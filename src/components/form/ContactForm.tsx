@@ -108,7 +108,7 @@ const ContactForm = () => {
             )}
           />
 
-          <Button type="submit" className="button w-full">
+          <Button type="submit" className="w-full">
             {isSubmitting ? (
               <>
                 <Icons.spinner className="size-5 animate-spin mr-2" />

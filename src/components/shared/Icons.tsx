@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  Coins,
   CreditCard,
   CreditCardIcon,
   Crown,
@@ -45,6 +46,7 @@ interface IconMap {
 }
 export const Icons: IconMap = {
   logo: Cat,
+  coins: Coins,
   crown: Crown,
   notebook: StickyNoteIcon,
   book: Book,

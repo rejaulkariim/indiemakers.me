@@ -12,12 +12,14 @@ const ContactPage = () => {
     <section className="section-padding">
       <MaxWidthWrapper>
         <SectionHeader
-          headerInfo={{
-            subtitle: 'Get in touch',
-            description:
-              "Questions, issues, or comments? Contact us using the form below. We're here to help",
-          }}
+          title={
+            <span>
+              <span className="font-bold">Contact</span> With Us
+            </span>
+          }
+          subtitle="If you face any problem with our service please use the form bellow to send us an email"
         />
+
         <ContactForm />
       </MaxWidthWrapper>
     </section>
