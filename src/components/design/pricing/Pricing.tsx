@@ -1,5 +1,4 @@
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import SectionHeader from '@/components/shared/SectionHeader';
 import { stripePlan } from '@/config/stripe';
 
 const Pricing = () => {
@@ -7,14 +6,14 @@ const Pricing = () => {
     <section className="section-padding" id="pricing">
       <MaxWidthWrapper>
         <div className="max-w-4xl mx-auto">
-          <SectionHeader
+          {/* <SectionHeader
             headerInfo={{
               title: 'Pricing',
               subtitle: 'Save hours of repetitive work.',
               description:
                 'Avoid spending hours on coding and focus on what matters.',
             }}
-          />
+          /> */}
 
           <div className="mt-10 relative flex justify-center flex-col lg:flex-row items-center lg:items-stretch gap-8">
             {stripePlan.plans.map((plan, index) => (

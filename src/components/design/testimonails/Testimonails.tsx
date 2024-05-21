@@ -8,7 +8,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import SectionHeader from '@/components/shared/SectionHeader';
 import { userTestimonails } from '@/constants';
 import Image from 'next/image';
 
@@ -16,13 +15,13 @@ const Testimonials = () => {
   return (
     <section id="testimonails" className="section-padding">
       <MaxWidthWrapper>
-        <SectionHeader
+        {/* <SectionHeader
           headerInfo={{
             title: `Testimonails`,
             subtitle: `Wall of Love`,
             description: `Discover what others are saying about their experience`,
           }}
-        />
+        /> */}
 
         <div className="swiper testimonial mt-10">
           <Swiper
