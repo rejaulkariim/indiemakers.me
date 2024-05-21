@@ -41,7 +41,7 @@ const Navbar = async () => {
                       'text-muted-foreground'
                     )}
                   >
-                    Submit
+                    Dashboard
                   </Link>
                   <UserButton afterSignOutUrl="/" />
                 </div>

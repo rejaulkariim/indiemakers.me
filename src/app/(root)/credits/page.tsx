@@ -27,7 +27,7 @@ const Credits = async ({ searchParams }: any) => {
               Products
             </span>
           }
-          subtitle="After purchasing any plan above, you will instantly gain access to the Next.js Starter kit's below. You will also receive access to future Starter kit's as soon as they are released."
+          subtitle="Easily top up your credits to keep publishing."
         />
 
         <ul className="grid grid-cols-1 md:grid-cols-2 rounded-xl gap-10 mt-6">
