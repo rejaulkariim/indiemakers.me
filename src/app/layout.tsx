@@ -5,8 +5,10 @@ import { siteConfig } from '@/config/site';
 import '@/styles/globals.css';
 import { cn } from '@/utils/utils';
 import { ClerkProvider } from '@clerk/nextjs';
-import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
+import { Bricolage_Grotesque } from 'next/font/google';
+
+const font = Bricolage_Grotesque({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
@@ -63,7 +65,7 @@ export default function RootLayout({
       </head>
 
       <ClerkProvider>
-        <body className={cn('antialiased', GeistSans.className)}>
+        <body className={cn('antialiased', font.className)}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />

@@ -1,74 +1,37 @@
 'use client';
 
-import { buttonVariants } from '@/components/ui/button';
-import { siteConfig } from '@/config/site';
-import { cn } from '@/utils/utils';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import Link from 'next/link';
 
 const Footer = () => {
-  const footerLink = [
-    {
-      title: 'Privacy',
-      route: '/privacy',
-    },
-    {
-      title: 'Terms',
-      route: '/terms',
-    },
-  ];
   return (
-    <footer className="flex-grow-0">
-      <div className="border-t">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-10 py-4 md:flex md:items-center md:justify-between">
-          <div className="flex items-center gap-10">
-            <p className="font-bold text-lg">{siteConfig.name}</p>
-            {footerLink.map((item) => (
-              <Link key={item.title} href={item.route}>
-                {item.title}
-              </Link>
-            ))}
+    <footer className="bg-background flex-grow-0">
+      <MaxWidthWrapper>
+        <div className="py-8 md:flex md:items-center md:justify-between">
+          <div className="text-center md:text-left">
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} All Rights Reserved
+            </p>
           </div>
 
-          <div className="mt-1">
-            <div className="flex space-x-2 items-center">
+          <div className="mt-4 flex items-center justify-center md:mt-0">
+            <div className="flex space-x-8">
               <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
+                href="/terms"
+                className="text-sm text-muted-foreground hover:text-foreground"
               >
-                <div
-                  className={cn(
-                    buttonVariants({
-                      variant: 'ghost',
-                      size: 'icon',
-                    })
-                  )}
-                >
-                  {/* <Icons.gitHub className="h-4 w-4" /> */}
-                  <span className="sr-only">GitHub</span>
-                </div>
+                Terms
               </Link>
               <Link
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noreferrer"
+                href="/privacy"
+                className="text-sm text-muted-foreground hover:text-foreground"
               >
-                <div
-                  className={cn(
-                    buttonVariants({
-                      variant: 'ghost',
-                      size: 'icon',
-                    })
-                  )}
-                >
-                  {/* <Icons.twitter className="h-3 w-3 fill-current" /> */}
-                  <span className="sr-only">Twitter</span>
-                </div>
+                Privacy Policy
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </MaxWidthWrapper>
     </footer>
   );
 };

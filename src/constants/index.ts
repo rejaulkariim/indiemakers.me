@@ -443,4 +443,23 @@ export const PRODUCT_CATEGORIES = [
       },
     ],
   },
+  {
+    label: 'Credits',
+    value: 'credits' as const,
+    featured: [
+      {
+        name: 'Get Credits',
+        title: 'Use the form to send us message and get help right away',
+        href: '/credits',
+        icon: 'message',
+      },
+      {
+        name: 'Benifits',
+        title:
+          'Browse our faqs for common questions and quick find your answare',
+        href: '#benifits',
+        icon: 'post',
+      },
+    ],
+  },
 ];

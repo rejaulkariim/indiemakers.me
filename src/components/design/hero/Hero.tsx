@@ -8,7 +8,7 @@ const Hero = async () => {
         <div>
           <h1 className="text-3xl sm:text-4xl mt-2">
             Explore What <span className="font-extrabold">Indie Makers</span>{' '}
-            Are Building
+            Building
           </h1>
         </div>
 

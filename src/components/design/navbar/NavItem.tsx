@@ -1,5 +1,6 @@
 'use client';
 
+import { Icons } from '@/components/shared/Icons';
 import { Button } from '@/components/ui/button';
 import { PRODUCT_CATEGORIES } from '@/constants';
 import { cn } from '@/utils/utils';
@@ -55,7 +56,7 @@ const NavItem = ({
             aria-hidden="true"
           >
             {category.featured.map((item) => {
-              //   const Icon = Icons[item.icon || 'arrowRight'];
+              const Icon = Icons[item.icon || 'arrowRight'];
               return (
                 <div
                   key={item.name}
@@ -63,11 +64,11 @@ const NavItem = ({
                   className="hover:bg-card p-2 rounded-xl group"
                 >
                   <Link
-                    href={''}
+                    href={item.href}
                     className="flex items-center gap-3.5 space-y-2 hover:bg-accent/70 rounded-xl p-2 transition-all duration-300"
                   >
                     <div className="p-2 rounded-lg bg-accent transition-all duration-300">
-                      {/* <Icon className="h-6 w-6 text-primary" /> */}
+                      <Icon className="h-6 w-6 text-primary" />
                     </div>
 
                     <div>

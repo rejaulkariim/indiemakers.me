@@ -1,6 +1,5 @@
 'use client';
 
-import { Icons } from '@/components/shared/Icons';
 import { TwitterShareButton } from 'react-share';
 
 const SocialShareButton = ({
@@ -22,7 +21,7 @@ const SocialShareButton = ({
       hashtags={hashtags}
       related={related}
     >
-      <Icons.twitter className="h-3 w-3 fill-current" />
+      {/* <Icons.twitter className="h-3 w-3 fill-current" /> */}
       <span className="sr-only">Twitter</span>
     </TwitterShareButton>
   );
