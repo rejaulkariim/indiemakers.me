@@ -11,6 +11,10 @@ const Footer = () => {
       title: 'Privacy',
       route: '/privacy',
     },
+    {
+      title: 'Terms',
+      route: '/terms',
+    },
   ];
   return (
     <footer className="flex-grow-0">

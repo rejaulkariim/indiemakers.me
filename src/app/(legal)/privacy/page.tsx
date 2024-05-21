@@ -12,6 +12,7 @@ const PrivacyPage = () => {
             Back
           </Button>
         </Link>
+
         <Image
           src="/assets/images/privacy.png"
           height={200}
@@ -19,13 +20,10 @@ const PrivacyPage = () => {
           alt="privacy"
           className="rounded-xl object-cover mt-4 h-32"
         />
-        <h1 className="text-xl sm:text-2xl font-bold mt-4">
-          Privacy Policy for {siteConfig.name}
-        </h1>
 
         <div className="flex justify-between items-center my-4">
           <p className="text-xs uppercase font-bold">
-            Indie Makers Privacy Policy
+            {siteConfig.name} Privacy Policy
           </p>
           <p className="text-xs font-bold">Updated: 2024-05-21</p>
         </div>
