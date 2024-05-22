@@ -13,7 +13,7 @@ const font = Bricolage_Grotesque({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
   keywords: [

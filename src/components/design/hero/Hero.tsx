@@ -7,8 +7,8 @@ const Hero = async () => {
       <MaxWidthWrapper className="max-w-3xl text-center">
         <div>
           <h1 className="text-3xl sm:text-4xl mt-2">
-            Explore What <span className="font-extrabold">Indie Makers</span>{' '}
-            Building
+            Explore The Best{' '}
+            <span className="font-extrabold">New Products </span> In Tech.
           </h1>
         </div>
 

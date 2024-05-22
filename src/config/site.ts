@@ -2,7 +2,7 @@ import { SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
   name: 'Indie Makers',
-  title: 'Showcase indie creations in 30 seconds. Get lifelong exposure.',
+  title: 'Explore The best new products in tech.',
   description: '',
   url: 'https://indiemakers.me',
   ogImage: 'https://indiemakers.me/og.png',

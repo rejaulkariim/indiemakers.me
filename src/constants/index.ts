@@ -463,4 +463,23 @@ export const PRODUCT_CATEGORIES = [
       // },
     ],
   },
+  {
+    label: 'News',
+    value: 'news' as const,
+    featured: [
+      {
+        name: 'Blog',
+        title: 'See our latest blog on indie products',
+        href: '/blog',
+        icon: 'coins',
+      },
+      // {
+      //   name: 'Benifits',
+      //   title:
+      //     'Browse our faqs for common questions and quick find your answare',
+      //   href: '#benifits',
+      //   icon: 'crown',
+      // },
+    ],
+  },
 ];

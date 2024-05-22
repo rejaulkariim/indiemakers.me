@@ -5,7 +5,7 @@ import { getProducts } from '@/lib/actions/product.action';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Indie Makers',
 };
 
 export default async function Home({ searchParams }: any) {
