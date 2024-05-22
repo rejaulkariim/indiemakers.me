@@ -59,9 +59,7 @@ export const InsufficientCreditsModal = () => {
           >
             No, Cancel
           </AlertDialogCancel>
-          <AlertDialogAction
-            onClick={() => router.push('/user/dashboard/credits')}
-          >
+          <AlertDialogAction onClick={() => router.push('/credits')}>
             Yes, Proceed
           </AlertDialogAction>
         </AlertDialogFooter>
