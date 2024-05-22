@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
+import SectionHeader from '@/components/shared/SectionHeader';
 import { formatDate } from '@/utils/utils';
 
 export const metadata = {
@@ -20,16 +21,14 @@ export default async function BlogPage() {
   return (
     <section className="section-padding">
       <MaxWidthWrapper>
-        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-          <div className="flex-1 space-y-4">
-            <h1 className="inline-block font-heading text-xl tracking-tight sm:text-2xl">
-              Blog
-            </h1>
-            <p className="paragraph">
-              A blog built using Contentlayer. Posts are written in MDX.
-            </p>
-          </div>
-        </div>
+        <SectionHeader
+          title={
+            <span>
+              Newest <span className="font-bold">Technology</span> Trends
+            </span>
+          }
+          subtitle="Essential Tips and Tricks for Indie Makers' Latest Releases"
+        />
 
         {posts?.length ? (
           <div className="grid gap-10 sm:grid-cols-3 my-10">
@@ -48,16 +47,18 @@ export default async function BlogPage() {
                     priority={index <= 1}
                   />
                 )}
-                <h2 className="text-lg font-semibold">
+                <h2 className="text-lg font-bold">
                   {post.title.slice(0, 40)}...
                 </h2>
                 {post.description && (
                   <p className="paragraph">
-                    {post.description.slice(0, 90)}...
+                    {post.description.slice(0, 100)}...
                   </p>
                 )}
                 {post.date && (
-                  <p className="paragraph">{formatDate(post.date)}</p>
+                  <p className="paragraph text-xs font-bold">
+                    {formatDate(post.date)}
+                  </p>
                 )}
                 <Link href={post.slug} className="absolute inset-0">
                   <span className="sr-only">View Article</span>

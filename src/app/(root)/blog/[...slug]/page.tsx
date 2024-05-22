@@ -1,14 +1,13 @@
-import { allAuthors, allPosts } from 'contentlayer/generated';
-import { notFound } from 'next/navigation';
-
 import { Mdx } from '@/components/design/mdx/MdxComponents';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
 import { buttonVariants } from '@/components/ui/button';
 import '@/styles/mdx.css';
 import { cn, formatDate } from '@/utils/utils';
+import { allAuthors, allPosts } from 'contentlayer/generated';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 interface PostPageProps {
   params: {
@@ -101,7 +100,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 Published on {formatDate(post.date)}
               </time>
             )}
-            <h2 className="mt-2 inline-block text-xl sm:text-3xl font-bold">
+            <h2 className="mt-2 inline-block text-xl sm:text-2xl font-bold">
               {post.title}
             </h2>
             {authors?.length ? (
@@ -141,8 +140,7 @@ export default async function PostPage({ params }: PostPageProps) {
             />
           )}
           <Mdx code={post.body.code} />
-
-          <div className="my-4 flex justify-end">
+          <div className="my-8">
             <Link
               href="/blog"
               className={cn(buttonVariants({ variant: 'outline' }))}
