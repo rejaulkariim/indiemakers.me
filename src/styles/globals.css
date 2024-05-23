@@ -81,7 +81,7 @@ body {
   }
 
   .section-padding {
-    @apply py-5 md:py-12;
+    @apply py-5 md:py-10;
   }
 
   .flex-center {

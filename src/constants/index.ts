@@ -471,7 +471,7 @@ export const PRODUCT_CATEGORIES = [
         name: 'Blog',
         title: 'See our latest blog on indie products',
         href: '/blog',
-        icon: 'coins',
+        icon: 'book',
       },
       // {
       //   name: 'Benifits',

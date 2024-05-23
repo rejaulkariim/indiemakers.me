@@ -1,6 +1,7 @@
 'use client';
 
 import { Icons } from '@/components/shared/Icons';
+import { siteConfig } from '@/config/site';
 import { PRODUCT_CATEGORIES } from '@/constants';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -36,7 +37,7 @@ const MobileNav = () => {
       <div className="flex justify-between items-center w-full lg:hidden">
         <Link href="/" className="flex items-center gap-2">
           <Icons.logo className="h-6 w-6" />
-          <h1 className="font-bold">App Brews</h1>
+          <h1 className="font-bold">{siteConfig.name}</h1>
         </Link>
 
         <button type="button" onClick={() => setIsOpen(true)}>
