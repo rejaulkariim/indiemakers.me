@@ -449,7 +449,7 @@ export const PRODUCT_CATEGORIES = [
     value: 'credits' as const,
     featured: [
       {
-        name: 'Add credits',
+        name: 'Buy Credits',
         title: 'Add credits to publish or feature your product.',
         href: '/credits',
         icon: 'coins',

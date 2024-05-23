@@ -36,8 +36,8 @@ const MobileNav = () => {
     return (
       <div className="flex justify-between items-center w-full lg:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <Icons.logo className="h-6 w-6" />
-          <h1 className="font-bold">{siteConfig.name}</h1>
+          <Icons.logo className="h-8 w-8" />
+          <h1 className="text-lg font-bold">{siteConfig.name}</h1>
         </Link>
 
         <button type="button" onClick={() => setIsOpen(true)}>

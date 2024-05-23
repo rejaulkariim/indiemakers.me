@@ -1,18 +1,18 @@
 import { Icons } from '@/components/shared/Icons';
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import { ModeToggle } from '@/components/theme/ModeToggle';
+import UserAccountNav from '@/components/shared/UserAccountNav';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/utils/utils';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import Link from 'next/link';
 import MobileNav from './MobileNav';
 import NavItems from './NavItems';
 
 const Navbar = async () => {
   return (
-    <nav className="bg-background sticky z-50 top-0 inset-x-0 h-14 w-full border-b">
-      <MaxWidthWrapper className="relative bg-background border-b border-muted/90">
+    <nav className="bg-background sticky z-50 top-0 inset-x-0 h-14 w-full border-b border-muted/90">
+      <MaxWidthWrapper className="relative bg-background">
         <header className="flex justify-between h-14 items-center ">
           <MobileNav />
           <div className="hidden md:flex items-center ml-4 lg:ml-0">
@@ -29,21 +29,19 @@ const Navbar = async () => {
             </div>
           </div>
 
-          <div className="hidden sm:flex gap-3 items-center">
-            <ModeToggle />
+          <div className="flex items-center gap-6">
+            <Link
+              href="/submit"
+              className={cn(
+                buttonVariants({ variant: 'ghost' }),
+                'text-muted-foreground'
+              )}
+            >
+              Submit
+            </Link>
+
             <SignedIn>
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/user/dashboard/profile"
-                  className={cn(
-                    buttonVariants({ variant: 'ghost' }),
-                    'text-muted-foreground'
-                  )}
-                >
-                  Dashboard
-                </Link>
-                <UserButton afterSignOutUrl="/" />
-              </div>
+              <UserAccountNav />
             </SignedIn>
 
             <SignedOut>
