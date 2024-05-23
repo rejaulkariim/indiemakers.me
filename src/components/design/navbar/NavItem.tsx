@@ -52,7 +52,7 @@ const NavItem = ({
           )}
         >
           <div
-            className="bg-background p-1 mt-2 rounded-lg border"
+            className="bg-background p-1 mt-2 rounded-xl border"
             aria-hidden="true"
           >
             {category.featured.map((item) => {
@@ -61,18 +61,20 @@ const NavItem = ({
                 <div
                   key={item.name}
                   onClick={() => setActiveIndex(null)}
-                  className="hover:bg-card p-2 rounded-xl group"
+                  className="hover:bg-card rounded-md group"
                 >
                   <Link
                     href={item.href}
-                    className="flex items-center gap-3.5 space-y-2 hover:bg-accent/70 rounded-xl p-2 transition-all duration-300"
+                    className="flex items-center gap-3.5 space-y-2 hover:bg-accent/70 rounded-xl p-2.5 transition-all duration-300"
                   >
                     <div className="p-2 rounded-lg bg-accent transition-all duration-300">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
 
                     <div>
-                      <p className="font-bold text-foreground">{item.name}</p>
+                      <p className="text-sm font-bold text-foreground">
+                        {item.name}
+                      </p>
                       <p className="text-sm">{item.title}</p>
                     </div>
                   </Link>

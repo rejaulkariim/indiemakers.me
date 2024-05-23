@@ -1,7 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Terms',
+  description:
+    'By using our services, you agree to the following terms and conditions. Please read them carefully.',
+};
 
 const TermsPage = () => {
   return (

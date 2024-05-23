@@ -1,7 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Privacy',
+  description:
+    ' When you use our services, you’re trusting us with your information.',
+};
 
 const PrivacyPage = () => {
   return (
