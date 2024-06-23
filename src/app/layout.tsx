@@ -6,9 +6,9 @@ import '@/styles/globals.css';
 import { cn } from '@/utils/utils';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const font = Bricolage_Grotesque({ subsets: ['latin'] });
+const font = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
@@ -66,7 +66,7 @@ export default function RootLayout({
 
       <ClerkProvider>
         <body className={cn('antialiased', font.className)}>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light">
             {children}
             <Toaster />
           </ThemeProvider>
