@@ -1,21 +1,20 @@
-import { Document, Schema, model, models } from 'mongoose';
+import { Document, Schema, model, models } from 'mongoose'
 
 export interface IUser extends Document {
-  clerkId: string;
-  email: string;
-  username: string;
-  firstName?: string;
-  lastName?: string;
-  photo: string;
-  planId: number;
-  creditBalance: number;
-  role: 'user' | 'admin';
-  password?: string;
-  location?: string;
-  bio?: string;
-  reputation?: number;
-  saved: Schema.Types.ObjectId[];
-  joinAt: Date;
+  clerkId: string
+  email: string
+  username: string
+  firstName?: string
+  lastName?: string
+  photo: string
+  isRegistered: boolean
+  role: 'user' | 'admin'
+  password?: string
+  location?: string
+  bio?: string
+  reputation?: number
+  saved: Schema.Types.ObjectId[]
+  joinAt: Date
 }
 
 const UserSchema = new Schema<IUser>({
@@ -23,71 +22,68 @@ const UserSchema = new Schema<IUser>({
     type: String,
     required: true,
     unique: true,
-    trim: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
+    trim: true
   },
   username: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
+    trim: true
   },
   firstName: {
     type: String,
-    trim: true,
+    trim: true
   },
   lastName: {
     type: String,
-    trim: true,
+    trim: true
   },
   photo: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
-  planId: {
-    type: Number,
-    default: 1,
-  },
-  creditBalance: {
-    type: Number,
-    default: 10,
+  isRegistered: {
+    type: Boolean,
+    default: false
   },
   password: {
-    type: String,
+    type: String
   },
   location: {
     type: String,
-    trim: true,
+    trim: true
   },
   bio: {
     type: String,
-    trim: true,
+    trim: true
   },
   reputation: {
-    type: Number,
+    type: Number
   },
   saved: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Product',
-    },
+      ref: 'Product'
+    }
   ],
   role: {
     type: String,
     enum: ['user', 'admin'],
-    default: 'user',
+    default: 'user'
   },
   joinAt: {
     type: Date,
-    default: Date.now,
-  },
-});
+    default: Date.now
+  }
+})
 
-const User = models?.User || model('User', UserSchema);
-export default User;
+const User = models?.User || model('User', UserSchema)
+
+export default User

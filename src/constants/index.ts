@@ -1,338 +1,176 @@
 export const footerDocsLinks = [
   {
     label: 'Getting Started',
-    route: '/',
+    route: '/'
   },
 
   {
     label: 'API Reference',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Integrations',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Examples',
-    route: '#',
-  },
-];
+    route: '#'
+  }
+]
 
 export const footerResourcesLinks = [
   {
     label: 'Changelog',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Pricing',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Security',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Status',
-    route: '#',
-  },
-];
+    route: '#'
+  }
+]
 
 export const footerCompanyLinks = [
   {
     label: 'Blog',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Contact',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Customers',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Brand',
-    route: '#',
-  },
-];
+    route: '#'
+  }
+]
 
 export const footerLegalLinks = [
   {
     label: 'Cookies',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Privacy Policy',
-    route: '#',
+    route: '#'
   },
   {
     label: 'Terms of Service',
-    route: '#',
-  },
-];
+    route: '#'
+  }
+]
 
 export const headerLinks = [
   {
     label: 'Home',
-    route: '/',
+    route: '/'
   },
   {
     label: 'Features',
-    route: '/#features',
+    route: '/#features'
   },
   {
     label: 'Pricing',
-    route: '/#pricing',
+    route: '/#pricing'
   },
   {
     label: 'Contact',
-    route: '/contact',
+    route: '/contact'
   },
 
   {
     label: 'Blog',
-    route: '/blog',
-  },
-];
+    route: '/blog'
+  }
+]
 
 export const userTestimonails = [
   {
     user: 'Sarah M.',
     comment: 'Stripe and user authentication setup made a huge difference!',
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'Emily L.',
     comment:
       'From concept to deployment in days! Next.js Architecture is a lifesaver.',
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'Alex H.',
     comment:
       'Full Stack Next.js made building and deploying a breeze. Phenomenal growth!',
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'Michael P.',
     comment:
       'Fast, efficient, and scalable! Unparalleled development experience.',
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'Jessica B.',
     comment: 'Impressive results! Smooth launch and unmatched scalability.',
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'David S.',
     comment: "Couldn't be happier! Unparalleled speed and scalability.",
-    image: '/assets/images/user.png',
+    image: '/assets/images/user.png'
   },
   {
     user: 'Amanda R.',
     comment:
       'Game-changer for startups! Quick deployment and top-notch scalability.',
-    image: '/assets/images/user.png',
-  },
-];
+    image: '/assets/images/user.png'
+  }
+]
 
 export const features = [
   {
     title: 'Authentication',
     description: 'Manage user authentication seamlessly with Clerk.',
-    image: '/assets/images/authentication.png',
+    image: '/assets/images/authentication.png'
   },
   {
     title: 'Send Email with Resend',
     description:
       'Effortlessly send emails and manage resend functionality with Resend.',
-    image: '/assets/images/email.png',
+    image: '/assets/images/email.png'
   },
   {
     title: 'Database Management',
     description:
       'Simplify tasks with MongoDB, a flexible NoSQL database solution.',
-    image: '/assets/images/database.png',
+    image: '/assets/images/database.png'
   },
   {
     title: 'Stripe Payment Gateway',
     description: 'Accept payments securely and efficiently with Stripe.',
-    image: '/assets/images/stripe.png',
+    image: '/assets/images/stripe.png'
   },
   {
     title: 'Responsive Design',
     description: 'Visually appealing and responsive designs with Tailwind CSS.',
-    image: '/assets/images/tailwind.png',
+    image: '/assets/images/tailwind.png'
   },
   {
     title: 'SEO Optimization',
     description: 'Improve website visibility and performance with Next.js.',
-    image: '/assets/images/seo.png',
-  },
-];
-
-export const products = [
-  {
-    name: 'Logo Fast',
-    slug: 'logo-fast',
-    title: 'Create a beautiful logo in seconds with AI.',
-    description: '',
-    websiteUrl: 'https://shipfa.st/tools/logo-fast',
-    imageUrl: '/logofast.png',
-    likes: 50,
-    comments: ['Logo Maker'],
-    pricingModel: 'Fixed',
-    tags: ['Next.js', 'AI'],
-    youtubeUrl: 'https://www.youtube.com/watch?v=video123',
-    isPromoted: true,
-    status: 'Featured',
-    createdBy: {
-      id: 'user123',
-      name: 'John Doe',
-      email: 'john@example.com',
-    },
-    createdAt: '2024-04-07T12:00:00.000Z',
-    updatedAt: '2024-04-07T12:00:00.000Z',
-  },
-  {
-    name: 'App Brews',
-    slug: 'app-brews',
-    title: 'Your Marketplace for High Quality Next.js Starter Kit.⚡️',
-    description:
-      'Laptop Y is a sleek and powerful device built for multitasking and productivity. It boasts a high-resolution display, fast processor, and long battery life.',
-    websiteUrl: 'https://appbrews.co',
-    imageUrl: '/appbrews.png',
-    likes: 20,
-    comments: ['Great laptop for work!', 'Impressive performance.'],
-    pricingModel: 'Subscription',
-    tags: ['laptop', 'technology', 'work'],
-    youtubeUrl: null,
-    isPromoted: false,
-    status: 'Featured',
-    createdBy: {
-      id: 'user456',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-    },
-    createdAt: '2024-04-08T09:30:00.000Z',
-    updatedAt: '2024-04-08T09:30:00.000Z',
-  },
-  {
-    name: 'Ship Fast',
-    slug: 'ship-fast',
-    title: 'Launch your startup in days, not weeks.',
-    description: '',
-    websiteUrl: 'https://shipfa.st',
-    imageUrl: '/shipfast.png',
-    likes: 15,
-    comments: [],
-    pricingModel: 'Onetime',
-    tags: ['Next.js', 'React'],
-    youtubeUrl: null,
-    isPromoted: false,
-    status: 'Featured',
-    createdBy: {
-      id: 'user789',
-      name: 'Alice Johnson',
-      email: 'alice@example.com',
-    },
-    createdAt: '2024-04-09T15:45:00.000Z',
-    updatedAt: '2024-04-09T15:45:00.000Z',
-  },
-  {
-    name: 'Micro Launch',
-    slug: 'micro-launch',
-    title: 'Discover the latest product trends on Microlaunch.',
-    description:
-      'Smart Watch A tracks your workouts, monitors your health, and keeps you connected on the go. Its sleek design and customizable faces make it the perfect accessory.',
-    websiteUrl: 'https://microlaunch.net',
-    imageUrl: '/microlaunch.png',
-    likes: 35,
-    comments: ['Love the design!', 'Great battery life.'],
-    pricingModel: 'Subscription',
-    tags: ['smartwatch', 'wearable'],
-    youtubeUrl: 'https://www.youtube.com/watch?v=video456',
-    isPromoted: true,
-    status: 'Featured',
-    createdBy: {
-      id: 'user123',
-      name: 'John Doe',
-      email: 'john@example.com',
-    },
-    createdAt: '2024-04-10T11:20:00.000Z',
-    updatedAt: '2024-04-10T11:20:00.000Z',
-  },
-  {
-    name: 'Lara Fast',
-    slug: 'larafast',
-    title: 'Launch your startup in days with Laravel',
-    description:
-      'Camera B features high-resolution imaging, advanced autofocus, and manual controls for capturing stunning photos and videos.',
-    websiteUrl: 'https://larafast.com',
-    imageUrl: '/larafast.png',
-    likes: 10,
-    comments: ["Best camera I've ever used!", 'Impressive image quality.'],
-    pricingModel: 'Fixed',
-    tags: ['CSS', 'Tailwind'],
-    youtubeUrl: 'https://www.youtube.com/watch?v=video789',
-    isPromoted: false,
-    status: 'Featured',
-    createdBy: {
-      id: 'user456',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-    },
-    createdAt: '2024-04-11T14:00:00.000Z',
-    updatedAt: '2024-04-11T14:00:00.000Z',
-  },
-  {
-    name: 'Lara Fast',
-    slug: 'larafast',
-    title: 'Launch your startup in days with Laravel',
-    description:
-      'Camera B features high-resolution imaging, advanced autofocus, and manual controls for capturing stunning photos and videos.',
-    websiteUrl: 'https://larafast.com',
-    imageUrl: '/larafast.png',
-    likes: 10,
-    comments: ["Best camera I've ever used!", 'Impressive image quality.'],
-    pricingModel: 'Fixed',
-    tags: ['camera', 'photography'],
-    youtubeUrl: 'https://www.youtube.com/watch?v=video789',
-    isPromoted: false,
-    status: 'New',
-    createdBy: {
-      id: 'user456',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-    },
-    createdAt: '2024-04-11T14:00:00.000Z',
-    updatedAt: '2024-04-11T14:00:00.000Z',
-  },
-  {
-    name: 'Lara Fast',
-    slug: 'larafast',
-    title: 'Launch your startup in days with Laravel',
-    description:
-      'Camera B features high-resolution imaging, advanced autofocus, and manual controls for capturing stunning photos and videos.',
-    websiteUrl: 'https://larafast.com',
-    imageUrl: '/larafast.png',
-    likes: 10,
-    comments: ["Best camera I've ever used!", 'Impressive image quality.'],
-    pricingModel: 'Fixed',
-    tags: ['camera', 'photography'],
-    youtubeUrl: 'https://www.youtube.com/watch?v=video789',
-    isPromoted: false,
-    status: 'Trending',
-    createdBy: {
-      id: 'user456',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-    },
-    createdAt: '2024-04-11T14:00:00.000Z',
-    updatedAt: '2024-04-11T14:00:00.000Z',
-  },
-];
+    image: '/assets/images/seo.png'
+  }
+]
 
 export const plans = [
   {
@@ -344,21 +182,21 @@ export const plans = [
     inclusions: [
       {
         label: '100 Credits',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Full Access to Services',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Priority Customer Support',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Priority Updates',
-        isIncluded: false,
-      },
-    ],
+        isIncluded: false
+      }
+    ]
   },
   {
     _id: 1,
@@ -369,53 +207,53 @@ export const plans = [
     inclusions: [
       {
         label: '250 Credits',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Full Access to Services',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Priority Customer Support',
-        isIncluded: true,
+        isIncluded: true
       },
       {
         label: 'Priority Updates',
-        isIncluded: true,
-      },
-    ],
-  },
-];
+        isIncluded: true
+      }
+    ]
+  }
+]
 
 export const BADGE_CRITERIA = {
   QUESTION_COUNT: {
     BRONZE: 10,
     SILVER: 50,
-    GOLD: 100,
+    GOLD: 100
   },
   ANSWER_COUNT: {
     BRONZE: 10,
     SILVER: 50,
-    GOLD: 100,
+    GOLD: 100
   },
   QUESTION_UPVOTES: {
     BRONZE: 10,
     SILVER: 50,
-    GOLD: 100,
+    GOLD: 100
   },
   ANSWER_UPVOTES: {
     BRONZE: 10,
     SILVER: 50,
-    GOLD: 100,
+    GOLD: 100
   },
   TOTAL_VIEWS: {
     BRONZE: 1000,
     SILVER: 10000,
-    GOLD: 100000,
-  },
-};
+    GOLD: 100000
+  }
+}
 
-export const creditFee = -50;
+export const creditFee = -50
 
 export const PRODUCT_CATEGORIES = [
   {
@@ -439,9 +277,9 @@ export const PRODUCT_CATEGORIES = [
         name: 'Send message on X',
         title: 'You can also send us direct message on x (Indie Makers)',
         href: 'https:/twitter.com/IndieMakersMe',
-        icon: 'help',
-      },
-    ],
+        icon: 'help'
+      }
+    ]
   },
 
   {
@@ -452,8 +290,8 @@ export const PRODUCT_CATEGORIES = [
         name: 'Buy Credits',
         title: 'Add credits to publish or feature your product.',
         href: '/credits',
-        icon: 'coins',
-      },
+        icon: 'coins'
+      }
       // {
       //   name: 'Benifits',
       //   title:
@@ -461,7 +299,7 @@ export const PRODUCT_CATEGORIES = [
       //   href: '#benifits',
       //   icon: 'crown',
       // },
-    ],
+    ]
   },
   {
     label: 'News',
@@ -471,8 +309,8 @@ export const PRODUCT_CATEGORIES = [
         name: 'Blog',
         title: 'See our latest blog on indie products',
         href: '/blog',
-        icon: 'book',
-      },
+        icon: 'book'
+      }
       // {
       //   name: 'Benifits',
       //   title:
@@ -480,6 +318,230 @@ export const PRODUCT_CATEGORIES = [
       //   href: '#benifits',
       //   icon: 'crown',
       // },
-    ],
+    ]
+  }
+]
+
+export const products = [
+  {
+    name: 'SuperTask',
+    slug: 'supertask',
+    title: 'Efficient Task Management',
+    logo: 'https://example.com/logo1.png',
+    thumbnail: '/og.png',
+    website: 'https://supertask.com',
+    description: 'Manage your tasks efficiently with SuperTask.',
+    tags: ['60e6ef7c55bd70343b54622c'],
+    views: 150,
+    upvotes: ['60e6ef7c55bd70343b54622d'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b54622e'],
+    author: '60e6ef7c55bd70343b54622f',
+    status: 'NEW',
+    createdAt: '2024-06-28T12:34:56Z'
   },
-];
+  {
+    name: 'QuickNotes',
+    slug: 'quicknotes',
+    title: 'Fast and Simple Note Taking',
+    logo: 'https://example.com/logo2.png',
+    thumbnail: '/og.png',
+    website: 'https://quicknotes.com',
+    description: 'Take notes quickly and easily with QuickNotes.',
+    tags: ['60e6ef7c55bd70343b546230'],
+    views: 200,
+    upvotes: ['60e6ef7c55bd70343b546231'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b546232'],
+    author: '60e6ef7c55bd70343b546233',
+    status: 'TRENDING',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'PhotoMaster',
+    slug: 'photomaster',
+    title: 'Professional Photo Editing',
+    logo: 'https://example.com/logo3.png',
+    thumbnail: '/og.png',
+    website: 'https://photomaster.com',
+    description: 'Edit your photos like a pro with PhotoMaster.',
+    tags: ['60e6ef7c55bd70343b546234'],
+    views: 300,
+    upvotes: ['60e6ef7c55bd70343b546235'],
+    downvotes: ['60e6ef7c55bd70343b546236'],
+    comments: ['60e6ef7c55bd70343b546237'],
+    author: '60e6ef7c55bd70343b546238',
+    status: 'FEATURED',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'FitnessPal',
+    slug: 'fitnesspal',
+    title: 'Your Personal Fitness Companion',
+    logo: 'https://example.com/logo4.png',
+    thumbnail: '/og.png',
+    website: 'https://fitnesspal.com',
+    description: 'Track your workouts and stay fit with FitnessPal.',
+    tags: ['60e6ef7c55bd70343b546239'],
+    views: 250,
+    upvotes: ['60e6ef7c55bd70343b546240'],
+    downvotes: ['60e6ef7c55bd70343b546241'],
+    comments: ['60e6ef7c55bd70343b546242'],
+    author: '60e6ef7c55bd70343b546243',
+    status: 'NEW',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'TravelBuddy',
+    slug: 'travelbuddy',
+    title: 'Your Travel Companion',
+    logo: 'https://example.com/logo5.png',
+    thumbnail: '/og.png',
+    website: 'https://travelbuddy.com',
+    description: 'Plan your trips easily with TravelBuddy.',
+    tags: ['60e6ef7c55bd70343b546244'],
+    views: 400,
+    upvotes: ['60e6ef7c55bd70343b546245'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b546246'],
+    author: '60e6ef7c55bd70343b546247',
+    status: 'TRENDING',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'RecipeGuru',
+    slug: 'recipeguru',
+    title: 'Discover Delicious Recipes',
+    logo: 'https://example.com/logo6.png',
+    thumbnail: '/og.png',
+    website: 'https://recipeguru.com',
+    description: 'Find and share recipes with RecipeGuru.',
+    tags: ['60e6ef7c55bd70343b546248'],
+    views: 180,
+    upvotes: ['60e6ef7c55bd70343b546249'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b546250'],
+    author: '60e6ef7c55bd70343b546251',
+    status: 'FEATURED',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'MindfulnessApp',
+    slug: 'mindfulnessapp',
+    title: 'Your Mindfulness Guide',
+    logo: 'https://example.com/logo7.png',
+    thumbnail: '/og.png',
+    website: 'https://mindfulnessapp.com',
+    description: 'Practice mindfulness with guided meditations.',
+    tags: ['60e6ef7c55bd70343b546252'],
+    views: 220,
+    upvotes: ['60e6ef7c55bd70343b546253'],
+    downvotes: ['60e6ef7c55bd70343b546254'],
+    comments: ['60e6ef7c55bd70343b546255'],
+    author: '60e6ef7c55bd70343b546256',
+    status: 'NEW',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'BudgetTracker',
+    slug: 'budgettracker',
+    title: 'Manage Your Finances',
+    logo: 'https://example.com/logo8.png',
+    thumbnail: '/og.png',
+    website: 'https://budgettracker.com',
+    description: 'Track your expenses and manage your budget.',
+    tags: ['60e6ef7c55bd70343b546257'],
+    views: 340,
+    upvotes: ['60e6ef7c55bd70343b546258'],
+    downvotes: ['60e6ef7c55bd70343b546259'],
+    comments: ['60e6ef7c55bd70343b546260'],
+    author: '60e6ef7c55bd70343b546261',
+    status: 'TRENDING',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'LanguageLearner',
+    slug: 'languagelearner',
+    title: 'Learn a New Language',
+    logo: 'https://example.com/logo9.png',
+    thumbnail: '/og.png',
+    website: 'https://languagelearner.com',
+    description: 'Learn a new language with interactive lessons.',
+    tags: ['60e6ef7c55bd70343b546262'],
+    views: 260,
+    upvotes: ['60e6ef7c55bd70343b546263'],
+    downvotes: ['60e6ef7c55bd70343b546264'],
+    comments: ['60e6ef7c55bd70343b546265'],
+    author: '60e6ef7c55bd70343b546266',
+    status: 'FEATURED',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'MusicStreamer',
+    slug: 'musicstreamer',
+    title: 'Stream Your Favorite Music',
+    logo: 'https://example.com/logo10.png',
+    thumbnail: '/og.png',
+    website: 'https://musicstreamer.com',
+    description: 'Stream and discover new music.',
+    tags: ['60e6ef7c55bd70343b546267'],
+    views: 500,
+    upvotes: ['60e6ef7c55bd70343b546268'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b546269'],
+    author: '60e6ef7c55bd70343b546270',
+    status: 'NEW',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'HealthMonitor',
+    slug: 'healthmonitor',
+    title: 'Track Your Health Metrics',
+    logo: 'https://example.com/logo11.png',
+    thumbnail: '/og.png',
+    website: 'https://healthmonitor.com',
+    description: 'Monitor your health and fitness metrics.',
+    tags: ['60e6ef7c55bd70343b546271'],
+    views: 320,
+    upvotes: ['60e6ef7c55bd70343b546272'],
+    downvotes: ['60e6ef7c55bd70343b546273'],
+    comments: ['60e6ef7c55bd70343b546274'],
+    author: '60e6ef7c55bd70343b546275',
+    status: 'TRENDING',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'EventPlanner',
+    slug: 'eventplanner',
+    title: 'Plan Your Events Easily',
+    logo: 'https://example.com/logo12.png',
+    thumbnail: '/og.png',
+    website: 'https://eventplanner.com',
+    description: 'Plan and manage your events effortlessly.',
+    tags: ['60e6ef7c55bd70343b546276'],
+    views: 280,
+    upvotes: ['60e6ef7c55bd70343b546277'],
+    downvotes: ['60e6ef7c55bd70343b546278'],
+    comments: ['60e6ef7c55bd70343b546279'],
+    author: '60e6ef7c55bd70343b546280',
+    status: 'FEATURED',
+    createdAt: '2024-06-28T12:34:56Z'
+  },
+  {
+    name: 'BookClub',
+    slug: 'bookclub',
+    title: 'Join a Book Club',
+    logo: 'https://example.com/logo13.png',
+    thumbnail: '/og.png',
+    website: 'https://bookclub.com',
+    description: 'Join a community of book lovers.',
+    tags: ['60e6ef7c55bd70343b546281'],
+    views: 450,
+    upvotes: ['60e6ef7c55bd70343b546282'],
+    downvotes: [],
+    comments: ['60e6ef7c55bd70343b546283'],
+    author: '60e6ef7c55bd70343b546284',
+    status: 'NEW',
+    createdAt: '2024-06-28T12:34:56Z'
+  }
+]
