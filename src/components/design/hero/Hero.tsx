@@ -14,7 +14,7 @@ const Hero = async () => {
           <p>
             The most complete AI tools database. Discover 18092+ AI tools for
             all your needs. Updated daily. Simply type in a function like
-            'music' or 'design'.
+           Music or Design
           </p>
         </div>
 
