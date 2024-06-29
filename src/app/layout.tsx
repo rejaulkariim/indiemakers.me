@@ -1,19 +1,17 @@
-import AdSense from '@/components/shared/AdSense';
-import { ThemeProvider } from '@/components/theme/ThemeProvider';
-import { Toaster } from '@/components/ui/toaster';
-import { siteConfig } from '@/config/site';
-import '@/styles/globals.css';
-import { cn } from '@/utils/utils';
-import { ClerkProvider } from '@clerk/nextjs';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-const font = Inter({ subsets: ['latin'] });
+import AdSense from '@/components/shared/AdSense'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
+import { Toaster } from '@/components/ui/toaster'
+import { siteConfig } from '@/config/site'
+import '@/styles/globals.css'
+import { cn } from '@/utils/utils'
+import { ClerkProvider } from '@clerk/nextjs'
+import { GeistSans } from 'geist/font/sans'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.title}`,
+    template: `%s | ${siteConfig.title}`
   },
   description: siteConfig.description,
   keywords: [
@@ -23,13 +21,13 @@ export const metadata: Metadata = {
     'Server Components',
     'Server Actions',
     'Radix UI',
-    'UI Shadcn',
+    'UI Shadcn'
   ],
   authors: [
     {
       name: 'Rejaul Karim',
-      url: 'https://github.com/rejaulkariim',
-    },
+      url: 'https://github.com/rejaulkariim'
+    }
   ],
   creator: 'Rejaul Karim',
   // themeColor: [
@@ -43,35 +41,35 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.png`],
-    siteName: siteConfig.name,
+    siteName: siteConfig.name
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.png`],
-    creator: '@rejaul',
-  },
-};
+    creator: '@rejaul'
+  }
+}
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <AdSense pId="2997499274877237" />
+        <AdSense pId='2997499274877237' />
       </head>
 
       <ClerkProvider>
-        <body className={cn('antialiased', font.className)}>
-          <ThemeProvider attribute="class" defaultTheme="light">
+        <body className={cn('antialiased', GeistSans.className)}>
+          <ThemeProvider attribute='class' defaultTheme='light'>
             {children}
             <Toaster />
           </ThemeProvider>
         </body>
       </ClerkProvider>
     </html>
-  );
+  )
 }
