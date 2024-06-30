@@ -1,11 +1,6 @@
 import Hero from '@/components/design/hero/Hero'
-import ProductList from '@/components/design/products/ProductList'
-import { getProducts } from '@/lib/actions/product.action'
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Indie Makers'
-}
+import ProductReels from '@/components/design/products/ProductReels'
+import { getProducts } from '@/server/modules/product/product.action'
 
 export default async function Home({ searchParams }: any) {
   const result = await getProducts({
@@ -16,7 +11,7 @@ export default async function Home({ searchParams }: any) {
   return (
     <>
       <Hero />
-      {/* <ProductList result={result} /> */}
+      <ProductReels result={result} />
       {/* <Newsletter /> */}
     </>
   )

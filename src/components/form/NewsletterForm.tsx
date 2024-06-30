@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
-import { createNewsletter } from '@/lib/actions/newsletter.action';
+import { createNewsletter } from '@/server/modules/newsletter/newsletter.action';
 import { newsletterValidationSchema } from '@/lib/validations/newsletter.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';

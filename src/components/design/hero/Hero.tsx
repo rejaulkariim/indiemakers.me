@@ -1,20 +1,17 @@
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
-import { products } from '@/constants'
-import Image from 'next/image'
 import LocalSearchbar from '../search/LocalSearchbar'
 
 const Hero = async () => {
   return (
-    <section className='section-padding'>
+    <section className='pt-10'>
       <MaxWidthWrapper>
-        <div className='mx-auto max-w-3xl text-center'>
-          <h1 className='mt-2 text-3xl font-bold text-primary sm:text-4xl'>
-            Find The Best AI Tools & Apps
+        <div className='mx-auto max-w-4xl space-y-2 text-center'>
+          <h1 className='text-3xl font-bold text-primary sm:text-4xl'>
+            Find The Best New Products in Tech.
           </h1>
-          <p>
-            The most complete AI tools database. Discover 18092+ AI tools for
-            all your needs. Updated daily. Simply type in a function like
-           Music or Design
+          <p className='mx-auto max-w-xl text-sm md:text-lg'>
+            Discover AI tools for all your needs, updated daily. Simply type in
+            a function such as Music or Design.
           </p>
         </div>
 
@@ -23,25 +20,8 @@ const Hero = async () => {
           iconPosition='right'
           imgSrc='/assets/icons/search.svg'
           placeholder='Search for products...'
-          otherClasses='mt-4 max-w-xl mx-auto rounded-2xl'
+          otherClasses='mt-6 max-w-xl mx-auto rounded-2xl'
         />
-
-        <div className='mt-20 grid grid-cols-2 gap-4 md:grid-cols-4'>
-          {products.map(product => (
-            <div key={product.name} className='rounded-2xl border p-2'>
-              <Image
-                src={product.thumbnail}
-                height={300}
-                width={300}
-                alt='image'
-                className='rounded-xl'
-              />
-              <h3>{product.name}</h3>
-              <p>{product.title}</p>
-              <p>{product.description}</p>
-            </div>
-          ))}
-        </div>
       </MaxWidthWrapper>
     </section>
   )

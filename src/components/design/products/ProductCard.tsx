@@ -1,110 +1,109 @@
-import Metric from '@/components/shared/Metric';
-import RenderTag from '@/components/shared/RenderTag';
-import { Badge } from '@/components/ui/badge';
-import { formatAndDivideNumber } from '@/utils/utils';
-import { Flame, Sparkles, Zap } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import Metric from '@/components/shared/Metric'
+import RenderTag from '@/components/shared/RenderTag'
+import { Badge } from '@/components/ui/badge'
+import { formatAndDivideNumber } from '@/utils/utils'
+import { Flame, Sparkles, Zap } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface ProductProps {
-  name: string;
-  slug: string;
-  title: string;
-  image: string;
-  status: string;
+  name: string
+  slug: string
+  title: string
+  logo: string
+  status: string
   tags: {
-    _id: string;
-    name: string;
-  }[];
-  upvotes: string[];
-  views: number;
-  comments: Array<object>;
+    _id: string
+    name: string
+  }[]
+  upvotes: string[]
+  views: number
+  comments: Array<object>
 }
 
 const ProductCard = ({
   name,
   slug,
   title,
-  image,
+  logo,
   tags,
   status,
   upvotes,
   views,
-  comments,
+  comments
 }: ProductProps) => {
   return (
-    <div className="group w-full p-3 hover:bg-card transition-all rounded-xl duration-300 shadow-sm border-b border-muted/40">
+    <div className='group w-full rounded-xl border bg-card/20 p-4 shadow-sm transition-all duration-300 hover:bg-card/50'>
       <Link
         href={`/product/${slug}`}
-        className="flex items-center justify-between gap-6"
+        className='flex items-center justify-between gap-6'
       >
-        <div className="flex items-center gap-x-4 w-full">
+        <div className='flex w-full items-center gap-x-4'>
           <Image
-            src={image}
+            src={logo}
             height={100}
             width={100}
-            alt="tools"
+            alt='tools'
             priority
-            className="aspect-square border object-contain rounded-lg w-12 h-12"
+            className='aspect-square h-12 w-12 rounded-lg border object-contain'
           />
 
-          <div className="space-y-0.5 w-full ">
-            <div className="flex justify-between">
-              <p className="font-bold">{name}</p>
+          <div className='w-full space-y-0.5'>
+            <div className='flex justify-between'>
+              <p className='font-bold'>{name}</p>
               <Badge
-                variant="outline"
-                className="text-[10px] inline-flex items-center text-muted-foreground font-medium rounded-full border px-3 py-0.5 uppercase"
+                variant='outline'
+                className='inline-flex items-center rounded-full border px-3 py-0.5 text-[10px] font-medium uppercase text-muted-foreground'
               >
                 {status === 'FEATURED' && (
-                  <Zap className="size-3 mr-1 text-green-500" />
+                  <Zap className='mr-1 size-3 text-green-500' />
                 )}
                 {status === 'TRENDING' && (
-                  <Flame className="size-3 mr-1 text-violet-500" />
+                  <Flame className='mr-1 size-3 text-violet-500' />
                 )}
                 {status === 'NEW' && (
-                  <Sparkles className="size-3 mr-1 text-rose-500" />
+                  <Sparkles className='mr-1 size-3 text-rose-500' />
                 )}
                 {status}
               </Badge>
             </div>
-            <p className="text-sm text-muted-foreground">{title}</p>
+            <p className='text-sm text-muted-foreground'>{title}</p>
           </div>
         </div>
       </Link>
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 w-full">
-        <div className="flex flex-wrap gap-x-2 mt-2">
-          {tags.map((tag) => (
+      <div className='mt-2 space-y-2'>
+        <div className='mt-2 flex flex-wrap gap-x-2'>
+          {tags.map(tag => (
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className='flex items-center gap-3'>
           <Metric
-            imgUrl="/assets/icons/like.svg"
-            alt="Upvotes"
-            value={formatAndDivideNumber(upvotes.length)}
-            title=" Votes"
-            textStyles="text-xs text-muted-foreground"
-          />
-
-          <Metric
-            imgUrl="/assets/icons/message.svg"
-            alt="message"
-            value={formatAndDivideNumber(comments.length)}
-            title="Comments"
-            textStyles="text-xs text-muted-foreground"
-          />
-          <Metric
-            imgUrl="/assets/icons/eye.svg"
-            alt="eye"
+            imgUrl='/assets/icons/eye.svg'
+            alt='eye'
             value={formatAndDivideNumber(views)}
-            title=" Views"
-            textStyles="text-xs text-muted-foreground"
+            title=' Views'
+            textStyles='text-xs text-muted-foreground'
+          />
+          <Metric
+            imgUrl='/assets/icons/message.svg'
+            alt='message'
+            value={formatAndDivideNumber(comments.length)}
+            title='Comments'
+            textStyles='text-xs text-muted-foreground'
+          />
+          <Metric
+            imgUrl='/assets/icons/like.svg'
+            alt='Upvotes'
+            value={formatAndDivideNumber(upvotes.length)}
+            title=' Votes'
+            textStyles='text-xs text-muted-foreground'
           />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -8,46 +8,46 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Editor } from '@tinymce/tinymce-react';
+  FormMessage
+} from '@/components/ui/form'
+import { Editor } from '@tinymce/tinymce-react'
 
-import { Input } from '@/components/ui/input';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
-import { FileUploader } from '@/components/fileUploader/FileUploader';
-import { Badge } from '@/components/ui/badge';
-import { creditFee } from '@/constants';
-import { createProduct } from '@/lib/actions/product.action';
-import { updateCredits } from '@/lib/actions/user.actions';
-import { useUploadThing } from '@/lib/uploadthing/uploadthing';
-import { productValidationSchema } from '@/lib/validations/product.validation';
-import { X } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { usePathname, useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
-import slugify from 'slugify';
-import { InsufficientCreditsModal } from '../modal/InsufficientCreditsModal';
+import { FileUploader } from '@/components/fileUploader/FileUploader'
+import { Badge } from '@/components/ui/badge'
+import { creditFee } from '@/constants'
+import { useUploadThing } from '@/lib/uploadthing/uploadthing'
+import { productValidationSchema } from '@/lib/validations/product.validation'
+import { createProduct } from '@/server/modules/product/product.action'
+import { X } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { usePathname, useRouter } from 'next/navigation'
+import { useRef, useState } from 'react'
+import slugify from 'slugify'
+import Dropdown from '../design/dropdown/Dropdown'
+import { InsufficientCreditsModal } from '../modal/InsufficientCreditsModal'
 
-const type: any = 'create';
+const type: any = 'create'
 
 interface Props {
-  mongoUserId: string;
-  creditBalance: number;
+  mongoUserId: string
+  creditBalance: number
 }
 
 const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
-  const editorRef = useRef(null);
-  const router = useRouter();
-  const pathname = usePathname();
-  const { theme } = useTheme();
+  const editorRef = useRef(null)
+  const router = useRouter()
+  const pathname = usePathname()
+  const { theme } = useTheme()
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
 
-  const { startUpload } = useUploadThing('imageUploader');
+  const { startUpload } = useUploadThing('imageUploader')
 
   // 1. Define the form.
   const form = useForm<z.infer<typeof productValidationSchema>>({
@@ -55,27 +55,29 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
     defaultValues: {
       name: '',
       title: '',
+      categoryId: '',
       description: '',
       website: '',
-      image: '',
-      tags: [],
-    },
-  });
+      logo: '',
+      tags: []
+    }
+  })
 
   // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof productValidationSchema>) => {
-    setIsSubmitting(true);
+    console.log(values)
+    setIsSubmitting(true)
 
-    let uploadedImageUrl = values.image;
+    let uploadedImageUrl = values.logo
 
     if (files.length > 0) {
-      const uploadedImages = await startUpload(files);
+      const uploadedImages = await startUpload(files)
 
       if (!uploadedImages) {
-        return;
+        return
       }
 
-      uploadedImageUrl = uploadedImages[0].url;
+      uploadedImageUrl = uploadedImages[0].url
     }
 
     try {
@@ -84,85 +86,85 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         name: values.name,
         slug: slugify(values.name, { lower: true }),
         title: values.title,
+        category: values.categoryId,
         description: values.description,
         tags: values.tags,
         website: values.website,
-        image: uploadedImageUrl,
+        logo: uploadedImageUrl,
         author: JSON.parse(mongoUserId),
-        path: pathname,
-      });
+        path: pathname
+      })
 
-      await updateCredits(JSON.parse(mongoUserId), creditFee);
+      console.log(newProduct)
 
-      console.log(newProduct);
-
-      router.push('/');
+      router.push('/')
     } catch (error: unknown) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const handleInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     field: any
   ) => {
     if (e.key === 'Enter' && field.name === 'tags') {
-      e.preventDefault();
+      e.preventDefault()
 
-      const tagInput = e.target as HTMLInputElement;
-      const tagValue = tagInput.value.trim();
+      const tagInput = e.target as HTMLInputElement
+      const tagValue = tagInput.value.trim()
 
       if (tagValue !== '') {
         if (tagValue.length > 15) {
           return form.setError('tags', {
             type: 'required',
-            message: 'Tag must be less than 12 characters.',
-          });
+            message: 'Tag must be less than 12 characters.'
+          })
         }
 
         if (!field.value.includes(tagValue as never)) {
-          form.setValue('tags', [...field.value, tagValue]);
-          tagInput.value = '';
-          form.clearErrors('tags');
+          form.setValue('tags', [...field.value, tagValue])
+          tagInput.value = ''
+          form.clearErrors('tags')
         }
       } else {
-        form.trigger();
+        form.trigger()
       }
     }
-  };
+  }
 
   const handleTagRemove = (tag: string, field: any) => {
-    const newTags = field.value.filter((t: string) => t !== tag);
+    const newTags = field.value.filter((t: string) => t !== tag)
 
-    form.setValue('tags', newTags);
-  };
+    form.setValue('tags', newTags)
+  }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col w-full gap-8"
+        className='flex w-full flex-col gap-6'
       >
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         {/* Product Name */}
         <FormField
           control={form.control}
-          name="name"
+          name='name'
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Product Name <span className="text-amber-500">*</span>
+                Name <span className='text-amber-500'>*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  className="border h-12 text-muted-foreground"
+                  placeholder='Your product name here'
+                  className='text-muted-foreground'
                 />
               </FormControl>
-              <FormDescription>This is your product name</FormDescription>
-              <FormMessage className="text-red-500" />
+
+              <FormMessage className='text-red-500' />
             </FormItem>
           )}
         />
@@ -170,22 +172,40 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         {/* Title */}
         <FormField
           control={form.control}
-          name="title"
+          name='title'
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Title <span className="text-amber-500">*</span>
+                Title <span className='text-amber-500'>*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   {...field}
-                  className="border h-12 text-muted-foreground"
+                  placeholder='Title of your product max 70 characters'
+                  className='text-muted-foreground'
                 />
               </FormControl>
-              <FormDescription>
-                A short description of your product max 70 characters
-              </FormDescription>
-              <FormMessage className="text-red-500" />
+              <FormDescription></FormDescription>
+              <FormMessage className='text-red-500' />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name='categoryId'
+          render={({ field }) => (
+            <FormItem className='w-full'>
+              <FormLabel>
+                Category <span className='text-amber-500'>*</span>
+              </FormLabel>
+              <FormControl>
+                <Dropdown
+                  onChangeHandler={field.onChange}
+                  value={field.value}
+                />
+              </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -193,20 +213,20 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         {/* Descriptions */}
         <FormField
           control={form.control}
-          name="description"
+          name='description'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>App Descriptions</FormLabel>
+              <FormLabel>Descriptions</FormLabel>
               <FormControl>
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                   onInit={(evt, editor) => {
                     // @ts-ignore
-                    editorRef.current = editor;
+                    editorRef.current = editor
                   }}
                   onBlur={field.onBlur}
-                  onEditorChange={(content) => field.onChange(content)}
-                  initialValue=""
+                  onEditorChange={content => field.onChange(content)}
+                  initialValue=''
                   init={{
                     height: 350,
                     menubar: false,
@@ -224,7 +244,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                       'fullscreen',
                       'insertdatetime',
                       'media',
-                      'table',
+                      'table'
                     ],
                     toolbar:
                       'undo redo | ' +
@@ -233,15 +253,15 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                     // toolbar: 'undo redo | styles | bold italic',
                     content_style: 'body { font-family:Inter; font-size:16px}',
                     skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
-                    content_css: theme === 'dark' ? 'dark' : 'light',
+                    content_css: theme === 'dark' ? 'dark' : 'light'
                   }}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className='body-regular text-light-500 mt-2.5'>
                 Max 2000 characters. Note that only the first ~100 characters
                 will show up in search results.
               </FormDescription>
-              <FormMessage className="text-red-500" />
+              <FormMessage className='text-red-500' />
             </FormItem>
           )}
         />
@@ -249,20 +269,17 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         {/* Website */}
         <FormField
           control={form.control}
-          name="website"
+          name='website'
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Website <span className="text-amber-500">*</span>
+                Website <span className='text-amber-500'>*</span>
               </FormLabel>
               <FormControl>
-                <Input
-                  {...field}
-                  className="border h-12 text-muted-foreground"
-                />
+                <Input {...field} className='text-muted-foreground' />
               </FormControl>
 
-              <FormMessage className="text-red-500" />
+              <FormMessage className='text-red-500' />
             </FormItem>
           )}
         />
@@ -270,11 +287,11 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         {/* Image URL */}
         <FormField
           control={form.control}
-          name="image"
+          name='logo'
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Image <span className="text-amber-500">*</span>
+                Logo <span className='text-amber-500'>*</span>
               </FormLabel>
               <FormControl>
                 <FileUploader
@@ -283,8 +300,8 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                   setFiles={setFiles}
                 />
               </FormControl>
-              <FormDescription>Add a logo of your app</FormDescription>
-              <FormMessage className="text-red-500" />
+              <FormDescription>Your product logo</FormDescription>
+              <FormMessage className='text-red-500' />
             </FormItem>
           )}
         />
@@ -292,27 +309,27 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         {/* Tags */}
         <FormField
           control={form.control}
-          name="tags"
+          name='tags'
           render={({ field }) => (
-            <FormItem className="flex w-full flex-col">
-              <FormLabel className="">
-                Tags <span className="text-amber-500">*</span>
+            <FormItem className='flex w-full flex-col'>
+              <FormLabel className=''>
+                Tags <span className='text-amber-500'>*</span>
               </FormLabel>
-              <FormControl className="mt-3.5">
+              <FormControl className='mt-3.5'>
                 <>
                   <Input
                     disabled={type === 'Update'}
-                    placeholder="Add tags..."
-                    onKeyDown={(e) => handleInputKeyDown(e, field)}
-                    className="border h-12 text-muted-foreground"
+                    placeholder='Add tags...'
+                    onKeyDown={e => handleInputKeyDown(e, field)}
+                    className='text-muted-foreground'
                   />
 
                   {field.value.length > 0 && (
-                    <div className="flex justify-start items-start mt-2.5 gap-2.5">
+                    <div className='mt-2.5 flex items-start justify-start gap-2.5'>
                       {field.value.map((tag: any) => (
                         <Badge
                           key={tag}
-                          className="bg-accent hover:bg-accent/80 text-foreground flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize cursor-pointer"
+                          className='flex cursor-pointer items-center justify-center gap-2 rounded-md border-none bg-accent px-4 py-2 capitalize text-foreground hover:bg-accent/80'
                           onClick={() =>
                             type !== 'Update'
                               ? handleTagRemove(tag, field)
@@ -320,24 +337,24 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
                           }
                         >
                           {tag}
-                          {type !== 'Update' && <X className="size-4" />}
+                          {type !== 'Update' && <X className='size-4' />}
                         </Badge>
                       ))}
                     </div>
                   )}
                 </>
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className='body-regular text-light-500 mt-2.5'>
                 Add up to 3 tags to describe what your product is about. You
                 need to press enter to add a tag.
               </FormDescription>
-              <FormMessage className="text-red-500" />
+              <FormMessage className='text-red-500' />
             </FormItem>
           )}
         />
 
         {/* Submit Button */}
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type='submit' disabled={isSubmitting}>
           {isSubmitting ? (
             <>{type === 'Edit' ? 'Editing...' : 'Posting...'}</>
           ) : (
@@ -346,7 +363,7 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         </Button>
       </form>
     </Form>
-  );
-};
+  )
+}
 
-export default SubmitProductForm;
+export default SubmitProductForm

@@ -9,7 +9,7 @@ import {
 
 const MobileNav = () => {
   return (
-    <div className='block md:hidden'>
+    <div className='hidden'>
       <Sheet>
         <SheetTrigger>Open</SheetTrigger>
         <SheetContent side='left'>

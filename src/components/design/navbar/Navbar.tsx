@@ -43,7 +43,10 @@ const Navbar = async () => {
               </SignedIn>
 
               <SignedOut>
-                <Link href='/auth/sign-in' className={cn(buttonVariants())}>
+                <Link
+                  href='/auth/sign-in'
+                  className={cn(buttonVariants({ size: 'sm' }))}
+                >
                   Login
                 </Link>
               </SignedOut>

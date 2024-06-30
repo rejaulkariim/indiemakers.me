@@ -1,30 +1,36 @@
-'use client';
+'use client'
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { toast } from '@/components/ui/use-toast';
-import { downVoteComment, upVoteComment } from '@/lib/actions/comment.action';
-import { viewProduct } from '@/lib/actions/interaction.action';
-import { downVoteProduct, upVoteProduct } from '@/lib/actions/product.action';
-import { toggleSaveProduct } from '@/lib/actions/user.actions';
-import { formatAndDivideNumber } from '@/utils/utils';
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+  TooltipTrigger
+} from '@/components/ui/tooltip'
+import { toast } from '@/components/ui/use-toast'
+import {
+  downVoteComment,
+  upVoteComment
+} from '@/server/modules/comment/comment.action'
+import { viewProduct } from '@/server/modules/interaction/interaction.action'
+import {
+  downVoteProduct,
+  upVoteProduct
+} from '@/server/modules/product/product.action'
+import { toggleSaveProduct } from '@/server/modules/user/user.actions'
+import { formatAndDivideNumber } from '@/utils/utils'
+import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 interface Props {
-  type: string;
-  itemId: string;
-  userId: string;
-  upvotes: number;
-  hasupVoted: boolean;
-  downvotes: number;
-  hasdownVoted: boolean;
-  hasSaved?: boolean;
+  type: string
+  itemId: string
+  userId: string
+  upvotes: number
+  hasupVoted: boolean
+  downvotes: number
+  hasdownVoted: boolean
+  hasSaved?: boolean
 }
 
 const Votes = ({
@@ -35,41 +41,41 @@ const Votes = ({
   hasupVoted,
   downvotes,
   hasdownVoted,
-  hasSaved,
+  hasSaved
 }: Props) => {
-  const pathname = usePathname();
-  const router = useRouter();
+  const pathname = usePathname()
+  const router = useRouter()
 
   // Save product handler
   const handleSave = async () => {
     if (!userId) {
       return toast({
         title: 'Please log in',
-        description: 'You must be logged in to perform this action',
-      });
+        description: 'You must be logged in to perform this action'
+      })
     }
 
     await toggleSaveProduct({
       userId: JSON.parse(userId),
       productId: JSON.parse(itemId),
-      path: pathname,
-    });
+      path: pathname
+    })
 
     return toast({
       title: `Product ${
         !hasSaved ? 'Saved in' : 'Removed from'
       } your collection`,
-      variant: !hasSaved ? 'default' : 'destructive',
-    });
-  };
+      variant: !hasSaved ? 'default' : 'destructive'
+    })
+  }
 
   // Votes handler
   const handleVote = async (action: string) => {
     if (!userId) {
       return toast({
         title: 'Please log in',
-        description: 'You must be logged in to perform this action',
-      });
+        description: 'You must be logged in to perform this action'
+      })
     }
 
     if (action === 'upvote') {
@@ -79,22 +85,22 @@ const Votes = ({
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
-          path: pathname,
-        });
+          path: pathname
+        })
       } else if (type === 'Comment') {
         await upVoteComment({
           commentId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
-          path: pathname,
-        });
+          path: pathname
+        })
       }
 
       return toast({
         title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-        variant: !hasupVoted ? 'default' : 'destructive',
-      });
+        variant: !hasupVoted ? 'default' : 'destructive'
+      })
     }
 
     if (action === 'downvote') {
@@ -104,41 +110,41 @@ const Votes = ({
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
-          path: pathname,
-        });
+          path: pathname
+        })
       } else if (type === 'Comment') {
         await downVoteComment({
           commentId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
-          path: pathname,
-        });
+          path: pathname
+        })
       }
 
       return toast({
         title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
-        variant: !hasupVoted ? 'default' : 'destructive',
-      });
+        variant: !hasupVoted ? 'default' : 'destructive'
+      })
     }
-  };
+  }
 
   // Product Views
   useEffect(() => {
     viewProduct({
       productId: JSON.parse(itemId),
-      userId: userId ? JSON.parse(userId) : undefined,
-    });
-  }, [itemId, userId, pathname, router]);
+      userId: userId ? JSON.parse(userId) : undefined
+    })
+  }, [itemId, userId, pathname, router])
 
   return (
-    <div className="flex items-center gap-2.5">
+    <div className='flex items-center gap-2.5'>
       <TooltipProvider>
         {/* Upvotes */}
         <Tooltip>
           <TooltipTrigger>
-            <div className="flex items-center gap-1.5">
-              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+            <div className='flex items-center gap-1.5'>
+              <div className='flex h-8 w-8 items-center justify-center rounded-md border transition-all duration-300 hover:bg-accent'>
                 <Image
                   src={
                     hasupVoted
@@ -147,27 +153,27 @@ const Votes = ({
                   }
                   width={18}
                   height={18}
-                  alt="upvote"
-                  className="cursor-pointer"
+                  alt='upvote'
+                  className='cursor-pointer'
                   onClick={() => handleVote('upvote')}
                 />
               </div>
 
-              <div className="flex-center min-w-[18px] rounded-sm p-1">
-                <p className="font-bold">{formatAndDivideNumber(upvotes)}</p>
+              <div className='flex-center min-w-[18px] rounded-sm p-1'>
+                <p className='font-bold'>{formatAndDivideNumber(upvotes)}</p>
               </div>
             </div>
           </TooltipTrigger>
-          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
-            <p className="text-xs">Upvotes</p>
+          <TooltipContent className='bg-accent px-2.5 py-0.5' side='top'>
+            <p className='text-xs'>Upvotes</p>
           </TooltipContent>
         </Tooltip>
 
         {/* Downvotes */}
         <Tooltip>
           <TooltipTrigger>
-            <div className="flex items-center gap-1.5">
-              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+            <div className='flex items-center gap-1.5'>
+              <div className='flex h-8 w-8 items-center justify-center rounded-md border transition-all duration-300 hover:bg-accent'>
                 <Image
                   src={
                     hasdownVoted
@@ -176,19 +182,19 @@ const Votes = ({
                   }
                   width={18}
                   height={18}
-                  alt="downvote"
-                  className="cursor-pointer"
+                  alt='downvote'
+                  className='cursor-pointer'
                   onClick={() => handleVote('downvote')}
                 />
               </div>
 
-              <div className="flex-center min-w-[18px] rounded-sm p-1">
-                <p className="font-bold">{formatAndDivideNumber(downvotes)}</p>
+              <div className='flex-center min-w-[18px] rounded-sm p-1'>
+                <p className='font-bold'>{formatAndDivideNumber(downvotes)}</p>
               </div>
             </div>
           </TooltipTrigger>
-          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
-            <p className="text-xs">Downvotes</p>
+          <TooltipContent className='bg-accent px-2.5 py-0.5' side='top'>
+            <p className='text-xs'>Downvotes</p>
           </TooltipContent>
         </Tooltip>
 
@@ -196,7 +202,7 @@ const Votes = ({
         <Tooltip>
           <TooltipTrigger>
             {type === 'Product' && (
-              <div className="border h-8 w-8 flex justify-center items-center rounded-md hover:bg-accent transition-all duration-300">
+              <div className='flex h-8 w-8 items-center justify-center rounded-md border transition-all duration-300 hover:bg-accent'>
                 <Image
                   src={
                     hasSaved
@@ -205,20 +211,20 @@ const Votes = ({
                   }
                   width={18}
                   height={18}
-                  alt="star"
-                  className="cursor-pointer"
+                  alt='star'
+                  className='cursor-pointer'
                   onClick={handleSave}
                 />
               </div>
             )}
           </TooltipTrigger>
-          <TooltipContent className="bg-accent py-0.5 px-2.5" side="top">
-            <p className="text-xs">Save to collection</p>
+          <TooltipContent className='bg-accent px-2.5 py-0.5' side='top'>
+            <p className='text-xs'>Save to collection</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
     </div>
-  );
-};
+  )
+}
 
-export default Votes;
+export default Votes
