@@ -93,13 +93,13 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
   return (
     <section className='section-padding'>
       <MaxWidthWrapper>
-        <div className='flex grid-cols-12 flex-col gap-10 md:grid'>
+        <div className='flex grid-cols-12 flex-col gap-20 md:grid'>
           {/* Left sidebar */}
           <div className='col-span-9'>
             <div className='flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between'>
               <div className='flex items-center gap-4'>
                 <Image
-                  src={product.image}
+                  src={product.logo}
                   height={100}
                   width={100}
                   alt='tools'
@@ -156,7 +156,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
                   href={`${product.website}?ref=indiemakers`}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className={cn(buttonVariants({ variant: 'outline' }))}
+                  className={cn(buttonVariants({ size: 'sm' }))}
                 >
                   Visit Website
                 </Link>

@@ -16,7 +16,7 @@ const RightSidebar = async () => {
         >
           <div className='flex items-center gap-x-2'>
             <Image
-              src={product.image}
+              src={product.logo}
               alt={product.name}
               height={100}
               width={100}

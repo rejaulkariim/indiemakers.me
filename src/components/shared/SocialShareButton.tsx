@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { TwitterShareButton } from 'react-share';
+import { TwitterIcon, TwitterShareButton } from 'react-share'
 
 const SocialShareButton = ({
   name,
   title,
-  slug,
+  slug
 }: {
-  name: string;
-  title: string;
-  slug: string;
+  name: string
+  title: string
+  slug: string
 }) => {
-  const hashtags = ['indiehackers', 'buildinpublic'];
-  const related = ['indieMakersQH', 'rejaulkariim'];
+  const hashtags = ['indiehackers', 'buildinpublic']
+  const related = ['indieMakersQH', 'rejaulkariim']
 
   return (
     <TwitterShareButton
@@ -21,10 +21,10 @@ const SocialShareButton = ({
       hashtags={hashtags}
       related={related}
     >
-      {/* <Icons.twitter className="h-3 w-3 fill-current" /> */}
-      <span className="sr-only">Twitter</span>
+      <TwitterIcon className='h-3 w-3 fill-current' />
+      <span className='sr-only'>Twitter</span>
     </TwitterShareButton>
-  );
-};
+  )
+}
 
-export default SocialShareButton;
+export default SocialShareButton
