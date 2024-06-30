@@ -1,5 +1,5 @@
+import { getUserById } from '@/server/modules/user/user.actions'
 import { auth } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
 const AdminDashboardPage = async () => {
