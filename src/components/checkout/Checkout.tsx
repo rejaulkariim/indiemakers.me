@@ -1,33 +1,32 @@
-'use client';
+'use client'
 
-import { loadStripe } from '@stripe/stripe-js';
-import { useEffect } from 'react';
-
-import { checkoutCredits } from '@/lib/actions/transaction.action';
-import { Button } from '../ui/button';
+import { checkoutCredits } from '@/server/modules/transaction/transaction.action'
+import { loadStripe } from '@stripe/stripe-js'
+import { useEffect } from 'react'
+import { Button } from '../ui/button'
 
 const Checkout = ({
   plan,
   amount,
   credits,
-  buyerId,
+  buyerId
 }: {
-  plan: string;
-  amount: number;
-  credits: number;
-  buyerId: string;
+  plan: string
+  amount: number
+  credits: number
+  buyerId: string
 }) => {
   // const { toast } = useToast();
 
-  console.log(plan, amount, credits, buyerId);
+  console.log(plan, amount, credits, buyerId)
 
   useEffect(() => {
-    loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-  }, []);
+    loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+  }, [])
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
+    const query = new URLSearchParams(window.location.search)
     if (query.get('success')) {
       // toast({
       //   title: 'Order placed!',
@@ -45,28 +44,28 @@ const Checkout = ({
       //   className: 'error-toast',
       // });
     }
-  }, []);
+  }, [])
 
   const onCheckout = async () => {
     const transaction = {
       plan,
       amount,
       credits,
-      buyerId,
-    };
+      buyerId
+    }
 
-    await checkoutCredits(transaction);
-  };
+    await checkoutCredits(transaction)
+  }
 
   return (
-    <form action={onCheckout} method="POST">
+    <form action={onCheckout} method='POST'>
       <section>
-        <Button type="submit" role="link" className="w-full">
+        <Button type='submit' role='link' className='w-full'>
           Buy Credit
         </Button>
       </section>
     </form>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout
