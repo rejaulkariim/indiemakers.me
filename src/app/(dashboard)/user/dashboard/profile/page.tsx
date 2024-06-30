@@ -1,37 +1,37 @@
-import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper';
-import { Button } from '@/components/ui/button';
-import { getUserById } from '@/lib/actions/user.actions';
-import { auth } from '@clerk/nextjs/server';
+import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
+import { Button } from '@/components/ui/button'
+import { getUserById } from '@/server/modules/user/user.actions'
+import { auth } from '@clerk/nextjs/server'
 
-import Image from 'next/image';
+import Image from 'next/image'
 
 const Profile = async ({ searchParams }: any) => {
-  const { userId: clerkId } = auth();
+  const { userId: clerkId } = auth()
 
-  let mongoUser;
+  let mongoUser
 
   if (clerkId) {
-    mongoUser = await getUserById({ userId: clerkId });
+    mongoUser = await getUserById({ userId: clerkId })
   }
 
   return (
-    <section className="section-padding">
+    <section className='section-padding'>
       <MaxWidthWrapper>
-        <div className="max-w-3xl mx-auto flex flex-col-reverse items-start justify-between sm:flex-row">
-          <div className="flex flex-col items-start gap-4 lg:flex-row">
+        <div className='mx-auto flex max-w-3xl flex-col-reverse items-start justify-between sm:flex-row'>
+          <div className='flex flex-col items-start gap-4 lg:flex-row'>
             <Image
               src={mongoUser?.photo}
-              alt="profile picture"
+              alt='profile picture'
               width={100}
               height={100}
-              className="rounded-full object-cover"
+              className='rounded-full object-cover'
             />
 
-            <div className="mt-3">
-              <h2 className="font-bold capitalize">
+            <div className='mt-3'>
+              <h2 className='font-bold capitalize'>
                 {mongoUser?.firstName} {mongoUser?.lastName}
               </h2>
-              <p className="paragraph">@{mongoUser?.username}</p>
+              <p className='paragraph'>@{mongoUser?.username}</p>
 
               {/* <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
               {mongoUser.portfolioWebsite && (
@@ -74,18 +74,18 @@ const Profile = async ({ searchParams }: any) => {
           </div> */}
         </div>
 
-        <div className="border max-w-3xl mx-auto rounded-xl p-4 mt-10">
-          <h1 className="font-bold">Available Credits</h1>
-          <div className="mt-4 flex justify-between w-full items-center">
-            <div className="flex items-center gap-4">
+        <div className='mx-auto mt-10 max-w-3xl rounded-xl border p-4'>
+          <h1 className='font-bold'>Available Credits</h1>
+          <div className='mt-4 flex w-full items-center justify-between'>
+            <div className='flex items-center gap-4'>
               <Image
-                src="/assets/icons/coins.svg"
-                alt="coins"
+                src='/assets/icons/coins.svg'
+                alt='coins'
                 width={50}
                 height={50}
-                className="size-9 md:size-12"
+                className='size-9 md:size-12'
               />
-              <h2 className="font-bold text-2xl sm:text-4xl">
+              <h2 className='text-2xl font-bold sm:text-4xl'>
                 {mongoUser?.creditBalance}
               </h2>
             </div>
@@ -132,7 +132,7 @@ const Profile = async ({ searchParams }: any) => {
         </Tabs>
       </div> */}
     </section>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

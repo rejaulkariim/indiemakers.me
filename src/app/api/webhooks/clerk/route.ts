@@ -1,4 +1,4 @@
-import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
+import { createUser } from '@/server/modules/user/user.actions'
 import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
