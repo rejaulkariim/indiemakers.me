@@ -1,5 +1,6 @@
 import { Icons } from '@/components/shared/Icons'
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
+import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { cn } from '@/utils/utils'
@@ -32,6 +33,7 @@ const Navbar = async () => {
             <MobileNav />
 
             <div className='hidden items-center gap-4 md:flex'>
+              <ModeToggle />
               <Link
                 href='/submit'
                 className={cn(buttonVariants({ variant: 'ghost' }))}

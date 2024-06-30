@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: 'Indie Makers',
   title: 'Find The Best New Products in Tech.',
   description:
-    'Discover AI tools for all your needs, updated daily. Simply type in a function such as Music or Design.',
+    'Explore a vast collection of AI tools to enhance your workflow and unlock new possibilities.',
   url: 'https://indiemakers.me',
   ogImage: 'https://indiemakers.me/og.png',
   links: {
