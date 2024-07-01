@@ -10,12 +10,7 @@ import Votes from '@/components/shared/Votes'
 import { buttonVariants } from '@/components/ui/button'
 import { getProductBySlug } from '@/server/modules/product/product.action'
 import { getUserById } from '@/server/modules/user/user.actions'
-import {
-  absoluteUrl,
-  cn,
-  formatAndDivideNumber,
-  getTimestamp
-} from '@/utils/utils'
+import { cn, formatAndDivideNumber, getTimestamp } from '@/utils/utils'
 import { auth } from '@clerk/nextjs/server'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -38,6 +33,8 @@ export async function generateMetadata({
 }: PostPageProps): Promise<Metadata> {
   const product = await getProductBySlug({ slug: params.slug })
 
+  console.log(product)
+
   if (!product) {
     return {}
   }
@@ -52,14 +49,11 @@ export async function generateMetadata({
   return {
     title: product.title,
     description: product.description,
-    // authors: post.authors.map((author) => ({
-    //   name: author,
-    // })),
     openGraph: {
       title: product.title,
       description: product.description,
       type: 'website',
-      url: absoluteUrl(product.slug),
+      url: new URL(`/products/${product.slug}`, url).toString(),
       images: [
         {
           url: ogUrl.toString(),
@@ -218,7 +212,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
           </div>
 
           {/* RIght sidebar */}
-          <div className='col-span-3 bg-rose-300'>
+          <div className='col-span-3'>
             {/* <div className='h-44 bg-rose-500'>advertisement</div> */}
             <RightSidebar />
           </div>
