@@ -93,7 +93,7 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
   return (
     <section className='section-padding'>
       <MaxWidthWrapper>
-        <div className='flex grid-cols-12 flex-col gap-20 md:grid'>
+        <div className='flex grid-cols-12 flex-col gap-10 md:grid'>
           {/* Left sidebar */}
           <div className='col-span-9'>
             <div className='flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between'>
@@ -199,11 +199,15 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
               </div>
             )}
 
+            {/* <div className='bg-rose-500'>advertisement</div> */}
+
             <AllComments
               productId={product._id}
               userId={mongoUser?._id}
               totalComments={product.comments.length}
             />
+
+            {/* <div className='bg-rose-500'>advertisement</div> */}
 
             {/* Comment  Form*/}
             <CommentForm
@@ -214,7 +218,8 @@ const ProductDetailsPage = async ({ params, searchParams }: any) => {
           </div>
 
           {/* RIght sidebar */}
-          <div className='col-span-3'>
+          <div className='col-span-3 bg-rose-300'>
+            {/* <div className='h-44 bg-rose-500'>advertisement</div> */}
             <RightSidebar />
           </div>
         </div>

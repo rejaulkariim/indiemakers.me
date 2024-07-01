@@ -21,7 +21,7 @@ import {
   createCategory,
   getAllCategories
 } from '@/server/modules/category/category.action'
-import { TCategory } from '@/server/modules/category/category.interface'
+import { ICategory } from '@/server/modules/category/category.types'
 
 import { startTransition, useEffect, useState } from 'react'
 
@@ -31,7 +31,7 @@ type DropdownProps = {
 }
 
 const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
-  const [categories, setCategories] = useState<TCategory[]>([])
+  const [categories, setCategories] = useState<ICategory[]>([])
   const [newCategory, setNewCategory] = useState('')
 
   const handleAddCategory = () => {
@@ -45,7 +45,7 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   useEffect(() => {
     const getCategories = async () => {
       const categoryList = await getAllCategories()
-      categoryList && setCategories(categoryList as TCategory[])
+      categoryList && setCategories(categoryList as ICategory[])
     }
 
     getCategories()

@@ -6,7 +6,7 @@ const RightSidebar = async () => {
   const hotProducts = await getHotProduct()
 
   return (
-    <div className='top-24 mt-4 flex flex-col gap-2 sm:sticky'>
+    <div className='top-24 mt-4 flex flex-col gap-2'>
       <h4 className='font-bold'>Recommended</h4>
       {hotProducts.map(product => (
         <Link
