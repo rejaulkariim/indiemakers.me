@@ -9,7 +9,7 @@ const ProductReels = async ({ result }: any) => {
         {result.length > 0 ? (
           <div className='flex flex-col items-center gap-10'>
             <ul className='grid w-full grid-cols-1 gap-4 md:grid-cols-2'>
-              {result.map(product => {
+              {result.map((product: any) => {
                 return (
                   <li key={product._id} className='flex justify-center'>
                     <ProductCard
