@@ -5,12 +5,12 @@ const Hero = async () => {
   return (
     <section className='py-10 md:py-20'>
       <MaxWidthWrapper>
-        <div className='mx-auto max-w-4xl space-y-3.5'>
-          <h1 className='text-3xl font-bold md:text-5xl'>
+        <div className='mx-auto max-w-4xl space-y-3.5 text-center'>
+          <h1 className='text-3xl font-extrabold md:text-5xl'>
             Find The Best <br />
             <span className='text-primary'>New Products in Tech.</span>
           </h1>
-          <p className='max-w-prose text-sm md:text-lg'>
+          <p className='mx-auto max-w-2xl text-sm md:text-lg'>
             Explore a vast collection of{' '}
             <span className='font-bold'>AI Tools</span> and{' '}
             <span className='font-bold'>Tech Products</span> to enhance your
@@ -22,7 +22,7 @@ const Hero = async () => {
             iconPosition='right'
             imgSrc='/assets/icons/search.svg'
             placeholder='Search for products...'
-            otherClasses='mt-6 max-w-2xl rounded-full'
+            otherClasses='mt-6 max-w-xl mx-auto rounded-full'
           />
         </div>
       </MaxWidthWrapper>

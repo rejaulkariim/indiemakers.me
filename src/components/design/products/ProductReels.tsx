@@ -4,7 +4,7 @@ import NoResult from '@/components/shared/NoResult'
 
 const ProductReels = async ({ result }: any) => {
   return (
-    <section className='section-padding'>
+    <section className=''>
       <MaxWidthWrapper className='max-w-5xl'>
         {result.length > 0 ? (
           <div className='flex flex-col items-center gap-10'>

@@ -40,7 +40,14 @@ const Navbar = async () => {
             <div className='hidden items-center gap-4 md:flex'>
               <ModeToggle />
 
-              {mongoUser.isRegistered && (
+              <Link
+                href='/blog'
+                className={cn(buttonVariants({ variant: 'ghost' }))}
+              >
+                Blog
+              </Link>
+
+              {mongoUser?.isRegistered && (
                 <Link
                   href='/submit'
                   className={cn(buttonVariants({ variant: 'ghost' }))}

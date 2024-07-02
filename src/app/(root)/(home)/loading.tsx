@@ -1,17 +1,17 @@
-import Link from 'next/link'
-
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import Link from 'next/link'
 
 const Loading = () => {
   return (
-    <section className='section-padding'>
+    <section className='py-10 md:py-20'>
       <MaxWidthWrapper>
-        <div className='md:mx-auto md:max-w-3xl'>
+        <div className='mx-auto max-w-4xl space-y-3.5 text-center'>
           <div className='flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center'>
-            <h1 className='font-bold'>All Products</h1>
-
+            <h1 className='text-3xl font-extrabold md:text-5xl'>
+              <Skeleton className='h-8 w-48 md:h-12 md:w-64' />
+            </h1>
             <Link
               href='/user/dashboard/submit'
               className='flex justify-end max-sm:w-full'

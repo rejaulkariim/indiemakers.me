@@ -33,7 +33,7 @@ const ProductCard = ({
   comments
 }: ProductProps) => {
   return (
-    <div className='group w-full rounded-xl border bg-card/20 p-4 shadow-sm transition-all duration-300 hover:bg-card/50'>
+    <div className='group w-full rounded-xl border bg-card p-4 shadow-sm transition-all duration-300 hover:bg-card'>
       <Link
         href={`/product/${slug}`}
         className='flex items-center justify-between gap-6'
@@ -45,7 +45,7 @@ const ProductCard = ({
             width={100}
             alt='tools'
             priority
-            className='aspect-square h-12 w-12 rounded-lg border object-contain'
+            className='aspect-square h-14 w-14 rounded-lg border object-contain'
           />
 
           <div className='w-full space-y-0.5'>
@@ -53,7 +53,7 @@ const ProductCard = ({
               <p className='font-bold'>{name}</p>
               <Badge
                 variant='outline'
-                className='inline-flex items-center rounded-full border px-3 py-0.5 text-[10px] font-medium uppercase text-muted-foreground'
+                className='inline-flex items-center rounded-full border px-3 py-0.5 text-[10px] font-medium uppercase text-primary'
               >
                 {status === 'FEATURED' && (
                   <Zap className='mr-1 size-3 text-green-500' />
