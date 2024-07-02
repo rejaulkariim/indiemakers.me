@@ -3,12 +3,17 @@ import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
 import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { getUserById } from '@/server/modules/user/user.actions'
 import { cn } from '@/utils/utils'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
 import Link from 'next/link'
 import MobileNav from './MobileNav'
 
 const Navbar = async () => {
+  const { userId }: { userId: string | null } = auth()
+  const mongoUser = await getUserById({ userId })
+
   return (
     <>
       <nav className='sticky inset-x-0 top-0 z-50 w-full border-b bg-background'>
@@ -34,12 +39,16 @@ const Navbar = async () => {
 
             <div className='hidden items-center gap-4 md:flex'>
               <ModeToggle />
-              <Link
-                href='/submit'
-                className={cn(buttonVariants({ variant: 'ghost' }))}
-              >
-                Submit
-              </Link>
+
+              {mongoUser.isRegistered && (
+                <Link
+                  href='/submit'
+                  className={cn(buttonVariants({ variant: 'ghost' }))}
+                >
+                  Submit
+                </Link>
+              )}
+
               <SignedIn>
                 <UserButton />
               </SignedIn>

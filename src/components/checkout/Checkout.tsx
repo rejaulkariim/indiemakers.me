@@ -61,7 +61,7 @@ const Checkout = ({
     <form action={onCheckout} method='POST'>
       <section>
         <Button type='submit' role='link' className='w-full'>
-          Buy Credit
+          Yes, Proceed
         </Button>
       </section>
     </form>

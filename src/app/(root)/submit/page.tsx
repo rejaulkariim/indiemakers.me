@@ -6,11 +6,7 @@ import { auth } from '@clerk/nextjs/server'
 const SubmitProductPage = async () => {
   const { userId }: { userId: string | null } = auth()
 
-  console.log(userId, 'userId')
-
   const mongoUser = await getUserById({ userId })
-
-  console.log(mongoUser, 'mongouser')
 
   return (
     <section className='section-padding'>

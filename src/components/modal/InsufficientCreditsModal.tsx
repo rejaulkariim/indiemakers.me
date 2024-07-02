@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import {
   AlertDialog,
@@ -11,59 +11,54 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+  AlertDialogTitle
+} from '@/components/ui/alert-dialog'
+import Checkout from '../checkout/Checkout'
+import { Icons } from '../shared/Icons'
 
 export const InsufficientCreditsModal = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <AlertDialog defaultOpen>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <span className="flex justify-between items-center">
-            <p className="font-bold">Insufficient Credits</p>
+          <span className='flex items-center justify-between'>
             <AlertDialogCancel
-              className="border-0 p-0 hover:bg-transparent"
+              className='border-0 p-0 hover:bg-transparent'
               onClick={() => router.push('/user/dashboard/profile')}
             >
               <Image
-                src="/assets/icons/close.svg"
-                alt="credit coins"
+                src='/assets/icons/close.svg'
+                alt='credit coins'
                 width={24}
                 height={24}
-                className="cursor-pointer"
+                className='cursor-pointer'
               />
             </AlertDialogCancel>
           </span>
 
-          <Image
-            src="/assets/images/stacked-coins.png"
-            alt="credit coins"
-            width={462}
-            height={122}
-          />
+          <Icons.billing />
 
-          <AlertDialogTitle className="font-bold">
-            Oops.... Looks like you&#39;ve run out of free credits!
+          <AlertDialogTitle className='font-bold'>
+            {/* Pay the $5 registration fee */}
+            We are working on this page
           </AlertDialogTitle>
 
-          <AlertDialogDescription className="paragraph py-3">
-            No worries, though - you can keep enjoying our services by grabbing
-            more credits.
+          <AlertDialogDescription className='paragraph py-3'>
+            {/* A one-time registration fee is required in order to register your
+            account. */}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel
-            onClick={() => router.push('/user/dashboard/profile')}
-          >
+          <AlertDialogCancel onClick={() => router.push('/')}>
             No, Cancel
           </AlertDialogCancel>
-          <AlertDialogAction onClick={() => router.push('/credits')}>
-            Yes, Proceed
+          <AlertDialogAction>
+            <Checkout plan={'Reg'} amount={5} credits={5} buyerId={'id'} />
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
-};
+  )
+}
