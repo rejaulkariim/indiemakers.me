@@ -3,25 +3,28 @@ import LocalSearchbar from '../search/LocalSearchbar'
 
 const Hero = async () => {
   return (
-    <section className='pt-10'>
+    <section className='py-10 md:py-20'>
       <MaxWidthWrapper>
-        <div className='mx-auto max-w-4xl space-y-2 text-center'>
-          <h1 className='text-3xl font-bold text-primary md:text-4xl'>
-            Find The Best New Products in Tech.
+        <div className='mx-auto max-w-4xl space-y-3.5'>
+          <h1 className='text-3xl font-bold md:text-5xl'>
+            Find The Best <br />
+            <span className='text-primary'>New Products in Tech.</span>
           </h1>
-          <p className='mx-auto max-w-xl text-sm md:text-lg'>
-            Explore a vast collection of AI tools to enhance your workflow and
-            unlock new possibilities.
+          <p className='max-w-prose text-sm md:text-lg'>
+            Explore a vast collection of{' '}
+            <span className='font-bold'>AI Tools</span> and{' '}
+            <span className='font-bold'>Tech Products</span> to enhance your
+            workflow and unlock new possibilities.
           </p>
-        </div>
 
-        <LocalSearchbar
-          route='/'
-          iconPosition='right'
-          imgSrc='/assets/icons/search.svg'
-          placeholder='Search for products...'
-          otherClasses='mt-6 max-w-xl mx-auto rounded-full'
-        />
+          <LocalSearchbar
+            route='/'
+            iconPosition='right'
+            imgSrc='/assets/icons/search.svg'
+            placeholder='Search for products...'
+            otherClasses='mt-6 max-w-2xl rounded-full'
+          />
+        </div>
       </MaxWidthWrapper>
     </section>
   )

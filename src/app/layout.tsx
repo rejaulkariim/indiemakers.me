@@ -1,3 +1,4 @@
+import GoogleTagManager from '@/components/script/GoogleTagManager'
 import AdSense from '@/components/shared/AdSense'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import { Toaster } from '@/components/ui/toaster'
@@ -60,6 +61,7 @@ export default function RootLayout({
     <html lang='en'>
       <head>
         <AdSense pId='2997499274877237' />
+        <GoogleTagManager containerId='GTM-N2JV4XCH' />
       </head>
 
       <ClerkProvider>
