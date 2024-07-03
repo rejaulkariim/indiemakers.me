@@ -19,7 +19,6 @@ import * as z from 'zod'
 
 import { FileUploader } from '@/components/fileUploader/FileUploader'
 import { Badge } from '@/components/ui/badge'
-import { creditFee } from '@/constants'
 import { useUploadThing } from '@/lib/uploadthing/uploadthing'
 import { productValidationSchema } from '@/lib/validations/product.validation'
 import { createProduct } from '@/server/modules/product/product.action'
@@ -29,7 +28,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import slugify from 'slugify'
 import Dropdown from '../design/dropdown/Dropdown'
-import { InsufficientCreditsModal } from '../modal/InsufficientCreditsModal'
 
 const type: any = 'create'
 
@@ -146,7 +144,6 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex w-full flex-col gap-6'
       >
-        {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         {/* Product Name */}
         <FormField
           control={form.control}
