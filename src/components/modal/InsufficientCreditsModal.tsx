@@ -13,10 +13,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
+import { REGISTRATION } from '@/constants'
 import Checkout from '../checkout/Checkout'
 import { Icons } from '../shared/Icons'
 
-export const InsufficientCreditsModal = () => {
+export const InsufficientCreditsModal = ({
+  mongoUserId
+}: {
+  mongoUserId: string
+}) => {
   const router = useRouter()
 
   return (
@@ -41,13 +46,13 @@ export const InsufficientCreditsModal = () => {
           <Icons.billing />
 
           <AlertDialogTitle className='font-bold'>
-            {/* Pay the $5 registration fee */}
-            We are working on this page
+            Pay the $5 registration fee
+            {/* We are working on this page */}
           </AlertDialogTitle>
 
           <AlertDialogDescription className='paragraph py-3'>
-            {/* A one-time registration fee is required in order to register your
-            account. */}
+            A one-time registration fee is required in order to register your
+            account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -55,7 +60,11 @@ export const InsufficientCreditsModal = () => {
             No, Cancel
           </AlertDialogCancel>
           <AlertDialogAction>
-            <Checkout plan={'Reg'} amount={5} credits={5} buyerId={'id'} />
+            <Checkout
+              amount={REGISTRATION.fee}
+              name={REGISTRATION.name}
+              buyerId={mongoUserId}
+            />
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

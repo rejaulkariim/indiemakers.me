@@ -545,3 +545,8 @@ export const products = [
     createdAt: '2024-06-28T12:34:56Z'
   }
 ]
+
+export const REGISTRATION = {
+  fee: 5,
+  name: 'Registration Fee'
+}

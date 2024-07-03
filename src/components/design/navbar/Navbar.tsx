@@ -3,16 +3,14 @@ import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
 import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
-import { getUserById } from '@/server/modules/user/user.actions'
 import { cn } from '@/utils/utils'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { auth } from '@clerk/nextjs/server'
 import Link from 'next/link'
 import MobileNav from './MobileNav'
 
 const Navbar = async () => {
-  const { userId }: { userId: string | null } = auth()
-  const mongoUser = await getUserById({ userId })
+  // const { userId }: { userId: string | null } = auth()
+  // const mongoUser = await getUserById({ userId })
 
   return (
     <>
@@ -47,14 +45,23 @@ const Navbar = async () => {
                 Blog
               </Link>
 
-              {mongoUser?.isRegistered && (
+              {/* {mongoUser?.isRegistered && (
                 <Link
                   href='/submit'
                   className={cn(buttonVariants({ variant: 'ghost' }))}
                 >
                   Submit
                 </Link>
-              )}
+              )} */}
+
+              <Link
+                href='/submit'
+                className={cn(
+                  buttonVariants({ variant: 'default', size: 'sm' })
+                )}
+              >
+                New Product
+              </Link>
 
               <SignedIn>
                 <UserButton />

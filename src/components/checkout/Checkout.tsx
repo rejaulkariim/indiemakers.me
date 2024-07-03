@@ -6,19 +6,15 @@ import { useEffect } from 'react'
 import { Button } from '../ui/button'
 
 const Checkout = ({
-  plan,
+  name,
   amount,
-  credits,
   buyerId
 }: {
-  plan: string
+  name: string
   amount: number
-  credits: number
   buyerId: string
 }) => {
   // const { toast } = useToast();
-
-  console.log(plan, amount, credits, buyerId)
 
   useEffect(() => {
     loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -48,9 +44,8 @@ const Checkout = ({
 
   const onCheckout = async () => {
     const transaction = {
-      plan,
+      name,
       amount,
-      credits,
       buyerId
     }
 
@@ -59,11 +54,9 @@ const Checkout = ({
 
   return (
     <form action={onCheckout} method='POST'>
-      <section>
-        <Button type='submit' role='link' className='w-full'>
-          Yes, Proceed
-        </Button>
-      </section>
+      <Button type='submit' role='link' className='w-full'>
+        Yes, Proceed
+      </Button>
     </form>
   )
 }

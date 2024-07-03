@@ -4,7 +4,6 @@ import { connectToDatabase } from '@/server/mongoose'
 import { CheckoutTransactionParams, CreateTransactionParams } from '@/types'
 import { redirect } from 'next/navigation'
 import Stripe from 'stripe'
-import { updateCredits } from '../user/user.actions'
 import Transaction from './transaction.model'
 
 export async function checkoutCredits(transaction: CheckoutTransactionParams) {
@@ -19,15 +18,15 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
           currency: 'usd',
           unit_amount: amount,
           product_data: {
-            name: transaction.plan
+            name: transaction.name
           }
         },
         quantity: 1
       }
     ],
     metadata: {
-      plan: transaction.plan,
-      credits: transaction.credits,
+      name: transaction.name,
+      amount: transaction.amount,
       buyerId: transaction.buyerId
     },
     mode: 'payment',
@@ -39,6 +38,7 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
 }
 
 export async function createTransaction(transaction: CreateTransactionParams) {
+  console.log(transaction, 'transaction')
   try {
     await connectToDatabase()
 
@@ -48,13 +48,10 @@ export async function createTransaction(transaction: CreateTransactionParams) {
       buyer: transaction.buyerId
     })
 
-    console.log('newTransaction=>', newTransaction)
-
-    await updateCredits(transaction.buyerId, transaction.credits)
-
     return JSON.parse(JSON.stringify(newTransaction))
   } catch (error) {
     console.log(error)
+    throw new Error('Transaction creation failed')
     // handleError(error);
   }
 }

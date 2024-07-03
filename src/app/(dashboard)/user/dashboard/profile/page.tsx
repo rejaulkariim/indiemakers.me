@@ -1,5 +1,4 @@
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
-import { Button } from '@/components/ui/button'
 import { getUserById } from '@/server/modules/user/user.actions'
 import { auth } from '@clerk/nextjs/server'
 
@@ -72,25 +71,6 @@ const Profile = async ({ searchParams }: any) => {
               )}
             </SignedIn>
           </div> */}
-        </div>
-
-        <div className='mx-auto mt-10 max-w-3xl rounded-xl border p-4'>
-          <h1 className='font-bold'>Available Credits</h1>
-          <div className='mt-4 flex w-full items-center justify-between'>
-            <div className='flex items-center gap-4'>
-              <Image
-                src='/assets/icons/coins.svg'
-                alt='coins'
-                width={50}
-                height={50}
-                className='size-9 md:size-12'
-              />
-              <h2 className='text-2xl font-bold sm:text-4xl'>
-                {mongoUser?.creditBalance}
-              </h2>
-            </div>
-            <Button>Add More Credits</Button>
-          </div>
         </div>
       </MaxWidthWrapper>
 

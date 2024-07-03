@@ -1,4 +1,5 @@
 import SubmitProductForm from '@/components/form/SubmitProductForm'
+import { InsufficientCreditsModal } from '@/components/modal/InsufficientCreditsModal'
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
 import { getUserById } from '@/server/modules/user/user.actions'
 import { auth } from '@clerk/nextjs/server'
@@ -7,6 +8,12 @@ const SubmitProductPage = async () => {
   const { userId }: { userId: string | null } = auth()
 
   const mongoUser = await getUserById({ userId })
+
+  if (!mongoUser?.isRegistered) {
+    return (
+      <InsufficientCreditsModal mongoUserId={JSON.stringify(mongoUser?._id)} />
+    )
+  }
 
   return (
     <section className='section-padding'>
