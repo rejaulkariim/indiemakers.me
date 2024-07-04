@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const MobileNav = () => {
   return (
-    <nav className='flex items-center justify-between'>
+    <nav className='flex md:hidden items-center justify-between'>
       <SignedIn>
         <UserButton />
       </SignedIn>
