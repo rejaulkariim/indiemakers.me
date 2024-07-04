@@ -33,7 +33,7 @@ const ProductCard = ({
   comments
 }: ProductProps) => {
   return (
-    <div className='group w-full rounded-xl border bg-card p-4 shadow-sm transition-all duration-300 hover:bg-card'>
+    <div className='group w-full rounded-xl border bg-card p-2.5 shadow-sm transition-all duration-300 hover:bg-card'>
       <Link
         href={`/product/${slug}`}
         className='flex items-center justify-between gap-6'

@@ -6,11 +6,11 @@ const Hero = async () => {
     <section className='py-10 md:py-20'>
       <MaxWidthWrapper>
         <div className='mx-auto max-w-4xl space-y-3.5 text-center'>
-          <h1 className='text-3xl font-extrabold md:text-5xl'>
+          <h1 className='text-3xl font-extrabold md:text-4xl'>
             Find The Best <br />
             <span className='text-primary'>New Products in Tech.</span>
           </h1>
-          <p className='mx-auto max-w-2xl text-sm md:text-lg'>
+          <p className='mx-auto max-w-2xl'>
             Explore a vast collection of{' '}
             <span className='font-bold'>AI Tools</span> and{' '}
             <span className='font-bold'>Tech Products</span> to enhance your

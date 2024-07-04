@@ -3,21 +3,25 @@ import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
 import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { getUserById } from '@/server/modules/user/user.actions'
 import { cn } from '@/utils/utils'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
 import Link from 'next/link'
 import MobileNav from './MobileNav'
 
 const Navbar = async () => {
-  // const { userId }: { userId: string | null } = auth()
-  // const mongoUser = await getUserById({ userId })
+  const { userId }: { userId: string | null } = auth()
+  const mongoUser = await getUserById({ userId })
+
+  console.log(mongoUser)
 
   return (
     <>
       <nav className='sticky inset-x-0 top-0 z-50 w-full border-b bg-background'>
         <MaxWidthWrapper>
           <header className='flex h-16 items-center justify-between gap-10'>
-            <div className='hidden flex-1 sm:block'>
+            <div>
               <div className='flex items-center gap-10'>
                 <Link href='/' className='flex items-center gap-1'>
                   <Icons.logo className='h-8 w-8 text-primary' />
@@ -32,7 +36,6 @@ const Navbar = async () => {
                 </div> */}
               </div>
             </div>
-
             <MobileNav />
 
             <div className='hidden items-center gap-4 md:flex'>
@@ -45,23 +48,14 @@ const Navbar = async () => {
                 Blog
               </Link>
 
-              {/* {mongoUser?.isRegistered && (
+              {mongoUser?.role === 'admin' && (
                 <Link
                   href='/submit'
                   className={cn(buttonVariants({ variant: 'ghost' }))}
                 >
                   Submit
                 </Link>
-              )} */}
-
-              <Link
-                href='/submit'
-                className={cn(
-                  buttonVariants({ variant: 'default', size: 'sm' })
-                )}
-              >
-                New Product
-              </Link>
+              )}
 
               <SignedIn>
                 <UserButton />
