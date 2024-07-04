@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <AdSense pId='2997499274877237' />
+        <AdSense pId='1559322307341104' />
         <GoogleTagManager containerId='GTM-N2JV4XCH' />
       </head>
 
