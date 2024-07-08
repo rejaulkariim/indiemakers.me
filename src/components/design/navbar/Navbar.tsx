@@ -1,6 +1,5 @@
 import { Icons } from '@/components/shared/Icons'
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
-import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { getUserById } from '@/server/modules/user/user.actions'
@@ -39,23 +38,12 @@ const Navbar = async () => {
             <MobileNav />
 
             <div className='hidden items-center gap-4 md:flex'>
-              <ModeToggle />
-
               <Link
-                href='/blog'
-                className={cn(buttonVariants({ variant: 'ghost' }))}
+                href='/submit'
+                className={cn(buttonVariants({ size: 'sm' }))}
               >
-                Blog
+                New Product
               </Link>
-
-              {mongoUser?.role === 'admin' && (
-                <Link
-                  href='/submit'
-                  className={cn(buttonVariants({ variant: 'ghost' }))}
-                >
-                  Submit
-                </Link>
-              )}
 
               <SignedIn>
                 <UserButton />
@@ -64,7 +52,9 @@ const Navbar = async () => {
               <SignedOut>
                 <Link
                   href='/auth/sign-in'
-                  className={cn(buttonVariants({ size: 'sm' }))}
+                  className={cn(
+                    buttonVariants({ variant: 'outline', size: 'sm' })
+                  )}
                 >
                   Login
                 </Link>
