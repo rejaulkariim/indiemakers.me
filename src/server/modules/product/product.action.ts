@@ -113,6 +113,20 @@ export async function getProducts(params: GetProductParams) {
   }
 }
 
+// Get all products for dynamic sitemap
+export async function getAllProducts() {
+  try {
+    await connectToDatabase()
+
+    const products = await Product.find()
+
+    return JSON.parse(JSON.stringify(products))
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
 export async function getRecommendedProducts(params: any) {
   try {
     await connectToDatabase()
