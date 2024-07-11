@@ -119,10 +119,10 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
       const tagValue = tagInput.value.trim()
 
       if (tagValue !== '') {
-        if (tagValue.length > 15) {
+        if (tagValue.length > 40) {
           return form.setError('tags', {
             type: 'required',
-            message: 'Tag must be less than 12 characters.'
+            message: 'Tag must be less than 40 characters.'
           })
         }
 
