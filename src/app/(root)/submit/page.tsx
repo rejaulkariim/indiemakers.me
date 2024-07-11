@@ -11,7 +11,7 @@ const SubmitProductPage = async () => {
   return (
     <section className='section-padding'>
       <MaxWidthWrapper className='max-w-3xl'>
-        <h1 className='font-bold'>Submit product</h1>
+        <h1 className='text-2xl font-bold'>Submit Product</h1>
 
         <div className='my-10'>
           <SubmitProductForm

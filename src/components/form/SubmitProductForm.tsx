@@ -28,6 +28,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import slugify from 'slugify'
 import Dropdown from '../design/dropdown/Dropdown'
+import { toast } from '../ui/use-toast'
 
 const type: any = 'create'
 
@@ -91,6 +92,13 @@ const SubmitProductForm = ({ mongoUserId, creditBalance }: Props) => {
         author: JSON.parse(mongoUserId),
         path: pathname
       })
+
+      if (newProduct) {
+        toast({
+          title: 'Success',
+          description: 'Product created successfully'
+        })
+      }
 
       router.push('/')
     } catch (error: unknown) {
