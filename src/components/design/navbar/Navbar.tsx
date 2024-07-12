@@ -13,8 +13,6 @@ const Navbar = async () => {
   const { userId }: { userId: string | null } = auth()
   const mongoUser = await getUserById({ userId })
 
-  console.log(mongoUser)
-
   return (
     <>
       <nav className='sticky inset-x-0 top-0 z-50 w-full border-b bg-background'>
