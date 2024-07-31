@@ -36,12 +36,14 @@ const Navbar = async () => {
             <MobileNav />
 
             <div className='hidden items-center gap-4 md:flex'>
-              <Link
-                href='/submit'
-                className={cn(buttonVariants({ size: 'sm' }))}
-              >
-                New Product
-              </Link>
+              {mongoUser?.role === 'admin' && (
+                <Link
+                  href='/submit'
+                  className={cn(buttonVariants({ size: 'sm' }))}
+                >
+                  New Product
+                </Link>
+              )}
 
               <SignedIn>
                 <UserButton />
