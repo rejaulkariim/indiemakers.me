@@ -1,5 +1,6 @@
 import { Icons } from '@/components/shared/Icons'
 import MaxWidthWrapper from '@/components/shared/MaxWidthWrapper'
+import { ModeToggle } from '@/components/theme/ModeToggle'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { getUserById } from '@/server/modules/user/user.actions'
@@ -44,6 +45,7 @@ const Navbar = async () => {
                   New Product
                 </Link>
               )}
+              <ModeToggle />
 
               <SignedIn>
                 <UserButton />

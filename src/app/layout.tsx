@@ -6,8 +6,12 @@ import { siteConfig } from '@/config/site'
 import '@/styles/globals.css'
 import { cn } from '@/utils/utils'
 import { ClerkProvider } from '@clerk/nextjs'
-import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+
+const font = Inter({
+  subsets: ['latin']
+})
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +69,7 @@ export default function RootLayout({
       </head>
 
       <ClerkProvider>
-        <body className={cn('antialiased', GeistSans.className)}>
+        <body className={cn('antialiased', font.className)}>
           <ThemeProvider attribute='class' defaultTheme='light'>
             {children}
             <Toaster />

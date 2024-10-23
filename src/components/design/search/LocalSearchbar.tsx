@@ -84,6 +84,7 @@ const LocalSearchbar = ({
           width={24}
           height={24}
           className='cursor-pointer'
+          draggable={false}
         />
       )}
     </div>
